@@ -1,0 +1,40 @@
+* {
+  background-color: rgba(212, 41, 42, 0.85);
+}
+
+.titlo-registro-vendedor {
+  letter-spacing: 0.17em;
+  font-family: Play-regular;
+  color: black;
+}
+.label-registro-vendedor {
+  font-size: 18px;
+  font-weight: 13px;
+  font-family: PTMono;
+  color: black;
+}
+.campo-registro-vendedor {
+}
+.btn-registrar-vendedor {
+  background: #f5e7da;
+  color: black;
+  width: 200px;
+  border-color: black;
+  display: block;
+  margin: auto;
+}
+.singUp-registro-vendedor {
+  font-size: 22px;
+  color: white;
+}
+.singUp-registro-vendedor a {
+  text-decoration: underline;
+}
+.singUp-registro-vendedor a :hover {
+  cursor: pointer;
+}
+.logo {
+  transform: rotate(-12.28deg);
+  width: 10%;
+  height: 100%;
+}

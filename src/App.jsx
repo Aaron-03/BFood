@@ -1,15 +1,14 @@
+/* eslint-disable no-unused-vars */
+import React from 'react'
+import RegisterFormSeller from './components/registerFormSellers/registerFormSeller'
 
-import React from "react";
-//import registerFormSeller from './components/registerFormSellers/registerFormSeller';
-import LoginFormSeller from './components/login/loginFormSeller';
-function App() {
+function App () {
   return (
     <div className="App">
       <h1>Pagina Principal</h1>
-      {/*<registerFormSeller/>*/}
-      <LoginFormSeller/>
+      <RegisterFormSeller />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
