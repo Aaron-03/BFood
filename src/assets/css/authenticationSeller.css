@@ -1,0 +1,26 @@
+
+body {
+    background-color: #F74545 !important;
+}
+
+#container_login_seller {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    margin-top: 2rem;
+    background-color: blueviolet;
+}
+
+#container_login_seller h2 {
+    font-size: 22pt;
+    text-shadow: 4px 2px 1px black;
+    letter-spacing: 0.2rem;
+}
+
+#container_login_seller .login_form_image {
+    width: 7rem;
+    height: 7rem;
+    margin-top: 2rem;
+}
