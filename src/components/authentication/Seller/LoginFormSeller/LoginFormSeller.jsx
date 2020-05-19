@@ -24,6 +24,7 @@ import { Container, FormGroup, FormControl } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const LoginFormSeller = () => {
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
   const [vendor, setVendor] = useState({
     username: '',
