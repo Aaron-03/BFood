@@ -1,0 +1,37 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+  --custom-blue: #5578AC;
+  --custom-white: #FFFFFF;
+  --custom-red: #F74545;
+  --custom-black: #000000;
+}
+
+@font-face {
+    font-family: Play-regular;
+    src: url(./fonts/Play-Regular.ttf);
+}
+@font-face {
+  font-family: Play-bold;
+  src: url(./fonts/Play-Bold.ttf);
+}
+@font-face {
+  font-family: PTMono;
+  src: url(./fonts/PTMono-Regular.ttf);
+}
+
+h1, h2 {
+  font-family: PTMono, Verdana, sans-serif;
+}
+
+h3 {
+  font-family: Play-bold, Verdana, sans-serif;
+}
+
+p, input, label {
+  font-family: Play-regular, Verdana, sans-serif;
+}
