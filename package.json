@@ -3,30 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@popperjs/core": "^2.4.0",
-=======
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
->>>>>>> dfe82749bf408e2b6a31a9cb6a12b15f6d09ab86
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
-<<<<<<< HEAD
-    "jquery": "^3.5.1",
-=======
->>>>>>> dfe82749bf408e2b6a31a9cb6a12b15f6d09ab86
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-<<<<<<< HEAD
-    "react-scripts": "3.4.1"
-=======
     "react-scripts": "3.4.1",
     "sweetalert2": "^9.10.13"
->>>>>>> dfe82749bf408e2b6a31a9cb6a12b15f6d09ab86
   },
   "scripts": {
     "start": "react-scripts start",
