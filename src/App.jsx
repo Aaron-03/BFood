@@ -1,21 +1,13 @@
 import React from 'react';
 
-
 import './assets/css/style.css';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import LoginFormSeller from './components/authentication/Seller/LoginFormSeller';
-import SignUpFormSeller from './components/authentication/Seller/SignUpFormSeller';
-
+import LoginFormSeller from './components/authentication/Seller/LoginFormSeller/LoginFormSeller';
+import SignUpFormSeller from './components/authentication/Seller/SignUpFormSeller/SignUpFormSeller';
 
 function App() {
-
-
   return (
     <div className="App">
       <Router>
