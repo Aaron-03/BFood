@@ -1,3 +1,13 @@
 .RegistroProduct {
   background: #5578ac;
 }
+.btn-registrar {
+  margin-left: 35%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+.btn-subir {
+  float: right;
+  margin-top: -10%;
+  margin-right: 10%;
+}

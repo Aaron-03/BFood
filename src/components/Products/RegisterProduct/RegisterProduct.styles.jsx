@@ -15,10 +15,10 @@ const StyledIconForm = styled(Image)`
 
 const FormGroupStyled = styled(FormGroup)`
   border-bottom: 2px solid;
-  width: 45%;
+  width: 100%;
 `;
 const FormControlStyled = styled(FormControl)`
-  width: 92%;
+  width: 94%;
   display: inline;
   text-align: center;
   font-size: 14px;

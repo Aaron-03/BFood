@@ -45,12 +45,12 @@ function RegisterProduct(props) {
           </FormGroupStyled>
           <FormGroupStyled>
             <PStyled>IMAGEN DEL PRODUCTO (JPG O PNG)</PStyled>
-            <FormFileLabelButton htmlFor="archivo">
+            <FormFileLabelButton htmlFor="archivo" className="btn-subir">
               SELECCIONE UN ARCHIVO
             </FormFileLabelButton>
             <FormFileStyled id="archivo" />
           </FormGroupStyled>
-          <BtnRegistrar>REGISTRAR</BtnRegistrar>
+          <BtnRegistrar className="btn-registrar">REGISTRAR</BtnRegistrar>
         </Form>
       </RegistroProductoContainer>
     </div>
