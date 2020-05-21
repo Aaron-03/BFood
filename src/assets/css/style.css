@@ -24,14 +24,44 @@
   src: url(../fonts/PTMono-Regular.ttf);
 }
 
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
+
 h1, h2 {
-  font-family: PTMono, Verdana, sans-serif;
+  font-family: Roboto-Regular, Verdana, sans-serif;
 }
 
 h3 {
-  font-family: Play-bold, Verdana, sans-serif;
+  font-family: Roboto-Regular, Verdana, sans-serif;
 }
 
 p, input, label {
-  font-family: Play-regular, Verdana, sans-serif;
+  font-family: Roboto-Regular, Verdana, sans-serif;
+}
+
+
+@media screen and (max-width: 860px) {
+  h1 {
+    font-size: 16pt !important;
+  }
+  h2 {
+    font-size: 12pt !important;
+  }
+  h3 {
+    font-size: 10pt !important;
+  }
+
+  input {
+    font-size: 10pt !important;
+  }
+  p, label {
+    font-size: 8pt !important;
+  }
 }

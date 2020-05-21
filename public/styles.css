@@ -2,12 +2,20 @@
   font-family: Play-regular;
   src: url(./fonts/Play-Regular.ttf);
 }
-
 @font-face {
   font-family: Play-bold;
   src: url(./fonts/Play-Bold.ttf);
 }
 @font-face {
   font-family: PTMono;
+  src: url(./fonts/PTMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(./fonts/PTMono-Regular.ttf);
+}
+@font-face {
+  font-family: Roboto-Bold;
   src: url(./fonts/PTMono-Regular.ttf);
 }
