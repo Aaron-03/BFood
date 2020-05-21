@@ -1,0 +1,9 @@
+.btn-next {
+  float: right;
+  margin-right: 12%;
+}
+
+.btn-back {
+  float: left;
+  margin-left: 12%;
+}
