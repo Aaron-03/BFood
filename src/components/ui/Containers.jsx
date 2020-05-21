@@ -16,4 +16,6 @@ export const ContainerRegistroProducto = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
+  margin-top: -49%;
 `;

@@ -4,7 +4,10 @@ import './assets/css/style.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { ContainerGeneralSeller } from './components/ui/Containers';
+import {
+  ContainerGeneralSeller,
+  ContainerRegistroProducto,
+} from './components/ui/Containers';
 
 import WelcomeSignUpSeller from './components/authentication/Seller/SignUp/WelcomeSignUpSeller';
 import FormSellerOne from './components/authentication/Seller/SignUp/FormSellerOne';
@@ -14,19 +17,24 @@ import RegisterProduct from './components/Products/RegisterProduct/RegisterProdu
 function App() {
   return (
     <div className="App">
-      <ContainerGeneralSeller>
-        <Router>
+      <Router>
+        <ContainerGeneralSeller>
           <Switch>
             <Route path="/vendor/welcome" component={WelcomeSignUpSeller} />
             <Route path="/vendor/form-one" component={FormSellerOne} />
             <Route path="/vendor/form-two" component={FormSellerTwo} />
+          </Switch>
+        </ContainerGeneralSeller>
+        <ContainerRegistroProducto>
+          <Switch>
             <Route
+              exact
               path="/vendor/register-products"
               component={RegisterProduct}
             />
           </Switch>
-        </Router>
-      </ContainerGeneralSeller>
+        </ContainerRegistroProducto>
+      </Router>
     </div>
   );
 }
