@@ -1,19 +1,16 @@
 import React, { Fragment } from 'react';
-
 import { Container, Row, FormGroup } from 'react-bootstrap';
-
 import styled from '@emotion/styled';
+
+import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
 import CodeBarsIcon from '../../../assets/img/security.svg';
 import avatarIcon from '../../../assets/img/Form/avatar.svg';
-
 import { FormFileStyled } from './RegisterProduct.styles';
 
 import { FormRegisterProduct } from '../../ui/Forms';
-
 import { BFoodTitle, BFoodSubTitle, BFoodLabel } from '../../ui/Texts';
-
 import { ContentInputText, InputText } from '../../ui/Fields';
 import { BtnSendData } from '../../ui/Buttons';
 import { ImageSvg } from '../../ui/Images';
@@ -38,6 +35,13 @@ const CustomInputFile = styled(BFoodLabel)`
 `;
 
 function RegisterProduct(props) {
+  const register = () => {
+    alert(`Producto creado!
+    Nombre del producto : ${inputs.nombreProducto}`);
+  };
+  const { inputs, handleInputChange, handleSubmit } = useRegisterProduct(
+    register
+  );
   return (
     <Fragment className="RegistroProduct">
       <Container>
@@ -45,6 +49,7 @@ function RegisterProduct(props) {
           <FormRegisterProduct
             customMaxWidth="45rem"
             className="col-sm-12 px-1 form-registro-producto"
+            onSubmit={handleSubmit}
           >
             <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
               <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
@@ -63,6 +68,9 @@ function RegisterProduct(props) {
                   className="col-10 text-left"
                   type="text"
                   placeholder="INGRESE EL NOMBRE DEL PRODUCTO"
+                  name="nombreProducto"
+                  onChange={handleInputChange}
+                  value={inputs.nombreProducto}
                 />
               </ContentInputText>
             </FormGroup>
@@ -77,6 +85,9 @@ function RegisterProduct(props) {
                   className="col-10 text-left"
                   type="text"
                   placeholder="INGRESE EL ID DEL VENDEDOR"
+                  onChange={handleInputChange}
+                  name="idVendedor"
+                  value={inputs.idVendedor}
                 />
               </ContentInputText>
             </FormGroup>
@@ -91,6 +102,9 @@ function RegisterProduct(props) {
                   className="col-10 text-left"
                   type="text"
                   placeholder="INGRESE EL R.U.C DEL VENDEDOR"
+                  onChange={handleInputChange}
+                  name="rucVendedor"
+                  value={inputs.rucVendedor}
                 />
               </ContentInputText>
             </FormGroup>
@@ -105,6 +119,9 @@ function RegisterProduct(props) {
                   className="col-10 text-left"
                   type="text"
                   placeholder="CODIGO DE BARRAS"
+                  name="codigoBarras"
+                  onChange={handleInputChange}
+                  value={inputs.codigoBarras}
                 />
               </ContentInputText>
             </FormGroup>
@@ -117,7 +134,12 @@ function RegisterProduct(props) {
                   <CustomInputFile htmlFor="archivo" className="btn-subir">
                     SELECCIONE UN ARCHIVO
                   </CustomInputFile>
-                  <FormFileStyled id="archivo" />
+                  <FormFileStyled
+                    id="archivo"
+                    onChange={handleInputChange}
+                    name="imagenProducto"
+                    value={inputs.imagenProducto}
+                  />
                 </div>
               </ContentInputText>
             </FormGroup>
