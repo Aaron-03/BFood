@@ -108,23 +108,6 @@ function RegisterProduct(props) {
                 />
               </ContentInputText>
             </FormGroup>
-            <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-10 m-auto">
-                <ImageSvg
-                  customWidth="2.6rem"
-                  customHeight="2.6rem"
-                  src={CodeBarsIcon}
-                ></ImageSvg>
-                <InputText
-                  className="col-10 text-left"
-                  type="text"
-                  placeholder="CODIGO DE BARRAS"
-                  name="codigoBarras"
-                  onChange={handleInputChange}
-                  value={inputs.codigoBarras}
-                />
-              </ContentInputText>
-            </FormGroup>
             <FormGroup className="mt-5 position-relative">
               <ContentInputText className="col-sm-10 m-auto py-5">
                 <BFoodLabel className="col-6 mb-2" customSize="12pt">
