@@ -2,40 +2,21 @@ import React, { Fragment, useState } from 'react';
 
 import styled from '@emotion/styled';
 
-import {
-    Container,
-    Row,
-    FormGroup
-} from 'react-bootstrap';
+import { Container, Row, FormGroup } from 'react-bootstrap';
 
-import {
-    FormSeller
-} from '../../../ui/Forms';
+import { FormSeller } from '../../../ui/Forms';
 
-import {
-    BFoodTitle,
-    BFoodSubTitle,
-    BFoodLabel
-} from '../../../ui/Texts';
+import { BFoodTitle, BFoodSubTitle, BFoodLabel } from '../../../ui/Texts';
 
-import {
-    ImageSvg
-} from '../../../ui/Images';
+import { ImageSvg } from '../../../ui/Images';
 
-import {
-    ContentInputText,
-    InputText,
-    InputFile
-} from '../../../ui/Fields';
+import { ContentInputText, InputText, InputFile } from '../../../ui/Fields';
 
-import {
-    BtnSendData
-} from '../../../ui/Buttons';
+import { BtnSendData } from '../../../ui/Buttons';
 
 import cardImg from '../../../../assets/img/Form/card.svg';
 import phoneImg from '../../../../assets/img/Form/phone.png';
 import worldImg from '../../../../assets/img/Form/world.png';
-
 
 const CustomInputFile = styled(BFoodLabel)`
     background-color: var(--custom-red);
@@ -56,16 +37,16 @@ const CustomInputFile = styled(BFoodLabel)`
 `;
 
 const QuestionFile = styled.span`
-    background-color: rgba(196, 196, 196, 0.5);
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-weight: bold;
-    border-radius: 50%;
+  background-color: rgba(196, 196, 196, 0.5);
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-weight: bold;
+  border-radius: 50%;
 `;
 
 const CustomParagraph = styled.p`

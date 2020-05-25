@@ -5,10 +5,12 @@ import './assets/css/style.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import {
-  ContainerGeneralSeller
+  ContainerGeneralSeller,
+  ContainerRegistroProducto,
 } from './components/ui/Containers';
 
 import IndexSignUp from './components/authentication/Seller/SignUp/IndexSignUp';
+import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
 
 function App() {
   return (

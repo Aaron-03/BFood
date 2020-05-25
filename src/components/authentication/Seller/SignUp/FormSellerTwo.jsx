@@ -1,106 +1,52 @@
-import React, { Fragment } from 'react';
-import styled from '@emotion/styled';
+import React, { Fragment, useState } from 'react';
 
 
-import {
-    Container,
-    Row,
-    FormGroup
-} from 'react-bootstrap';
+import { Container, Row, FormGroup } from 'react-bootstrap';
 
-import {
-    FormSeller
-} from '../../../ui/Forms';
+import { FormSeller } from '../../../ui/Forms';
 
-import {
-    BFoodTitle,
-    BFoodSubTitle,
-    BFoodLabel,
-    Paragraph
-} from '../../../ui/Texts';
+import { BFoodTitle, BFoodSubTitle } from '../../../ui/Texts';
 
-import {
-    ImageSvg
-} from '../../../ui/Images';
+import { ImageSvg } from '../../../ui/Images';
 
-import {
-    ContentInputText,
-    InputText,
-    InputFile
-} from '../../../ui/Fields';
+import { ContentInputText, InputText } from '../../../ui/Fields';
 
-import {
-    BtnSendData
-} from '../../../ui/Buttons';
+import { BtnSendData } from '../../../ui/Buttons';
 
-
-import cardImg from '../../../../assets/img/Form/card.svg';
-import phoneImg from '../../../../assets/img/Form/phone.png';
-
-
-const CustomInputFile = styled(BFoodLabel)`
-    background-color: var(--custom-red);
-    border: 2px solid #000000;
-    
-    font-size: 7pt;
-    padding: 0.2rem;
-    height: 2.5rem;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
-const QuestionFile = styled.span`
-    background-color: rgba(196, 196, 196, 0.5);
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-weight: bold;
-    border-radius: 50%;
-`;
-
-const CustomParagraph = styled.p`
-    position: absolute;
-    bottom: -18px;
-    width: 100%;
-    padding: 0.1rem 2.5rem;
-    text-align: center;
-    opacity: 0.6;
-`;
-
-
-const ContentInfo = styled.div`
-    background-color: #EBEBEB;
-    display: flex;
-    align-items: center;
-    padding: 0.25rem;
-`;
-
-
-
-
+import perfilImg from '../../../../assets/img/Form/avatar.svg';
+import emailImg from '../../../../assets/img/Form/email.png';
+import password1Img from '../../../../assets/img/Form/pass_1.svg';
+import password2Img from '../../../../assets/img/Form/pass_2.svg';
+import password3Img from '../../../../assets/img/Form/pass_3.svg';
 
 
 const FormSellerTwo = ({setPage}) => {
 
 
+    const [ vendor, setVendor] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password2: '' 
+    });
+
+    const { name, email, password, password2 } = vendor;
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
+        setPage(3);
     }
 
     const handleBackClick = () => {
         setPage(1);
+    }
+
+    const handleChange = (e) => {
+        setVendor({
+            ...vendor,
+            [e.target.name]: e.target.value
+        });
     }
 
 
@@ -110,90 +56,113 @@ const FormSellerTwo = ({setPage}) => {
                 <Row className="justify-content-center align-items-center p-2">
                     <FormSeller
                         onSubmit={handleSubmit}
-                        customMaxWidth="40rem"
-                        className="col-sm-12 px-2"
+                        customMaxWidth="45rem"
+                        className="col-sm-12 py-4 px-1"
                     >
                         <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
                             <BFoodSubTitle
-                                customSize="16pt"
-                            >Solicitud</BFoodSubTitle>
+                                customSize="18pt"
+                            >Único</BFoodSubTitle>
 
                             <BFoodTitle
                                 className="ml-3"
                             >BFood</BFoodTitle>
 
                             <BFoodSubTitle
-                                customSize="16pt"
-                            >Vendedores</BFoodSubTitle>
+                                customSize="18pt"
+                            >Especial</BFoodSubTitle>
                         </div>
 
-                        <FormGroup className="col-10 mx-auto my-0 mt-2 p-1">
-                            <BFoodSubTitle
-                                className="mt-4"
-                                customSize="8.5pt"
-                                customSpacing="0.1rem"
-                            >Resumen de la solicitud de registro:</BFoodSubTitle>
+                        <FormGroup className="mt-5">
+                            <ContentInputText className="col-sm-10 m-auto">
+                                <ImageSvg 
+                                    customWidth="2.6rem"
+                                    customHeight="2.6rem"
+                                    src={perfilImg}
+                                />
+
+                                <InputText
+                                    className="col-10 text-left"
+                                    type="text"
+                                    placeholder="CREE UN NOMBRE DE USUARIO"
+                                    name="name"
+                                    value={name}
+                                    onChange={handleChange}
+                                />
+                            </ContentInputText>
                         </FormGroup>
 
-                        <FormGroup className="col-10 mx-auto mt-2 p-1">
-                            <BFoodLabel>Información de la empresa</BFoodLabel>
+                        <FormGroup className="mt-5">
+                            <ContentInputText className="col-sm-10 m-auto">
+                                <ImageSvg 
+                                    customWidth="2rem"
+                                    customHeight="2rem"
+                                    className="ml-1"
+                                    src={emailImg}
+                                />
 
-                            <div>
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">ruc:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">12345678910</Paragraph>
-                                </ContentInfo>
-
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">certificado:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">mycertified.pdf</Paragraph>
-                                </ContentInfo>
-
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">n° contacto:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">987645321</Paragraph>
-                                </ContentInfo>
-                            </div>
+                                <InputText
+                                    className="col-10 text-left"
+                                    type="text"
+                                    placeholder="INGRESE SU EMAIL"
+                                    name="email"
+                                    value={email}
+                                    onChange={handleChange}
+                                />
+                            </ContentInputText>
                         </FormGroup>
 
-                        <FormGroup className="col-10 mx-auto mt-4 p-1">
-                            <BFoodLabel>Información del perfil</BFoodLabel>
+                        <FormGroup className="mt-5">
+                            <ContentInputText className="col-sm-10 m-auto">
+                                <ImageSvg 
+                                    customWidth="2rem"
+                                    customHeight="2rem"
+                                    className="ml-1"
+                                    src={password1Img}
+                                />
 
-                            <div>
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">ruc:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">12345678910</Paragraph>
-                                </ContentInfo>
-
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">certificado:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">mycertified.pdf</Paragraph>
-                                </ContentInfo>
-
-                                <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">n° contacto::</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">987645321</Paragraph>
-                                </ContentInfo>
-                            </div>
+                                <InputText
+                                    className="col-10 text-left"
+                                    type="text"
+                                    placeholder="CREE UNA CONTRASEÑA"
+                                    name="password"
+                                    value={password}
+                                    onChange={handleChange}
+                                />
+                            </ContentInputText>
                         </FormGroup>
-                        
+
+                        <FormGroup className="mt-5">
+                            <ContentInputText className="col-sm-10 m-auto">
+                                <ImageSvg 
+                                    customWidth="2rem"
+                                    customHeight="2rem"
+                                    className="ml-1"
+                                    src={password2Img}
+                                />
+
+                                <InputText
+                                    className="col-10 text-left"
+                                    type="text"
+                                    placeholder="CONFIRME SU CONTRASEÑA"
+                                    name="password2"
+                                    value={password2}
+                                    onChange={handleChange}
+                                />
+                            </ContentInputText>
+                        </FormGroup>
+
+
                         <div className="row col-10 m-auto justify-content-around align-items-center py-2 px-0">
                             <BtnSendData
                                 onClick={handleBackClick}
-                                className="mt-2 col-3"
+                                className="mt-2 col-5"
                                 bgColor="var(--custom-red)"
                             >ANTERIOR</BtnSendData>
 
                             <BtnSendData
-                                className="mt-2 col-3"
-                                bgColor="#EBEBEB"
-                                customColor="black "
-                            >IMPRIMIR</BtnSendData>
-
-                            <BtnSendData
-                                className="mt-2 col-4"
-                                bgColor="rgba(68, 176, 85, 1)"
-                            >ENVIAR</BtnSendData>
+                                className="mt-2 col-5"
+                            >CONTINUAR</BtnSendData>
                         </div>
                     </FormSeller>
                 </Row>

@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import WelcomeSignUpSeller from './WelcomeSignUpSeller';
 import FormSellerOne from './FormSellerOne';
 import FormSellerTwo from './FormSellerTwo';
+import FormSellerThree from './FormSellerThree';
 import TimeLine from '../../../ui/TimeLine';
 import useTimeLine from '../../../../hooks/useTimeLine';
 
@@ -28,6 +29,7 @@ const IndexSignUp = () => {
                   page === 0 ? <WelcomeSignUpSeller setPage={setPage} />
                 : page === 1 ? <FormSellerOne setPage={setPage} />
                 : page === 2 ? <FormSellerTwo setPage={setPage} />
+                : page === 3 ? <FormSellerThree setPage={setPage} />
                 : null
             }
         </Fragment>
