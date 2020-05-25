@@ -15,7 +15,7 @@ const BFoodSubTitle = styled.h2`
     color: black;
     font-size: ${ props => props.customSize ? props.customSize : '28px' };
     font-weight: ${ props => props.customBold === false ? '' : 'bold' };
-    letter-spacing: 0.28em;
+    letter-spacing: ${ props => props.customSpacing ? props.customSpacing : '0.28rem' };;
 `;
 
 const BFoodLabel = styled.label`
@@ -28,10 +28,10 @@ const Paragraph = styled.p`
     font-style: normal;
     font-weight: normal;
     font-size: ${ props => props.customSize ? props.customSize : '14px' };
-    line-height: 150%;
+    line-height: ${ props => props.customLineHeight ? props.customLineHeight : '' };
     /* or 21px */
 
-    letter-spacing: 0.15rem;
+    letter-spacing: ${ props => props.customSpacing ? props.customSpacing : '0.15rem' };
 `;
 
 export {

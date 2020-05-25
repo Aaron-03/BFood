@@ -9,6 +9,7 @@
   --custom-white: #FFFFFF;
   --custom-red: #F74545;
   --custom-black: #000000;
+  --custom-green: rgba(68, 176, 85, 0.5);
 }
 
 @font-face {
@@ -49,17 +50,17 @@ p, input, label {
 
 @media screen and (max-width: 860px) {
   h1 {
-    font-size: 16pt !important;
+    font-size: 14pt !important;
   }
   h2 {
-    font-size: 12pt !important;
+    font-size: 10.5pt !important;
   }
   h3 {
-    font-size: 10pt !important;
+    font-size: 9.5pt !important;
   }
 
   input {
-    font-size: 10pt !important;
+    font-size: 9pt !important;
   }
   p, label {
     font-size: 8pt !important;

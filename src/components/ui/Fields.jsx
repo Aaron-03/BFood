@@ -13,7 +13,8 @@ const InputFile = styled.input`
 `;
 
 const ContentInputText = styled.div`
-    display: flex;
+    display: ${ props => props.customDisplay ? props.customDisplay : 'flex' };
+    flex-direction: ${ props => props.customFdirection ? props.customFdirection : 'row' };
     justify-content: space-between;
     align-items: center;
     min-width: 15rem;

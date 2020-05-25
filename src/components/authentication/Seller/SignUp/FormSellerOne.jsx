@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -34,6 +34,7 @@ import {
 
 import cardImg from '../../../../assets/img/Form/card.svg';
 import phoneImg from '../../../../assets/img/Form/phone.png';
+import worldImg from '../../../../assets/img/Form/world.png';
 
 
 const CustomInputFile = styled(BFoodLabel)`
@@ -50,6 +51,7 @@ const CustomInputFile = styled(BFoodLabel)`
 
     &:hover {
         cursor: pointer;
+        opacity: 0.8;
     }
 `;
 
@@ -67,17 +69,48 @@ const QuestionFile = styled.span`
 `;
 
 const CustomParagraph = styled.p`
-    position: absolute;
-    bottom: -18px;
-    width: 100%;
-    padding: 0.1rem 2.5rem;
-    text-align: center;
-    opacity: 0.6;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    opacity: 1;
+    font-weight: bold;
+    font-size: 12pt;
+    color: var(--custom-blue);
 `;
 
 
 
-const FormSellerOne = () => {
+const FormSellerOne = ({setPage}) => {
+
+
+    const [ vendor, setVendor] = useState({
+        ruc: '',
+        phone: '',
+        certified: '',
+        urlWeb: ''
+    });
+
+    const { ruc, phone, certified, urlWeb } = vendor;
+
+    let pathFile = certified.split('\\');
+        pathFile = pathFile[pathFile.length - 1];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setPage(2);
+    }
+
+    const handleBackClick = () => {
+        setPage(0);
+    }
+
+    const handleChange = (e) => {
+        setVendor({
+            ...vendor,
+            [e.target.name]: e.target.value
+        });
+    }
 
 
     return (
@@ -85,6 +118,7 @@ const FormSellerOne = () => {
             <Container>
                 <Row className="justify-content-center align-items-center p-2">
                     <FormSeller
+                        onSubmit={handleSubmit}
                         customMaxWidth="45rem"
                         className="col-sm-12 py-4 px-1"
                     >
@@ -114,6 +148,9 @@ const FormSellerOne = () => {
                                     className="col-10 text-left"
                                     type="text"
                                     placeholder="INGRESE SU N° RUC"
+                                    name="ruc"
+                                    value={ruc}
+                                    onChange={handleChange}
                                 />
                             </ContentInputText>
                         </FormGroup>
@@ -131,32 +168,71 @@ const FormSellerOne = () => {
                                     className="col-10 text-left"
                                     type="text"
                                     placeholder="INGRESE N° DE CONTACTO"
+                                    name="phone"
+                                    value={phone}
+                                    onChange={handleChange}
                                 />
                             </ContentInputText>
                         </FormGroup>
 
-                        <FormGroup className="mt-5 position-relative">
-                            <ContentInputText className="col-sm-10 m-auto py-5">
-                                <BFoodLabel
-                                    className="col-6 mb-2"
-                                    customSize="8pt"
-                                >CERTIFICADO DE OPERATIVIDAD (PDF, JPG O PNG)</BFoodLabel>
+                        <FormGroup className="mt-5">
+                            <ContentInputText className="col-sm-10 m-auto">
+                                <ImageSvg 
+                                    customWidth="2rem"
+                                    customHeight="2rem"
+                                    className="ml-1"
+                                    src={worldImg}
+                                />
 
-                                <div className="col-6 d-flex justify-content-around align-items-center mb-1">
-                                    <CustomInputFile
-                                        htmlFor="fileId"
-                                    >SELECCIONE UN ARCHIVO</CustomInputFile>
+                                <InputText
+                                    className="col-10 text-left"
+                                    type="text"
+                                    placeholder="INGRESE SU PÁGINA WEB (OPCIONAL)"
+                                    name="urlWeb"
+                                    value={urlWeb}
+                                    onChange={handleChange}
+                                />
+                            </ContentInputText>
+                        </FormGroup>
 
-                                    <InputFile id="fileId" name="file" type="file" />
+                        <FormGroup className="mt-5">
+                            <ContentInputText
+                                // customDisplay="normal"
+                                customFdirection="column"
+                                customHeight="auto"
+                                className="col-sm-10 m-auto"
+                            >
 
-                                    <QuestionFile
-                                        title="El certificado de operatividad es un documento, emitido por un ente regulador, que le da permiso a la empresa de operar con normalidad"
-                                        id="questionFile"
-                                    >?</QuestionFile>
+                                <div className="row align-items-center mb-4 w-100">
+                                    <BFoodLabel
+                                        className="col-6"
+                                        customSize="8pt"
+                                    >CERTIFICADO DE OPERATIVIDAD (PDF, JPG O PNG)</BFoodLabel>
+
+                                    <div className="col-6 d-flex justify-content-around align-items-center">
+                                        <CustomInputFile
+                                            htmlFor="fileId"
+                                        >SELECCIONE UN ARCHIVO</CustomInputFile>
+
+                                        <InputFile
+                                            id="fileId"
+                                            name="certified"
+                                            value={certified}
+                                            onChange={handleChange}
+                                            type="file"
+                                        />
+
+                                        <QuestionFile
+                                            title="El certificado de operatividad es un documento, emitido por un ente regulador, que le da permiso a la empresa de operar con normalidad"
+                                            id="questionFile"
+                                        >?</QuestionFile>
+                                    </div>
                                 </div>
 
+                                <CustomParagraph
+                                    title="Mi certificado de operatividad"
+                                >{ pathFile }</CustomParagraph>
                             </ContentInputText>
-                            <CustomParagraph>Ruta del archivo</CustomParagraph>
                         </FormGroup>
 
                         <FormGroup className="text-center mt-5">
@@ -168,11 +244,17 @@ const FormSellerOne = () => {
 
                         </FormGroup>
 
-                        <FormGroup className="text-center p-2 mt-4">
-                            <BtnSendData customWidth="16rem">
-                                CONTINUAR
-                            </BtnSendData>
-                        </FormGroup>
+                        <div className="row col-10 m-auto justify-content-around align-items-center py-2 px-0">
+                            <BtnSendData
+                                onClick={handleBackClick}
+                                className="mt-2 col-5"
+                                bgColor="var(--custom-red)"
+                            >ANTERIOR</BtnSendData>
+
+                            <BtnSendData
+                                className="mt-2 col-5"
+                            >CONTINUAR</BtnSendData>
+                        </div>
                     </FormSeller>
                 </Row>
             </Container>

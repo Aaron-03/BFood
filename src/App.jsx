@@ -8,9 +8,7 @@ import {
   ContainerGeneralSeller
 } from './components/ui/Containers';
 
-import WelcomeSignUpSeller from './components/authentication/Seller/SignUp/WelcomeSignUpSeller';
-import FormSellerOne from './components/authentication/Seller/SignUp/FormSellerOne';
-
+import IndexSignUp from './components/authentication/Seller/SignUp/IndexSignUp';
 
 function App() {
   return (
@@ -18,8 +16,9 @@ function App() {
       <ContainerGeneralSeller>
         <Router>
             <Switch>
-              <Route path="/vendor/welcome" component={ WelcomeSignUpSeller } />
-              <Route path="/vendor/form-one" component={ FormSellerOne } />
+              <Route path="/vendor/signup" component={ IndexSignUp } />
+              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
+              <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
           </Router>
       </ContainerGeneralSeller>

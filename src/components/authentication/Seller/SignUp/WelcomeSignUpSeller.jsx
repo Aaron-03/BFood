@@ -26,15 +26,23 @@ import {
 } from '../../../ui/Buttons';
 
 import scooter2Img from '../../../../assets/img/Company/scooter-2.svg';
+import useTimeLine from '../../../../hooks/useTimeLine';
+
+const WelcomeSignUpSeller = ({setPage}) => {
 
 
-const WelcomeSignUpSeller = () => {
 
+    const handleWelcomeSubmit = (e) => {
+        e.preventDefault();
+        setPage(1);
+    }
 
     return (
         <Container>
             <Row className="justify-content-center align-items-center p-2">
-                <FormSeller className="col-sm-8 p-4">
+                <FormSeller
+                    onSubmit={handleWelcomeSubmit}
+                    className="col-sm-8 p-4">
                     <div className="col-sm-10 text-center m-auto p-2">
                         <BFoodTitle
                             className="mr-2"

@@ -7,9 +7,10 @@ export const BtnSendData = styled.button`
     width: ${ props => props.customWidth ? props.customWidth : '7rem' };
     border: 3px solid var(--custom-black);
     background-color: ${ props => props.bgColor ? props.bgColor : 'var(--custom-blue)' };
-    color: var(--custom-white);
+    color: ${ props => props.customColor ? props.customColor : 'var(--custom-white)' };
     border-radius: 12px;
     font-weight: bold;
+    outline: none !important;
 
     &:hover {
         opacity: 0.8;
