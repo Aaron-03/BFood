@@ -11,18 +11,19 @@ import {
 
 import IndexSignUp from './components/authentication/Seller/SignUp/IndexSignUp';
 import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
-
+import SearchProducts from './components/Products/SearchProducts/SearchProducts';
 function App() {
   return (
     <div className="App">
       <ContainerGeneralSeller>
         <Router>
-            <Switch>
-              <Route path="/vendor/signup" component={ IndexSignUp } />
-              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
+          <Switch>
+            <Route path="/vendor/signup" component={IndexSignUp} />
+            {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
               <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-            </Switch>
-          </Router>
+            <Route path="/search/product" component={SearchProducts} />
+          </Switch>
+        </Router>
       </ContainerGeneralSeller>
     </div>
   );
