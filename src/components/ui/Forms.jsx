@@ -23,8 +23,8 @@ const FormRegisterProduct = styled.form`
 `;
 const FilterOfProducts = styled(Container)`
   background-color: #ededed;
-  margin-left: -170%;
-  width: 120%;
+  margin-left: -80%;
+  width: 70%;
   height: 100vh;
 `;
 export { FormSeller, FormRegisterProduct, FilterOfProducts };

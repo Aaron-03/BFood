@@ -7,7 +7,7 @@ export default function SearchProducts() {
     <div>
       <Filters />
 
-      {/*<ListProducts />*/}
+      <ListProducts />
     </div>
   );
 }

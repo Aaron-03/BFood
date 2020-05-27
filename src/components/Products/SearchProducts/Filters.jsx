@@ -12,7 +12,7 @@ import { Magnifier } from '../../ui/Images';
 
 function Filters() {
   return (
-    <FilterOfProducts>
+    <FilterOfProducts className="border">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>
       <form>
         <SearchProductField
