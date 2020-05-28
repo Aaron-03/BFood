@@ -35,10 +35,39 @@ const VendorService = (props) => {
                 payload: vendor
             });
 
+            console.log('Vendedor agregado correctamente', vendor);
+
         } catch (error) {
             console.log(error);
         }
-        
+    }
+
+    const updVendor = async (vendor) => {
+
+        try {
+         
+            dispatch({
+                type: UPD_VENDOR,
+                payload: vendor
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const dltVendor = async (vendorId) => {
+
+        try {
+            
+            dispatch({
+                type: DLT_VENDOR,
+                payload: vendorId
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -46,7 +75,13 @@ const VendorService = (props) => {
     return (
         <VendorContext.Provider
             value={{
-                
+                vendor: state.vendor,
+                form1: state.form1,
+                form2: state.form2,
+                form3: state.form3,
+                addVendor: addVendor,
+                updVendor: updVendor,
+                dltVendor: dltVendor
             }}
         >
             {props.children}

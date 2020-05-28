@@ -2,6 +2,8 @@
 * {
     margin: 0px;
     padding: 0px;
+    list-style: none;
+    text-decoration: none;
 }
 
 :root {
@@ -59,7 +61,7 @@ p, input, label {
     font-size: 9.5pt !important;
   }
 
-  input {
+  input, select {
     font-size: 9pt !important;
   }
   p, label {

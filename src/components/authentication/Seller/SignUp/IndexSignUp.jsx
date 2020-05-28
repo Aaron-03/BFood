@@ -7,7 +7,9 @@ import FormSellerThree from './FormSellerThree';
 import TimeLine from '../../../ui/TimeLine';
 import useTimeLine from '../../../../hooks/useTimeLine';
 
-
+import {
+    ContainerGeneralSeller,
+} from '../../../ui/Containers';
 
 
 const IndexSignUp = () => {
@@ -23,6 +25,8 @@ const IndexSignUp = () => {
 
     return (
         <Fragment>
+            {/* <Header /> */}
+            <ContainerGeneralSeller>
             <TimeLine timeline={timeline} />
 
             {
@@ -32,6 +36,7 @@ const IndexSignUp = () => {
                 : page === 3 ? <FormSellerThree setPage={setPage} />
                 : null
             }
+            </ContainerGeneralSeller>
         </Fragment>
     );
 }

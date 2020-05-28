@@ -34,37 +34,12 @@ import {
 } from '../../../ui/Buttons';
 
 
-import cardImg from '../../../../assets/img/Form/card.svg';
-import phoneImg from '../../../../assets/img/Form/phone.png';
-
-
-const CustomInputFile = styled(BFoodLabel)`
-    background-color: var(--custom-red);
-    border: 2px solid #000000;
-    
-    font-size: 7pt;
-    padding: 0.2rem;
-    height: 2.5rem;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
 const ContentInfo = styled.div`
     background-color: #EBEBEB;
     display: flex;
     align-items: center;
     padding: 0.25rem;
 `;
-
-
-
-
 
 
 const FormSellerThree = ({setPage}) => {

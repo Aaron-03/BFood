@@ -4,26 +4,33 @@ import './assets/css/style.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import {
-  ContainerGeneralSeller,
-  ContainerRegistroProducto,
-} from './components/ui/Containers';
 
 import IndexSignUp from './components/authentication/Seller/SignUp/IndexSignUp';
-import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
+import Index from './components/layouts/Index';
+import Header from './components/layouts/Header';
+import Footer from './components/layouts/Footer';
+
+
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <ContainerGeneralSeller>
+        
         <Router>
+          <Header />
             <Switch>
-              <Route path="/vendor/signup" component={ IndexSignUp } />
+              <Route exact path="/" component={ Index } />
+              <Route exact path="/vendor/signup" component={ IndexSignUp } />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
               <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
-          </Router>
-      </ContainerGeneralSeller>
+            <Footer />
+         </Router>
+      
     </div>
   );
 }
