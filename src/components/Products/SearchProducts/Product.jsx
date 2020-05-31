@@ -43,25 +43,27 @@ export default function Product() {
   `;
   return (
     <div>
-      {/*<ImageProduct loading src={Hamburger_img} />*/}
-      <ImageProduct />
-      <TagProduct className="text-white">Hamburgesa</TagProduct>
+      <React.StrictMode>
+        {/*<ImageProduct loading src={Hamburger_img} />*/}
+        <ImageProduct />
+        <TagProduct className="text-white">Hamburgesa</TagProduct>
 
-      <ProductCard class="">
-        <h4 className="text-white font-weight-bold">HAMBURGUESA 2X1</h4>
-        <ProductLittleDesc className="text-white">
-          Hambueguesa hecha con la mejor carne y vegetales que lo conforman.
-        </ProductLittleDesc>
-        <div>
-          <CustomStar src={Star_Empty} />
-          <CustomStar src={Star_Empty} />
-          <CustomStar src={Star_Empty} />
-          <CustomStar src={Star_Empty} />
-          <CustomStar src={Star_Empty} />
-        </div>
+        <ProductCard class="">
+          <h4 className="text-white font-weight-bold">HAMBURGUESA 2X1</h4>
+          <ProductLittleDesc className="text-white">
+            Hambueguesa hecha con la mejor carne y vegetales que lo conforman.
+          </ProductLittleDesc>
+          <div>
+            <CustomStar src={Star_Empty} />
+            <CustomStar src={Star_Empty} />
+            <CustomStar src={Star_Empty} />
+            <CustomStar src={Star_Empty} />
+            <CustomStar src={Star_Empty} />
+          </div>
 
-        <Price className="text-white font-weight-bold mr-4">s/ 9.99</Price>
-      </ProductCard>
+          <Price className="text-white font-weight-bold mr-4">s/ 9.99</Price>
+        </ProductCard>
+      </React.StrictMode>
     </div>
   );
 }

@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Container, Row, FormGroup } from 'react-bootstrap';
 import styled from '@emotion/styled';
 
 import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
-import CodeBarsIcon from '../../../assets/img/security.svg';
 import avatarIcon from '../../../assets/img/Form/avatar.svg';
 import { FormFileStyled } from './RegisterProduct.styles';
 
@@ -35,7 +34,6 @@ const CustomInputFile = styled(BFoodLabel)`
 `;
 
 function RegisterProduct(props) {
-
   const register = () => {
     alert(`Producto creado!
     Nombre del producto : ${inputs.nombreProducto}`);
@@ -46,7 +44,6 @@ function RegisterProduct(props) {
   );
 
   // console.log(register);
-
 
   return (
     <div className="RegistroProduct">
