@@ -24,7 +24,7 @@ const ContainerBackground = styled.div`
     align-items: center;
     flex-direction: column;
     height: 30rem;
-    min-width: 26rem;
+    min-width: 25rem;
     background-color: rgba(0, 0, 0, 0.25);
 
     .search {

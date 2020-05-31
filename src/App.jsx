@@ -10,8 +10,8 @@ import Index from './components/layouts/Index';
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 
-
-
+import ListVendors from './components/vendors/ListVendors';
+import VendorService from './context/vendors/VendorService';
 
 
 
@@ -23,11 +23,14 @@ function App() {
         <Router>
           <Header />
             <Switch>
-              <Route exact path="/" component={ Index } />
-              <Route exact path="/vendor/signup" component={ IndexSignUp } />
+              <VendorService>
+                <Route exact path="/" component={ Index } />
+                <Route exact path="/vendor/signup" component={ IndexSignUp } />
+              </VendorService>
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
               <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
+              <ListVendors />
             <Footer />
          </Router>
       

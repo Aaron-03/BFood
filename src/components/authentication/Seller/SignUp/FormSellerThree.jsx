@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import styled from '@emotion/styled';
 
 
@@ -19,19 +19,11 @@ import {
     Paragraph
 } from '../../../ui/Texts';
 
-import {
-    ImageSvg
-} from '../../../ui/Images';
-
-import {
-    ContentInputText,
-    InputText,
-    InputFile
-} from '../../../ui/Fields';
 
 import {
     BtnSendData
 } from '../../../ui/Buttons';
+import VendorContext from '../../../../context/vendors/VendorContext';
 
 
 const ContentInfo = styled.div`
@@ -44,15 +36,33 @@ const ContentInfo = styled.div`
 
 const FormSellerThree = ({setPage}) => {
 
+    const { crtVendor, currentVendor } = useContext(VendorContext);
+    const [ error, setError ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
+    const [ sended, setSended ] = useState(false);
+
+    const {
+        ruc,
+        certified,
+        phone,
+        name,
+        email,
+        password
+
+    } = currentVendor;
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
+        setSended(true);
     }
 
     const handleBackClick = () => {
         setPage(2);
+    }
+
+    const printDocument = () => {
+
     }
 
 
@@ -93,17 +103,17 @@ const FormSellerThree = ({setPage}) => {
                             <div>
                                 <ContentInfo>
                                     <BFoodLabel className="col-4 text-right m-0">ruc:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">12345678910</Paragraph>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{ruc}</Paragraph>
                                 </ContentInfo>
 
                                 <ContentInfo>
                                     <BFoodLabel className="col-4 text-right m-0">certificado:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">mycertified.pdf</Paragraph>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{certified.name}</Paragraph>
                                 </ContentInfo>
 
                                 <ContentInfo>
                                     <BFoodLabel className="col-4 text-right m-0">n° contacto:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">987645321</Paragraph>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{phone}</Paragraph>
                                 </ContentInfo>
                             </div>
                         </FormGroup>
@@ -113,36 +123,40 @@ const FormSellerThree = ({setPage}) => {
 
                             <div>
                                 <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">ruc:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">12345678910</Paragraph>
+                                    <BFoodLabel className="col-4 text-right m-0">username:</BFoodLabel>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{name}</Paragraph>
                                 </ContentInfo>
 
                                 <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">certificado:</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">mycertified.pdf</Paragraph>
+                                    <BFoodLabel className="col-4 text-right m-0">email:</BFoodLabel>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{email}</Paragraph>
                                 </ContentInfo>
 
                                 <ContentInfo>
-                                    <BFoodLabel className="col-4 text-right m-0">n° contacto::</BFoodLabel>
-                                    <Paragraph className="col-8 text-left m-0 p-0">987645321</Paragraph>
+                                    <BFoodLabel className="col-4 text-right m-0">password:</BFoodLabel>
+                                    <Paragraph className="col-8 text-left m-0 p-0">{password}</Paragraph>
                                 </ContentInfo>
                             </div>
                         </FormGroup>
                         
                         <div className="row col-10 m-auto justify-content-around align-items-center py-2 px-0">
                             <BtnSendData
+                                type="button"
                                 onClick={handleBackClick}
                                 className="mt-2 col-3"
                                 bgColor="var(--custom-red)"
                             >ANTERIOR</BtnSendData>
 
                             <BtnSendData
+                                type="button"
                                 className="mt-2 col-3"
                                 bgColor="#EBEBEB"
                                 customColor="black "
+                                onClick={printDocument}
                             >IMPRIMIR</BtnSendData>
 
                             <BtnSendData
+                                type="submit"
                                 className="mt-2 col-4"
                                 bgColor="rgba(68, 176, 85, 1)"
                             >ENVIAR</BtnSendData>

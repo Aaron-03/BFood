@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 
 
 import { Container, Row, FormGroup } from 'react-bootstrap';
@@ -18,22 +18,77 @@ import emailImg from '../../../../assets/img/Form/email.png';
 import password1Img from '../../../../assets/img/Form/pass_1.svg';
 import password2Img from '../../../../assets/img/Form/pass_2.svg';
 import password3Img from '../../../../assets/img/Form/pass_3.svg';
+import VendorContext from '../../../../context/vendors/VendorContext';
+import { validFieldEmail, validFieldString } from '../../../../helpers/validations/formSellerValid';
+import Swal from 'sweetalert2';
 
 
 const FormSellerTwo = ({setPage}) => {
 
 
+    const { crtVendor, currentVendor } = useContext(VendorContext);
+    const [ error, setError ] = useState(false);
+
     const [ vendor, setVendor] = useState({
         name: '',
         email: '',
         password: '',
-        password2: '' 
+        password2: ''
     });
 
     const { name, email, password, password2 } = vendor;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const minCaracters = 9;
+
+        const nameValid = validFieldString(name, 4, 16);
+        const emailValid = validFieldEmail(email);
+        const passwordValid = validFieldString(password, minCaracters, 27);
+
+        if(nameValid.active ||
+           emailValid.status) {
+            setError(true);
+            
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al procesar datos',
+                text: 'Todos los campos son obligatorios',
+                timer: '3000'
+            });
+
+            return;
+        }
+
+        if(passwordValid.active) {
+             setError(true);
+             
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Error al procesar datos',
+                 text: `La contraseña debe tener mínimo ${minCaracters} caracteres`,
+                 timer: '3000'
+             });
+
+             return;
+         }
+
+        if(password.trim() !== password2.trim()) {
+            setError(true);
+            
+            Swal.fire({
+                icon: 'warning',
+                title: 'Error al procesar datos',
+                text: 'Las contraseñas no coinciden',
+                timer: '3000'
+            });
+
+            return;
+        }
+
+        setError(false);
+        crtVendor(vendor);
 
         setPage(3);
     }
@@ -48,6 +103,18 @@ const FormSellerTwo = ({setPage}) => {
             [e.target.name]: e.target.value
         });
     }
+
+    useEffect(() => {
+
+        if(currentVendor) {
+            setVendor({
+                ...currentVendor,
+                vendor
+            });
+        }
+
+    // eslint-disable-next-line
+    }, []);
 
 
     return (
@@ -103,7 +170,7 @@ const FormSellerTwo = ({setPage}) => {
 
                                 <InputText
                                     className="col-10 text-left"
-                                    type="text"
+                                    type="email"
                                     placeholder="INGRESE SU EMAIL"
                                     name="email"
                                     value={email}
@@ -123,7 +190,7 @@ const FormSellerTwo = ({setPage}) => {
 
                                 <InputText
                                     className="col-10 text-left"
-                                    type="text"
+                                    type="password"
                                     placeholder="CREE UNA CONTRASEÑA"
                                     name="password"
                                     value={password}
@@ -143,7 +210,7 @@ const FormSellerTwo = ({setPage}) => {
 
                                 <InputText
                                     className="col-10 text-left"
-                                    type="text"
+                                    type="password"
                                     placeholder="CONFIRME SU CONTRASEÑA"
                                     name="password2"
                                     value={password2}
