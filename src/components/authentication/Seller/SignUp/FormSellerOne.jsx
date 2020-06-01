@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -17,6 +17,8 @@ import { BtnSendData } from '../../../ui/Buttons';
 import cardImg from '../../../../assets/img/Form/card.svg';
 import phoneImg from '../../../../assets/img/Form/phone.png';
 import worldImg from '../../../../assets/img/Form/world.png';
+import VendorContext from '../../../../context/vendors/VendorContext';
+import Swal from 'sweetalert2';
 
 const CustomInputFile = styled(BFoodLabel)`
     background-color: var(--custom-red);
@@ -62,7 +64,10 @@ const CustomParagraph = styled.p`
 
 
 const FormSellerOne = ({setPage}) => {
+    
 
+    const { crtVendor, currentVendor } = useContext(VendorContext);
+    const [ error, setError ] = useState(false);
 
     const [ vendor, setVendor] = useState({
         ruc: '',
@@ -73,12 +78,29 @@ const FormSellerOne = ({setPage}) => {
 
     const { ruc, phone, certified, urlWeb } = vendor;
 
-    let pathFile = certified.split('\\');
-        pathFile = pathFile[pathFile.length - 1];
+    let pathFile = typeof certified !== 'string' ? certified.name : null;
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if(ruc.trim().length !== 11 ||
+           phone.trim() === '' ||
+           certified === null ||
+           certified === undefined ||
+           typeof certified === 'string') {
+
+            setError(true);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al procesar datos',
+                text: 'Todos los campos son obligatorios',
+                timer: '3000'
+            });
+            return;
+        }
+
+        setError(false);
+        crtVendor(vendor);
         setPage(2);
     }
 
@@ -87,11 +109,29 @@ const FormSellerOne = ({setPage}) => {
     }
 
     const handleChange = (e) => {
+
+        if(e.target.name === 'certified') {
+            setVendor({
+                ...vendor,
+                [e.target.name]: e.target.files[0]
+            });
+            return;
+        }
+
         setVendor({
             ...vendor,
             [e.target.name]: e.target.value
         });
     }
+
+    useEffect(() => {
+
+        if(currentVendor) {
+            setVendor(currentVendor);
+        }
+
+    // eslint-disable-next-line
+    }, []);
 
 
     return (
@@ -198,7 +238,6 @@ const FormSellerOne = ({setPage}) => {
                                         <InputFile
                                             id="fileId"
                                             name="certified"
-                                            value={certified}
                                             onChange={handleChange}
                                             type="file"
                                         />
@@ -212,7 +251,7 @@ const FormSellerOne = ({setPage}) => {
 
                                 <CustomParagraph
                                     title="Mi certificado de operatividad"
-                                >{ pathFile }</CustomParagraph>
+                                >{pathFile}</CustomParagraph>
                             </ContentInputText>
                         </FormGroup>
 
