@@ -14,8 +14,6 @@ import ListVendors from './components/vendors/ListVendors';
 import VendorService from './context/vendors/VendorService';
 
 
-
-
 function App() {
   return (
     <div className="App">
@@ -31,7 +29,6 @@ function App() {
                 {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                 <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
               </Switch>
-              <ListVendors />
             <Footer />
           </VendorService>
          </Router>

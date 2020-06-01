@@ -3,9 +3,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const ContetFooter = styled.footer`
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
     padding: 1.5rem 0.5rem;
     background-color: var(--custom-blue);
     color: white;
@@ -21,29 +21,39 @@ const Footer = () => {
 
     return (
         <ContetFooter>
-            <div className="col-4">
-                <h3>Titulo de prueba</h3>
+            <footer className="page-footer font-small special-color-dark pt-5 mt-5">
+                <div className="container">
+                    <ul className="list-unstyled list-inline text-center">
+                        <li className="list-inline-item">
+                            <a href className="btn-floating btn-fb mx-1">
+                                <i class="fa fa-facebook-f"> </i>
+                            </a>
+                        </li>
 
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            </div>
+                        <li className="list-inline-item">
+                            <a href className="btn-floating btn-tw mx-1">
+                                <i class="fa fa-twitter"> </i>
+                            </a>
+                        </li>
 
-            <div className="col-4">
-                <h3>Titulo de prueba</h3>
+                        <li className="list-inline-item">
+                            <a href className="btn-floating btn-gplus mx-1">
+                                <i className="fa fa-google-plus"> </i>
+                            </a>
+                        </li>
 
-                <p>asdasdasdasdadadasd</p>
-                <p>asdasdasdasdadadasd</p>
-            </div>
+                        <li className="list-inline-item">
+                            <a href className="btn-floating btn-li mx-1">
+                                <i className="fa fa-linkedin"> </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-            <div className="col-4">
-                <h3>Términos u condiciones</h3>
-
-                <p>asdasdasdasdasdasd</p>
-                <p>asdasdasdasdadadasd</p>
-            </div>
+                <div class="footer-copyright text-center py-3">bfood.com.pe
+                    <a href className="text-white"> Copyright &#169; 2020</a>
+                </div>
+            </footer>
         </ContetFooter>
     );
 }

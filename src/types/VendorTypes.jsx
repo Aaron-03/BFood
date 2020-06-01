@@ -7,7 +7,7 @@ const VendorTypes = {
     LGN_VENDOR: 'LGN_VENDOR',
     SGN_VENDOR: 'SGN_VENDOR',
     CRT_VENDOR: 'CRT_VENDOR',
-
+    SND_VENDOR: 'SND_VENDOR'
 }
 
 export default VendorTypes;

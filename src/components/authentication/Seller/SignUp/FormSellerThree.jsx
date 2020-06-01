@@ -19,11 +19,13 @@ import {
     Paragraph
 } from '../../../ui/Texts';
 
+import { ContentLoading } from '../../../ui/Containers';
 
 import {
     BtnSendData
 } from '../../../ui/Buttons';
 import VendorContext from '../../../../context/vendors/VendorContext';
+import Swal from 'sweetalert2';
 
 
 const ContentInfo = styled.div`
@@ -36,7 +38,7 @@ const ContentInfo = styled.div`
 
 const FormSellerThree = ({setPage}) => {
 
-    const { crtVendor, currentVendor } = useContext(VendorContext);
+    const { crtVendor, currentVendor, sendRequest } = useContext(VendorContext);
     const [ error, setError ] = useState(false);
     const [ loading, setLoading ] = useState(false);
     const [ sended, setSended ] = useState(false);
@@ -47,12 +49,53 @@ const FormSellerThree = ({setPage}) => {
         phone,
         name,
         email,
-        password
+        password,
+        urlWeb
 
     } = currentVendor;
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const data = {
+            user_id: Math.floor(Math.random() * 50 - 1) + 1,
+            nom_corto: name,
+            razon_ven: name,
+            ruc: ruc,
+            direccion: name,
+            tele_ven: phone,
+            pag_web: urlWeb,
+            contacto: phone,
+            logo: '',
+            email: email
+        };
+
+        /*
+        {
+	"user_id": 2,
+	"nom_corto": "Cualquiera",
+	"razon_ven": "ECLIPSE SA",
+	"ruc": "20136265474",
+	"direccion": "direccion de prueba",
+	"tele_ven": "987654321",
+	"pag_web": "www.eclipse.com",
+	"contacto": "321654987",
+	"logo": "img.png",
+	"email": "eclipse@gmail.com"
+}
+        */
+
+        setLoading(true);
+        await sendRequest(JSON.stringify(data));
+        setLoading(false);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Solicitud enviada correctamente',
+            text: 'En los próximos días lo estaremos contactando...',
+            timer: '10000'
+        });
 
         setSended(true);
     }
@@ -62,12 +105,20 @@ const FormSellerThree = ({setPage}) => {
     }
 
     const printDocument = () => {
-
+        alert('Imprimiendo...');
     }
 
 
     return (
         <Fragment>
+            {
+            loading
+            ? <ContentLoading>
+                <div className="spinner-border text-danger"></div>
+            </ContentLoading>
+            : null
+            }
+
             <Container>
                 <Row className="justify-content-center align-items-center p-2">
                     <FormSeller
@@ -140,12 +191,16 @@ const FormSellerThree = ({setPage}) => {
                         </FormGroup>
                         
                         <div className="row col-10 m-auto justify-content-around align-items-center py-2 px-0">
-                            <BtnSendData
+                            {
+                            !sended
+                            ? <BtnSendData
                                 type="button"
                                 onClick={handleBackClick}
                                 className="mt-2 col-3"
                                 bgColor="var(--custom-red)"
                             >ANTERIOR</BtnSendData>
+                            : null
+                            }
 
                             <BtnSendData
                                 type="button"
@@ -154,12 +209,15 @@ const FormSellerThree = ({setPage}) => {
                                 customColor="black "
                                 onClick={printDocument}
                             >IMPRIMIR</BtnSendData>
-
-                            <BtnSendData
+                            {
+                            !sended
+                            ? <BtnSendData
                                 type="submit"
                                 className="mt-2 col-4"
                                 bgColor="rgba(68, 176, 85, 1)"
                             >ENVIAR</BtnSendData>
+                            : null
+                            }
                         </div>
                     </FormSeller>
                 </Row>

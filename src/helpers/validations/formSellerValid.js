@@ -6,12 +6,10 @@ export const validFieldString = (input, min, max, options = '') => {
         message: 'Ok'
     };
 
-    if(!(input.trim().length >= min && input.trim().length <= max)) {
+    if(input === undefined || !(input.trim().length >= min && input.trim().length <= max)) {
         inputError.active = true;
         inputError.message = options.trim() !== '' ? options : `Debe estar entre ${min} y ${max} caracteres`;
     }
-
-    console.log(inputError);
 
     return inputError;
 }

@@ -26,7 +26,7 @@ const IndexSignUp = () => {
     return (
         <Fragment>
             {/* <Header /> */}
-            <ContainerGeneralSeller>
+            <ContainerGeneralSeller className="pb-4">
             <TimeLine timeline={timeline} />
 
             {

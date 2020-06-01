@@ -5,6 +5,7 @@ import VendorContext from './VendorContext';
 import VendorReducer from './VendorReducer';
 
 import VendorTypes from '../../types/VendorTypes';
+import ClientAxios from '../../config/ClientAxios';
 
 const  {
     LGN_VENDOR,
@@ -39,7 +40,6 @@ const VendorService = (props) => {
 
 
     const crtVendor = async (crtVendor) => {
-
         try {
          
             dispatch({
@@ -50,6 +50,46 @@ const VendorService = (props) => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const validateRuc = async (ruc) => {
+
+        let response = {};
+
+        try {
+
+            const result = await ClientAxios.get(`/bfood/sunat/${ruc}`);
+
+            response = {
+                status: true,
+                data: result
+            }
+
+        } catch (error) {
+            response = {
+                status: false,
+                data: error
+            }
+        }
+
+        return response;
+    }
+
+    const sendRequest = async (request) => {
+
+        try {
+
+            console.log(request);
+            await ClientAxios.post('/bfood/register/', request, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const addVendor = async (vendor) => {
@@ -96,8 +136,6 @@ const VendorService = (props) => {
         }
     }
 
-console.log(state.vendors);
-
     return (
         <VendorContext.Provider
             value={{
@@ -110,7 +148,9 @@ console.log(state.vendors);
                 crtVendor: crtVendor,
                 addVendor: addVendor,
                 updVendor: updVendor,
-                dltVendor: dltVendor
+                dltVendor: dltVendor,
+                validateRuc: validateRuc,
+                sendRequest: sendRequest
             }}
         >
             {props.children}

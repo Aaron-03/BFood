@@ -14,6 +14,7 @@ import donutImg from '../../assets/img/General/donut.svg';
 import drinkImg from '../../assets/img/General/drink.svg';
 import fastImg from '../../assets/img/General/fast-food.svg';
 import hotImg from '../../assets/img/General/hot-dog.svg';
+import ListVendors from '../vendors/ListVendors';
 
 
 
@@ -230,6 +231,8 @@ const Index = () => {
                     </div>
                 </ContainerElements>
             </ContainerBackground>
+
+            <ListVendors />
         </Fragment>
     );
 }

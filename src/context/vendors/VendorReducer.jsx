@@ -8,7 +8,9 @@ const  {
     ADD_VENDOR,
     UPD_VENDOR,
     DLT_VENDOR,
-    LST_VENDOR
+    LST_VENDOR,
+    SND_VENDOR
+
 } = VendorTypes;
 
 
@@ -16,6 +18,12 @@ const  {
 export default (state, action) => {
 
     switch(action.type) {
+
+        case SND_VENDOR:
+            return {
+                ...state,
+                currentVendor: action.payload
+            };
 
         case LGN_VENDOR:
             return {
