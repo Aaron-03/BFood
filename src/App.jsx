@@ -9,7 +9,7 @@ import Index from './components/layouts/Index';
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 
-import ListVendors from './components/vendors/ListVendors';
+//import ListVendors from './components/vendors/ListVendors';
 import VendorService from './context/vendors/VendorService';
 
 //import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
@@ -23,11 +23,13 @@ function App() {
           <VendorService>
             <Route exact path="/" component={Index} />
             <Route exact path="/vendor/signup" component={IndexSignUp} />
+            <Route exact path="/search/product" component={SearchProducts} />
           </VendorService>
+
           {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
               <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
         </Switch>
-        <ListVendors />
+        {/*<ListVendors />*/}
         <Footer />
       </Router>
     </div>

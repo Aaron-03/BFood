@@ -18,7 +18,7 @@ export default function Product() {
     border-radius: 25px;
     padding: 5px 10px;
     float: right;
-    margin-top: -22%;
+    margin-top: -23%;
     margin-right: 68%;
     opacity: 0.8;
   `;
@@ -30,11 +30,11 @@ export default function Product() {
   `;
   const ProductCard = styled.div`
     background: rgba(0, 0, 0, 0.5);
-    width: 32.5%;
+    width: 32.4%;
     padding: 0 10px;
+    margin-top: -14%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-top: -14%;
   `;
   const Price = styled.p`
     margin-top: -25px;

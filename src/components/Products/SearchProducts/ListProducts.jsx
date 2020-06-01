@@ -7,10 +7,9 @@ export default function ListProducts() {
     background: #ffffff;
     padding-left: 10%;
     padding-top: 10%;
-    margin-left: -10%;
-    margin-top: -127.5%;
+    margin-left: 20%;
+    margin-top: -40%;
     height: 670px;
-    width: 189.4%;
   `;
   return (
     <ListProductContainer className="border">

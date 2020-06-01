@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputGroup } from 'react-bootstrap';
 import LupaIcon from '../../../assets/img/General/search.svg';
 
@@ -11,6 +11,11 @@ import {
 import { Magnifier } from '../../ui/Images';
 
 function Filters() {
+  const [busqueda, setBusqueda] = useState('');
+  const handlerBusqueda = (e) => {
+    setBusqueda(e.target.value);
+  };
+
   return (
     <FilterOfProducts className="border">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>
@@ -19,6 +24,9 @@ function Filters() {
           type="Text"
           placeholder="¿Qué es lo que deseas ahora?"
           className="ml-4 mb-4"
+          name="busqueda"
+          value={busqueda}
+          onChange={handlerBusqueda}
         />
         <Magnifier src={LupaIcon} />
       </form>
