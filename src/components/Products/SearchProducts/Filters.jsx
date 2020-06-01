@@ -10,12 +10,13 @@ import {
 } from '../../ui/Fields';
 import { Magnifier } from '../../ui/Images';
 
-function Filters() {
+function Filters(props) {
   const [busqueda, setBusqueda] = useState('');
   const handlerBusqueda = (e) => {
     setBusqueda(e.target.value);
+    props.parentFunction(busqueda);
   };
-
+  console.log(props);
   return (
     <FilterOfProducts className="border">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>

@@ -7,7 +7,11 @@ import { LST_PRODUCT } from '../../types/ProductTypes';
 
 const ProductService = (props) => {
   const initialState = {
-    product: {},
+    product: {
+      loading: true,
+      error: '',
+      product: {},
+    },
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
   const addProduct = async (product) => {

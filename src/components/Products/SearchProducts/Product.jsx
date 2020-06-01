@@ -5,21 +5,22 @@ import { Image } from 'react-bootstrap';
 import Hamburger_img from '../../../assets/img/Products/burguer.jpg';
 import Star_Empty from '../../../assets/img/Products/star_full.svg';
 
-export default function Product() {
+export default function Product(props) {
   const ImageProduct = styled.div`
     background-image: url(${Hamburger_img});
     background-size: 100%;
     width: 308px;
     height: 230px;
     border-radius: 10px;
+    margin-bottom: 20px;
   `;
   const TagProduct = styled.span`
     background: #ff8282;
     border-radius: 25px;
     padding: 5px 10px;
     float: right;
-    margin-top: -23%;
-    margin-right: 68%;
+    margin-top: -65%;
+    margin-right: 14%;
     opacity: 0.8;
   `;
   const CustomStar = styled(Image)`
@@ -30,9 +31,9 @@ export default function Product() {
   `;
   const ProductCard = styled.div`
     background: rgba(0, 0, 0, 0.5);
-    width: 32.4%;
+    width: 87%;
     padding: 0 10px;
-    margin-top: -14%;
+    margin-top: -36%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   `;
@@ -41,27 +42,28 @@ export default function Product() {
     margin-left: 65%;
     font-size: 20px;
   `;
+  let estrellasInCard = [];
+  for (let i = 0; i < props.Estrellas; i++) {
+    estrellasInCard.push(<CustomStar key={i} src={Star_Empty} />);
+  }
   return (
-    <div>
+    <div className="">
       <React.StrictMode>
-        {/*<ImageProduct loading src={Hamburger_img} />*/}
         <ImageProduct />
-        <TagProduct className="text-white">Hamburgesa</TagProduct>
+
+        <TagProduct className="text-white">{props.Categoria}</TagProduct>
 
         <ProductCard class="">
-          <h4 className="text-white font-weight-bold">HAMBURGUESA 2X1</h4>
+          <h4 className="text-white font-weight-bold">{props.Titulo}</h4>
           <ProductLittleDesc className="text-white">
-            Hambueguesa hecha con la mejor carne y vegetales que lo conforman.
+            {props.Descripcion}
           </ProductLittleDesc>
-          <div>
-            <CustomStar src={Star_Empty} />
-            <CustomStar src={Star_Empty} />
-            <CustomStar src={Star_Empty} />
-            <CustomStar src={Star_Empty} />
-            <CustomStar src={Star_Empty} />
-          </div>
 
-          <Price className="text-white font-weight-bold mr-4">s/ 9.99</Price>
+          <div>{estrellasInCard}</div>
+
+          <Price className="text-white font-weight-bold mr-4">
+            S./{props.Precio}
+          </Price>
         </ProductCard>
       </React.StrictMode>
     </div>

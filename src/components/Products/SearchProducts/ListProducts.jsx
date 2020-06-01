@@ -1,19 +1,46 @@
+//import React, { useReducer, useEffect } from 'react';
+
 import React from 'react';
 import Product from './Product';
 import styled from '@emotion/styled';
-
-export default function ListProducts() {
+import productos from '../../../datos/productos.json';
+// import ProductReducer from '../../../context/products/ProductReducer';
+// import Axios from 'axios';
+export default function ListProducts(props) {
   const ListProductContainer = styled.div`
     background: #ffffff;
-    padding-left: 10%;
-    padding-top: 10%;
-    margin-left: 20%;
+    padding-left: 5%;
+    padding-top: 1%;
+    margin-left: 25%;
     margin-top: -40%;
     height: 670px;
+    display: flex;
   `;
+  // const initialState = {
+  //   product: {
+  //     loading: true,
+  //     error: '',
+  //     product: {},
+  //   },
+  // };
+
+  // const [state, dispatch] = useReducer(ProductReducer, initialState);
+
+  // useEffect(() => {
+  //   Axios.get(`${process.env.BFOOD_BACKEND}/listarproducto`)
+  //     .then((res) => {
+  //       dispatch({ type: 'LST_PRODUCT', payload: res.data });
+  //     })
+  //     .catch((err) => {});
+  // }, []);
+  console.log(props);
   return (
     <ListProductContainer className="border">
-      <Product />
+      {/*loading ? 'Cargando, porfavor espere......' : <Product listaProductos = {listaProductos}/> */}
+      {/*error ? error : null*/}
+      {productos.map((value, index) => {
+        return <Product key={index} {...value} />;
+      })}
     </ListProductContainer>
   );
 }

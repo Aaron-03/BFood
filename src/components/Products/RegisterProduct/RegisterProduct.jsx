@@ -43,8 +43,6 @@ function RegisterProduct(props) {
     register
   );
 
-  // console.log(register);
-
   return (
     <div className="RegistroProduct">
       <Container>
