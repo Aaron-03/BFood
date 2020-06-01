@@ -21,17 +21,19 @@ function App() {
     <div className="App">
         
         <Router>
-          <Header />
-            <Switch>
-              <VendorService>
-                <Route exact path="/" component={ Index } />
-                <Route exact path="/vendor/signup" component={ IndexSignUp } />
-              </VendorService>
-              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
-              <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-            </Switch>
+          <VendorService>
+            <Header />
+              <Switch>
+                
+                  <Route exact path="/" component={ Index } />
+                  <Route exact path="/vendor/signup" component={ IndexSignUp } />
+                
+                {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
+                <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
+              </Switch>
               <ListVendors />
             <Footer />
+          </VendorService>
          </Router>
       
     </div>

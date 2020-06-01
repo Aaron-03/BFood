@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import {
@@ -19,6 +19,7 @@ const ContentVendor = styled.div`
     overflow: hidden;
     box-shadow: 3px 3px 10px dimgray;
     transition: all 0.4s;
+    margin-top: 2.5rem;
 
 
     .descriptionVendor {
@@ -70,53 +71,78 @@ const ImgTag = styled.img`
 `;
 
 
-const Vendor = () => {
+const Vendor = ({vendor}) => {
+
+    const [ tagNew, setTagNew ] = useState('');
+
+    const {
+        name,
+        phone,
+        img,
+        web,
+        esp,
+        points,
+        date,
+        desc
+
+    } = vendor;
+
+    const isNew = (xdate) => {
+        const current = Date.now();
+        const dateNew = new Date(xdate).getTime();
+        let result = (current - dateNew) / 1000 / 60 / 60 / 24;
+        result = Math.floor(result);
+
+        setTagNew(result < 7);
+    }
+
+    useEffect(() => {
+        isNew(date);
+    }, []);
 
 
 
     return (
-        <Fragment>
-            <ContentVendor>
-                <ContentBackground>
-                    <ImageSvg
-                        customOpacity="0.5"
-                        customWidth="100%"
-                        customHeight="100%"
-                        src={pizzaImg}
+        <ContentVendor>
+            <ContentBackground>
+                <ImageSvg
+                    customOpacity="0.5"
+                    customWidth="100%"
+                    customHeight="100%"
+                    src={pizzaImg}
+                />
+            </ContentBackground>
+
+            <div className="d-flex justify-content-start align-items-center">
+                <ElementTag
+                    bgColor="var(--custom-blue)"
+                >{esp}</ElementTag>
+                {
+                tagNew ?
+                <ElementTag
+                    bgColor="#44B055"
+                >Nuevo</ElementTag>
+                : null
+                }
+                
+
+                <ElementTag
+                    bgColor="var(--custom-red)"
+                >
+                    <ImgTag
+                        customWidth="0.5rem"
+                        customHeight="0.5rem"
+                        src={clockImg}
                     />
-                </ContentBackground>
+                </ElementTag>
+            </div>
 
-                <div className="d-flex justify-content-start align-items-center">
-                    <ElementTag
-                        bgColor="var(--custom-blue)"
-                    >Pizzas y Pastas</ElementTag>
+            <div className="descriptionVendor">
+                <h4>{name}</h4>
 
-                    <ElementTag
-                        bgColor="#44B055"
-                    >Nuevo</ElementTag>
-
-                    <ElementTag
-                        bgColor="var(--custom-red)"
-                    >
-                        <ImgTag
-                            customWidth="0.5rem"
-                            customHeight="0.5rem"
-                            src={clockImg}
-                        />
-                    </ElementTag>
-                </div>
-
-                <div className="descriptionVendor">
-                    <h4>DOMINOS PIZZA</h4>
-
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Hic aliquam ex minima? Amet tempora,
-                        vero a recusandae sit at.
-                    </p>
-                </div>
-            </ContentVendor>
-        </Fragment>
+                <p>{desc}</p>
+            </div>
+        </ContentVendor>
     );
 }
  
