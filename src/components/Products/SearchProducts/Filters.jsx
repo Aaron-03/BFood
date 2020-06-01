@@ -14,8 +14,8 @@ function Filters(props) {
   const [busqueda, setBusqueda] = useState('');
   const handlerBusqueda = (e) => {
     setBusqueda(e.target.value);
-    props.parentFunction(busqueda);
   };
+  props.parentFunction(busqueda);
   console.log(props);
   return (
     <FilterOfProducts className="border">

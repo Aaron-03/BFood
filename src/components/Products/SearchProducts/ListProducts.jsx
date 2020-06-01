@@ -33,14 +33,22 @@ export default function ListProducts(props) {
   //     })
   //     .catch((err) => {});
   // }, []);
-  console.log(props);
+  let filteredProductsByText = productos.filter((producto) => {
+    return producto.Titulo.indexOf(props.criterioBusqueda) !== -1;
+  });
   return (
     <ListProductContainer className="border">
       {/*loading ? 'Cargando, porfavor espere......' : <Product listaProductos = {listaProductos}/> */}
       {/*error ? error : null*/}
-      {productos.map((value, index) => {
+      {console.log(props)}
+      {filteredProductsByText.map((value, index) => {
         return <Product key={index} {...value} />;
       })}
+      {/* {productos.filter((producto) =>
+        producto
+          .includes(props.criterioBusqueda)
+          .map((value) => <Product {...value} />)
+      )} */}
     </ListProductContainer>
   );
 }
