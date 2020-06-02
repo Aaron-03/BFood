@@ -21,9 +21,9 @@ const FormRegisterProduct = styled.form`
   border-radius: 27px;
   margin: auto;
 `;
-const FilterOfProducts = styled(Container)`
+const FilterOfProducts = styled.div`
   background-color: #ededed;
-  margin-left: -1%;
-  width: 26%;
+  height: 70vh;
 `;
+
 export { FormSeller, FormRegisterProduct, FilterOfProducts };

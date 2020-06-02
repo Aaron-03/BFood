@@ -7,12 +7,14 @@ export default function SearchProducts() {
   const CriterioBusqueda = (dataHijo) => {
     setCriterio(dataHijo);
   };
-  console.log(criterio);
+
   return (
     <div>
-      <Filters parentFunction={CriterioBusqueda.bind(this)} />
+      <div className="d-flex">
+          <Filters parentFunction={CriterioBusqueda.bind(this)} />
 
-      <ListProducts criterioBusqueda={criterio} />
+          <ListProducts className="col-8" criterioBusqueda={criterio} />
+      </div>
     </div>
   );
 }

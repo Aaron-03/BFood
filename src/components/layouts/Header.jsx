@@ -35,6 +35,14 @@ const ContentHeader = styled.header`
 `;
 
 const Header = () => {
+
+
+
+  const handleClickSignUp = () => {
+    
+  }
+
+
   return (
     <Fragment>
       <ContentHeader>
@@ -62,7 +70,10 @@ const Header = () => {
               LOGIN
             </BtnSendData>
 
-            <BtnSendData bgColor="var(--custom-red)" className="ml-2 p-1">
+            <BtnSendData
+              onClick={handleClickSignUp}
+              bgColor="var(--custom-red)"
+              className="ml-2 p-1">
               SIGN UP
             </BtnSendData>
           </div>

@@ -46,10 +46,11 @@ const ContainerBackground = styled.div`
   }
 
   #textHeader {
-    font-size: 18pt;
+    font-size: 16pt;
+    font-weight: bold;
     letter-spacing: 0.4rem;
     -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: white;
   }
 `;
 

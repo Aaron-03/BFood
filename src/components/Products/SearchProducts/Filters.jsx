@@ -22,7 +22,7 @@ function Filters(props) {
   // props.parentFunction(busqueda);
   console.log(lstProductByTerm);
   return (
-    <FilterOfProducts className="border">
+    <FilterOfProducts className="col-4">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>
       <form>
         <SearchProductField

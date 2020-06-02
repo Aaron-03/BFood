@@ -68,7 +68,7 @@ function RegisterProduct(props) {
                 <InputText
                   className="col-10 text-left"
                   type="text"
-                  placeholder="INGRESE EL NOMBRE DEL PRODUCTO"
+                  placeholder="NOMBRE DE PRODUCTO"
                   name="nombreProducto"
                   onChange={handleInputChange}
                   value={inputs.nombreProducto}
@@ -82,10 +82,11 @@ function RegisterProduct(props) {
                   customHeight="2.6rem"
                   src={avatarIcon}
                 />
+
                 <InputText
                   className="col-10 text-left"
                   type="text"
-                  placeholder="INGRESE EL ID DEL VENDEDOR"
+                  placeholder="PRECIO"
                   onChange={handleInputChange}
                   name="idVendedor"
                   value={inputs.idVendedor}
@@ -99,14 +100,15 @@ function RegisterProduct(props) {
                   customHeight="2.6rem"
                   src={avatarIcon}
                 />
-                <InputText
-                  className="col-10 text-left"
-                  type="text"
-                  placeholder="INGRESE EL R.U.C DEL VENDEDOR"
-                  onChange={handleInputChange}
-                  name="rucVendedor"
-                  value={inputs.rucVendedor}
-                />
+
+                <select
+                  className="form-control col-10"
+                >
+                  <option value="0">Hamburguesas</option>
+                  <option value="1">Pizzas y Pastas</option>
+                  <option value="2">Bebidas Ligeras</option>
+                  <option value="3">Gaseosas</option>
+                </select>
               </ContentInputText>
             </FormGroup>
             <FormGroup className="mt-5 position-relative">

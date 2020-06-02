@@ -9,12 +9,7 @@ import productos from '../../../datos/productos.json';
 export default function ListProducts(props) {
   const ListProductContainer = styled.div`
     background: #ffffff;
-    padding-left: 5%;
-    padding-top: 1%;
-    margin-left: 25%;
-    margin-top: -40%;
-    height: 670px;
-    display: flex;
+    padding: 5rem;
   `;
   // const initialState = {
   //   product: {
@@ -33,9 +28,11 @@ export default function ListProducts(props) {
   //     })
   //     .catch((err) => {});
   // }, []);
+
   let filteredProductsByText = productos.filter((producto) => {
     return producto.Titulo.indexOf(props.criterioBusqueda) !== -1;
   });
+
   return (
     <ListProductContainer className="border">
       {console.log(props)}
