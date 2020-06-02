@@ -1,0 +1,18 @@
+[
+  {
+    "Key": 0,
+    "Titulo": "MC burrito con queso",
+    "Descripcion": "jklfsdjkafsdojkfasdiojfsdiojdfaojksfdiojadfslkm",
+    "Estrellas": 3,
+    "Categoria": "Hamburguesas",
+    "Precio": 9.99
+  },
+  {
+    "Key": 1,
+    "Titulo": "Tacacho con cecina",
+    "Descripcion": "jklfsdjkafsdojkfasdiojfsdiojdfaojksfdiojadfslkm",
+    "Estrellas": 5,
+    "Categoria": "Selva",
+    "Precio": 5.99
+  }
+]

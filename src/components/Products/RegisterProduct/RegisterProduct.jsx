@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Container, Row, FormGroup } from 'react-bootstrap';
 import styled from '@emotion/styled';
 
 import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
-import CodeBarsIcon from '../../../assets/img/security.svg';
 import avatarIcon from '../../../assets/img/Form/avatar.svg';
 import { FormFileStyled } from './RegisterProduct.styles';
 
@@ -35,7 +34,6 @@ const CustomInputFile = styled(BFoodLabel)`
 `;
 
 function RegisterProduct(props) {
-
   const register = () => {
     alert(`Producto creado!
     Nombre del producto : ${inputs.nombreProducto}`);
@@ -44,9 +42,6 @@ function RegisterProduct(props) {
   const { inputs, handleInputChange, handleSubmit } = useRegisterProduct(
     register
   );
-
-  // console.log(register);
-
 
   return (
     <div className="RegistroProduct">
@@ -73,7 +68,7 @@ function RegisterProduct(props) {
                 <InputText
                   className="col-10 text-left"
                   type="text"
-                  placeholder="INGRESE EL NOMBRE DEL PRODUCTO"
+                  placeholder="NOMBRE DE PRODUCTO"
                   name="nombreProducto"
                   onChange={handleInputChange}
                   value={inputs.nombreProducto}
@@ -87,10 +82,11 @@ function RegisterProduct(props) {
                   customHeight="2.6rem"
                   src={avatarIcon}
                 />
+
                 <InputText
                   className="col-10 text-left"
                   type="text"
-                  placeholder="INGRESE EL ID DEL VENDEDOR"
+                  placeholder="PRECIO"
                   onChange={handleInputChange}
                   name="idVendedor"
                   value={inputs.idVendedor}
@@ -104,14 +100,15 @@ function RegisterProduct(props) {
                   customHeight="2.6rem"
                   src={avatarIcon}
                 />
-                <InputText
-                  className="col-10 text-left"
-                  type="text"
-                  placeholder="INGRESE EL R.U.C DEL VENDEDOR"
-                  onChange={handleInputChange}
-                  name="rucVendedor"
-                  value={inputs.rucVendedor}
-                />
+
+                <select
+                  className="form-control col-10"
+                >
+                  <option value="0">Hamburguesas</option>
+                  <option value="1">Pizzas y Pastas</option>
+                  <option value="2">Bebidas Ligeras</option>
+                  <option value="3">Gaseosas</option>
+                </select>
               </ContentInputText>
             </FormGroup>
             <FormGroup className="mt-5 position-relative">

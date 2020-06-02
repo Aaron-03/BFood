@@ -28,8 +28,6 @@ const VendorService = (props) => {
             { id: 2, name: 'NORKYS', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pollo a la Brasa', points: 5, date: '05/26/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
             { id: 3, name: 'MC Donalds', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Papas Fritas', points: 5, date: '05/20/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
             { id: 4, name: 'KFC', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pollos Fritos', points: 5, date: '05/31/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-            { id: 5, name: 'Don Belisario', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pollo a la Brasa', points: 5, date: '05/30/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-            { id: 6, name: 'Mediterráneo', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Papas Fritas', points: 5, date: '05/29/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' }
         ],
         form1: false,
         form2: false,

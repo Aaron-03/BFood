@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Container } from 'react-bootstrap';
 
 const FormSeller = styled.form`
   padding: 1rem;
@@ -20,5 +21,9 @@ const FormRegisterProduct = styled.form`
   border-radius: 27px;
   margin: auto;
 `;
+const FilterOfProducts = styled.div`
+  background-color: #ededed;
+  height: 70vh;
+`;
 
-export { FormSeller, FormRegisterProduct };
+export { FormSeller, FormRegisterProduct, FilterOfProducts };
