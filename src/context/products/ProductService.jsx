@@ -1,35 +1,31 @@
 import React, { useReducer } from 'react';
 
-import ProductContext from './ProductContext';
+import ProductoContext from './ProductContext';
 import ProductReducer from './ProductReducer';
+import ProductTypes from '../../types/ProductTypes';
 
-import { LST_PRODUCT } from '../../types/ProductTypes';
+const { LST_PRODUCT_BY_TERM } = ProductTypes;
 
 const ProductService = (props) => {
   const initialState = {
-    product: {
-      loading: true,
-      error: '',
-      product: {},
-    },
+    searchTerm: '',
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
-  const addProduct = async (product) => {
+
+  const lstProductByTerm = (term) => {
     try {
       dispatch({
-        type: LST_PRODUCT,
-        payload: product,
+        type: LST_PRODUCT_BY_TERM,
+        payload: term,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
-
   return (
-    <ProductContext.Provider value={{}}>
+    <ProductoContext.Provider value={{ lstProductByTerm: lstProductByTerm }}>
       {props.children}
-    </ProductContext.Provider>
+    </ProductoContext.Provider>
   );
 };
-
 export default ProductService;

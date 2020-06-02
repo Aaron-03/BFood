@@ -12,7 +12,6 @@ import Footer from './components/layouts/Footer';
 //import ListVendors from './components/vendors/ListVendors';
 import VendorService from './context/vendors/VendorService';
 
-<<<<<<< HEAD
 //import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
 import SearchProducts from './components/Products/SearchProducts/SearchProducts';
 function App() {
@@ -33,28 +32,6 @@ function App() {
         {/*<ListVendors />*/}
         <Footer />
       </Router>
-=======
-
-function App() {
-  return (
-    <div className="App">
-        
-        <Router>
-          <VendorService>
-            <Header />
-              <Switch>
-                
-                  <Route exact path="/" component={ Index } />
-                  <Route exact path="/vendor/signup" component={ IndexSignUp } />
-                
-                {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
-                <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-              </Switch>
-            <Footer />
-          </VendorService>
-         </Router>
-      
->>>>>>> 323e12237883941b9a21029a09624707137dad4c
     </div>
   );
 }

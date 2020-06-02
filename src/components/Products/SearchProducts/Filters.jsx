@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { InputGroup } from 'react-bootstrap';
 import LupaIcon from '../../../assets/img/General/search.svg';
 
@@ -10,13 +10,17 @@ import {
 } from '../../ui/Fields';
 import { Magnifier } from '../../ui/Images';
 
+import ProductContext from '../../../context/products/ProductContext';
+
 function Filters(props) {
+  const { lstProductByTerm } = useContext(ProductContext);
   const [busqueda, setBusqueda] = useState('');
   const handlerBusqueda = (e) => {
     setBusqueda(e.target.value);
   };
-  props.parentFunction(busqueda);
-  console.log(props);
+  lstProductByTerm(busqueda);
+  // props.parentFunction(busqueda);
+  console.log(lstProductByTerm);
   return (
     <FilterOfProducts className="border">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>

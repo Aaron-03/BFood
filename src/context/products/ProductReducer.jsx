@@ -1,14 +1,15 @@
-import { LST_PRODUCT } from '../../types/ProductTypes';
+import ProductTypes from '../../types/ProductTypes';
+
+const { LST_PRODUCT_BY_TERM } = ProductTypes;
 
 export default (state, action) => {
   switch (action.type) {
-    case LST_PRODUCT:
+    case LST_PRODUCT_BY_TERM:
       return {
-        loading: false,
-        product: action.payload,
-        error: '',
+        ...state,
+        term: action.payload,
       };
     default:
-      break;
+      return state;
   }
 };

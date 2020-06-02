@@ -38,17 +38,10 @@ export default function ListProducts(props) {
   });
   return (
     <ListProductContainer className="border">
-      {/*loading ? 'Cargando, porfavor espere......' : <Product listaProductos = {listaProductos}/> */}
-      {/*error ? error : null*/}
       {console.log(props)}
       {filteredProductsByText.map((value, index) => {
         return <Product key={index} {...value} />;
       })}
-      {/* {productos.filter((producto) =>
-        producto
-          .includes(props.criterioBusqueda)
-          .map((value) => <Product {...value} />)
-      )} */}
     </ListProductContainer>
   );
 }
