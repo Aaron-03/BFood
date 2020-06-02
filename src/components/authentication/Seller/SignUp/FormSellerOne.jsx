@@ -6,6 +6,8 @@ import { Container, Row, FormGroup } from 'react-bootstrap';
 
 import { FormSeller } from '../../../ui/Forms';
 
+import { ContentLoading } from '../../../ui/Containers';
+
 import { BFoodTitle, BFoodSubTitle, BFoodLabel } from '../../../ui/Texts';
 
 import { ImageSvg } from '../../../ui/Images';
@@ -61,13 +63,12 @@ const CustomParagraph = styled.p`
     color: var(--custom-blue);
 `;
 
-
-
 const FormSellerOne = ({setPage}) => {
     
 
-    const { crtVendor, currentVendor } = useContext(VendorContext);
+    const { crtVendor, currentVendor, validateRuc } = useContext(VendorContext);
     const [ error, setError ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
     const [ vendor, setVendor] = useState({
         ruc: '',
@@ -78,13 +79,24 @@ const FormSellerOne = ({setPage}) => {
 
     const { ruc, phone, certified, urlWeb } = vendor;
 
-    let pathFile = typeof certified !== 'string' ? certified.name : null;
+    let pathFile = typeof certified !== 'string' ? certified.name || '' : null;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(ruc.trim().length !== 11 ||
-           phone.trim() === '' ||
+        if(ruc.trim().length !== 11) {
+            setError(true);
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al procesar datos',
+                text: 'El RUC debe ser de 11 dígitos',
+                timer: '3000'
+            });
+            return;
+        }
+
+        if(phone.trim() === '' ||
            certified === null ||
            certified === undefined ||
            typeof certified === 'string') {
@@ -93,13 +105,28 @@ const FormSellerOne = ({setPage}) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al procesar datos',
-                text: 'Todos los campos son obligatorios',
+                text: 'Complete los campos obligatorios',
                 timer: '3000'
             });
             return;
         }
 
         setError(false);
+
+        setLoading(true);
+        const rucValid = await validateRuc(ruc);
+        setLoading(false);
+
+        if(!rucValid.status) {
+            Swal.fire({
+                icon: 'error',
+                text: 'El RUC no es válido',
+                timer: '3000'
+            });
+
+            return;
+        }
+
         crtVendor(vendor);
         setPage(2);
     }
@@ -136,6 +163,14 @@ const FormSellerOne = ({setPage}) => {
 
     return (
         <Fragment>
+            {
+            loading
+            ? <ContentLoading>
+                <div className="spinner-border text-danger"></div>
+            </ContentLoading>
+            : null
+            }
+
             <Container>
                 <Row className="justify-content-center align-items-center p-2">
                     <FormSeller

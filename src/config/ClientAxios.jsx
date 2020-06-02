@@ -2,7 +2,7 @@ import Axios from "axios";
 
 
 const ClientAxios = Axios.create({
-    baseURL: process.env.BFOOD_BACKEND
+    baseURL: process.env.REACT_APP_BACKEND_URL
 });
  
 export default ClientAxios;
