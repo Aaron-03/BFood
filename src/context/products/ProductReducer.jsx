@@ -1,13 +1,21 @@
 import ProductTypes from '../../types/ProductTypes';
 
-const { LST_PRODUCT_BY_TERM } = ProductTypes;
-
 export default (state, action) => {
   switch (action.type) {
-    case LST_PRODUCT_BY_TERM:
+    case ProductTypes.LST_PRODUCT_BY_TERM:
       return {
         ...state,
-        term: action.payload,
+        searchTerm: action.payload,
+      };
+    case ProductTypes.FILTER_PRODUCT_BY_CATEGORY:
+      return {
+        ...state,
+        searchCategory: action.payload,
+      };
+    case ProductTypes.FILTER_PRODUCT_BY_PRICE:
+      return {
+        ...state,
+        searchPrice: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { InputGroup } from 'react-bootstrap';
 import LupaIcon from '../../../assets/img/General/search.svg';
 
@@ -9,20 +9,33 @@ import {
   CustomCheckbox,
 } from '../../ui/Fields';
 import { Magnifier } from '../../ui/Images';
-
 import ProductContext from '../../../context/products/ProductContext';
 
-function Filters(props) {
-  const { lstProductByTerm } = useContext(ProductContext);
-  const [busqueda, setBusqueda] = useState('');
+import productos from '../../../datos/productos.json';
+
+const Filters = (props) => {
+  const {
+    searchByTerm,
+    //searchCheckHamburger,
+    searchByPrice,
+    searchPrice,
+  } = useContext(ProductContext);
   const handlerBusqueda = (e) => {
-    setBusqueda(e.target.value);
+    searchByTerm(e.target.value);
   };
-  lstProductByTerm(busqueda);
-  // props.parentFunction(busqueda);
-  console.log(lstProductByTerm);
+  const handlerCheckHamburger = (e) => {
+    //searchByCheckHamburger(e.target.value);
+    console.log(e.target.value);
+
+    //const value = target.value;
+    //searchByCheckHamburger(value);
+  };
+  const handlerPrice = (e) => {
+    searchByPrice(Number(e.target.value));
+  };
   return (
     <FilterOfProducts className="col-4">
+      {console.log(searchPrice)}
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>
       <form>
         <SearchProductField
@@ -30,21 +43,32 @@ function Filters(props) {
           placeholder="¿Qué es lo que deseas ahora?"
           className="ml-4 mb-4"
           name="busqueda"
-          value={busqueda}
           onChange={handlerBusqueda}
         />
         <Magnifier src={LupaIcon} />
       </form>
       <form>
         <span className="font-weight-bold ml-3">Ordenar por precio</span>
-        <SelectPrice className="ml-4">
-          <option>Seleccione</option>
+        <SelectPrice className="ml-4" onChange={handlerPrice}>
+          <option value="">Seleccione</option>
+          {productos.map((producto) => {
+            return (
+              <option key={producto.key} value={producto.Precio}>
+                {producto.Precio}
+              </option>
+            );
+          })}
         </SelectPrice>
       </form>
       <form>
         <span className="font-weight-bold ml-3">Categorías</span>
         <InputGroup className="ml-3 mt-3">
-          <CustomCheckbox type="checkbox" className="mr-2 mb-3" />
+          <CustomCheckbox
+            type="checkbox"
+            name="isHamburguesas"
+            onChange={handlerCheckHamburger}
+            className="mr-2 mb-3"
+          />
           <span>Hamburguesas</span>
         </InputGroup>
         <InputGroup className="ml-3">
@@ -81,6 +105,6 @@ function Filters(props) {
       </form>
     </FilterOfProducts>
   );
-}
+};
 
 export default Filters;

@@ -1,9 +1,10 @@
 //import React, { useReducer, useEffect } from 'react';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Product from './Product';
 import styled from '@emotion/styled';
 import productos from '../../../datos/productos.json';
+import ProductContext from '../../../context/products/ProductContext';
 // import ProductReducer from '../../../context/products/ProductReducer';
 // import Axios from 'axios';
 export default function ListProducts(props) {
@@ -28,15 +29,22 @@ export default function ListProducts(props) {
   //     })
   //     .catch((err) => {});
   // }, []);
+  const { searchTerm, searchPrice } = useContext(ProductContext);
+  // let filteredProductsByText = productos.filter((producto) => {
+  //   return producto.Titulo.indexOf(searchTerm) !== -1;
+  // });
 
-  let filteredProductsByText = productos.filter((producto) => {
-    return producto.Titulo.indexOf(props.criterioBusqueda) !== -1;
+  let filteredProducts = productos.filter((producto) => {
+    return producto.Titulo.indexOf(searchTerm) !== -1;
   });
-
+  console.log(searchPrice);
+  if (searchPrice) {
+    filteredProducts.filter((producto) => producto.Precio === searchPrice);
+  }
+  console.log(filteredProducts);
   return (
     <ListProductContainer className="border">
-      {console.log(props)}
-      {filteredProductsByText.map((value, index) => {
+      {filteredProducts.map((value, index) => {
         return <Product key={index} {...value} />;
       })}
     </ListProductContainer>

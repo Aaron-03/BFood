@@ -17,35 +17,74 @@ const {
 } = VendorTypes;
 
 const VendorService = (props) => {
+  const initialState = {
+    vendor: {},
+    currentVendor: null,
+    vendors: [
+      {
+        id: 1,
+        name: 'DOMINOS Pizza',
+        phone: '987654123',
+        img: '../../../pizza.jpg',
+        web: 'www.dominospizza.com',
+        esp: 'Pizzas y Pastas',
+        points: 5,
+        date: '05/16/2020',
+        desc:
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.',
+      },
+      {
+        id: 2,
+        name: 'NORKYS',
+        phone: '987654123',
+        img: '../../../pizza.jpg',
+        web: 'www.dominospizza.com',
+        esp: 'Pollo a la Brasa',
+        points: 5,
+        date: '05/26/2020',
+        desc:
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.',
+      },
+      {
+        id: 3,
+        name: 'MC Donalds',
+        phone: '987654123',
+        img: '../../../pizza.jpg',
+        web: 'www.dominospizza.com',
+        esp: 'Papas Fritas',
+        points: 5,
+        date: '05/20/2020',
+        desc:
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.',
+      },
+      {
+        id: 4,
+        name: 'KFC',
+        phone: '987654123',
+        img: '../../../pizza.jpg',
+        web: 'www.dominospizza.com',
+        esp: 'Pollos Fritos',
+        points: 5,
+        date: '05/31/2020',
+        desc:
+          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.',
+      },
+    ],
+    form1: false,
+    form2: false,
+    form3: false,
+  };
 
-    const initialState = {
-        vendor: {},
-        currentVendor: null,
-        vendors: [
-            { id: 1, name: 'DOMINOS Pizza', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pizzas y Pastas', points: 5, date: '05/16/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-            { id: 2, name: 'NORKYS', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pollo a la Brasa', points: 5, date: '05/26/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-            { id: 3, name: 'MC Donalds', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Papas Fritas', points: 5, date: '05/20/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-            { id: 4, name: 'KFC', phone: '987654123', img: '../../../pizza.jpg', web: 'www.dominospizza.com', esp: 'Pollos Fritos', points: 5, date: '05/31/2020', desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.' },
-        ],
-        form1: false,
-        form2: false,
-        form3: false
-    };
+  const [state, dispatch] = useReducer(VendorReducer, initialState);
 
-    const [ state, dispatch ] = useReducer(VendorReducer, initialState);
-
-
-    const crtVendor = async (crtVendor) => {
-        try {
-         
-            dispatch({
-                type: CRT_VENDOR,
-                payload: crtVendor
-            });
-
-        } catch (error) {
-            console.log(error);
-        }
+  const crtVendor = async (crtVendor) => {
+    try {
+      dispatch({
+        type: CRT_VENDOR,
+        payload: crtVendor,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -140,4 +179,3 @@ const VendorService = (props) => {
 };
 
 export default VendorService;
-
