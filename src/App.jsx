@@ -15,6 +15,7 @@ import RegisterProduct from './components/Products/RegisterProduct/RegisterProdu
 //import ListVendors from './components/vendors/ListVendors';
 import VendorService from './context/vendors/VendorService';
 import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
+import SettingVendor from './components/vendors/settingsVendor/settingVendor';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/vendor/signin" component={IndexSignIn} />
             <Route exact path="/products/search" component={SearchProducts} />
             <Route exact path="/products/add" component={RegisterProduct} />
+            <Route exact path="/vendor/settings" component={SettingVendor} />
 
             {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                 <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
