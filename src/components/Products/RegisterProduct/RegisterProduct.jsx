@@ -6,6 +6,7 @@ import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
 import avatarIcon from '../../../assets/img/Form/avatar.svg';
+import LetterIcon from '../../../assets/img/signs.svg';
 import { FormFileStyled } from './RegisterProduct.styles';
 
 import { FormRegisterProduct } from '../../ui/Forms';
@@ -63,15 +64,15 @@ function RegisterProduct(props) {
                 <ImageSvg
                   customWidth="2.6rem"
                   customHeight="2.6rem"
-                  src={ProductIcon}
+                  src={LetterIcon}
                 />
                 <InputText
                   className="col-10 text-left"
                   type="text"
-                  placeholder="NOMBRE DE PRODUCTO"
-                  name="nombreProducto"
+                  placeholder="TITULO"
+                  name="titulo"
                   onChange={handleInputChange}
-                  value={inputs.nombreProducto}
+                  value={inputs.titulo}
                 />
               </ContentInputText>
             </FormGroup>
@@ -80,7 +81,42 @@ function RegisterProduct(props) {
                 <ImageSvg
                   customWidth="2.6rem"
                   customHeight="2.6rem"
-                  src={avatarIcon}
+                  src={LetterIcon}
+                />
+
+                <InputText
+                  className="col-10 text-left"
+                  type="text"
+                  placeholder="DESCRIPCIÓN"
+                  onChange={handleInputChange}
+                  name="descripcion"
+                  value={inputs.descripcion}
+                />
+              </ContentInputText>
+            </FormGroup>
+            <FormGroup className="mt-5">
+              <ContentInputText className="col-sm-10 m-auto">
+                <ImageSvg
+                  customWidth="2.6rem"
+                  customHeight="2.6rem"
+                  src={ProductIcon}
+                />
+
+                <select className="form-control col-10">
+                  <option>CATEGORIA</option>
+                  <option value="0">Hamburguesas</option>
+                  <option value="1">Pizzas y Pastas</option>
+                  <option value="2">Bebidas Ligeras</option>
+                  <option value="3">Gaseosas</option>
+                </select>
+              </ContentInputText>
+            </FormGroup>
+            <FormGroup className="mt-5">
+              <ContentInputText className="col-sm-10 m-auto">
+                <ImageSvg
+                  customWidth="2.6rem"
+                  customHeight="2.6rem"
+                  src={ProductIcon}
                 />
 
                 <InputText
@@ -88,27 +124,9 @@ function RegisterProduct(props) {
                   type="text"
                   placeholder="PRECIO"
                   onChange={handleInputChange}
-                  name="idVendedor"
-                  value={inputs.idVendedor}
+                  name="precio"
+                  value={inputs.precio}
                 />
-              </ContentInputText>
-            </FormGroup>
-            <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-10 m-auto">
-                <ImageSvg
-                  customWidth="2.6rem"
-                  customHeight="2.6rem"
-                  src={avatarIcon}
-                />
-
-                <select
-                  className="form-control col-10"
-                >
-                  <option value="0">Hamburguesas</option>
-                  <option value="1">Pizzas y Pastas</option>
-                  <option value="2">Bebidas Ligeras</option>
-                  <option value="3">Gaseosas</option>
-                </select>
               </ContentInputText>
             </FormGroup>
             <FormGroup className="mt-5 position-relative">

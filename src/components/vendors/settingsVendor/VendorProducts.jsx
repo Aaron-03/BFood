@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Modal } from 'react-bootstrap';
 import productos from '../../../datos/productos.json';
 import tacho from '../../../assets/img/tablas/trash.svg';
 import actualizar from '../../../assets/img/Form/study.svg';
+import RegisterProduct from '../../Products/RegisterProduct/RegisterProduct';
 const VendorProductsDiv = styled(Container)`
   width: 153vh;
   position: absolute;
@@ -15,7 +16,19 @@ const VendorProductsDiv = styled(Container)`
 const TitlePage = styled.h1`
   width: 10em;
   margin: auto;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 `;
+const AddProductButton = styled.button`
+  border-radius: 15px;
+  padding: 0 10px;
+  border: solid 1px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 3em;
+  position: absolute;
+  left: 46rem;
+`;
+
 const renderProducts = (producto, index) => {
   return (
     <tr key={index}>
@@ -35,8 +48,12 @@ const renderProducts = (producto, index) => {
   );
 };
 export default function VendorProducts() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <VendorProductsDiv className="vendor-products">
+      <AddProductButton onClick={handleShow}>Agregar producto</AddProductButton>
       <TitlePage>Mis productos</TitlePage>
       <Table>
         <thead>
@@ -49,6 +66,11 @@ export default function VendorProducts() {
         </thead>
         <tbody>{productos.map(renderProducts)}</tbody>
       </Table>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+          <RegisterProduct />
+        </Modal.Body>
+      </Modal>
     </VendorProductsDiv>
   );
 }
