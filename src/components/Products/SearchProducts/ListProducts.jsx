@@ -1,9 +1,10 @@
 //import React, { useReducer, useEffect } from 'react';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Product from './Product';
 import styled from '@emotion/styled';
 import productos from '../../../datos/productos.json';
+import ProductContext from '../../../context/products/ProductContext';
 // import ProductReducer from '../../../context/products/ProductReducer';
 // import Axios from 'axios';
 export default function ListProducts(props) {
@@ -28,24 +29,24 @@ export default function ListProducts(props) {
   //     })
   //     .catch((err) => {});
   // }, []);
+  const { searchTerm, searchPrice } = useContext(ProductContext);
+  // let filteredProductsByText = productos.filter((producto) => {
+  //   return producto.Titulo.indexOf(searchTerm) !== -1;
+  // });
 
-  let filteredProductsByText = productos.filter((producto) => {
-    return producto.Titulo.indexOf(props.criterioBusqueda) !== -1;
+  let filteredProducts = productos.filter((producto) => {
+    return producto.Titulo.indexOf(searchTerm) !== -1;
   });
-
+  console.log(searchPrice);
+  if (searchPrice) {
+    filteredProducts.filter((producto) => producto.Precio === searchPrice);
+  }
+  console.log(filteredProducts);
   return (
-    <ListProductContainer>
-      {/*loading ? 'Cargando, porfavor espere......' : <Product listaProductos = {listaProductos}/> */}
-      {/*error ? error : null*/}
-      {console.log(props)}
-      {filteredProductsByText.map((value, index) => {
+    <ListProductContainer className="border">
+      {filteredProducts.map((value, index) => {
         return <Product key={index} {...value} />;
       })}
-      {/* {productos.filter((producto) =>
-        producto
-          .includes(props.criterioBusqueda)
-          .map((value) => <Product {...value} />)
-      )} */}
     </ListProductContainer>
   );
 }

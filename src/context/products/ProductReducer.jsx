@@ -1,14 +1,23 @@
-import { LST_PRODUCT } from '../../types/ProductTypes';
+import ProductTypes from '../../types/ProductTypes';
 
 export default (state, action) => {
   switch (action.type) {
-    case LST_PRODUCT:
+    case ProductTypes.LST_PRODUCT_BY_TERM:
       return {
-        loading: false,
-        product: action.payload,
-        error: '',
+        ...state,
+        searchTerm: action.payload,
+      };
+    case ProductTypes.FILTER_PRODUCT_BY_CATEGORY:
+      return {
+        ...state,
+        searchCategory: action.payload,
+      };
+    case ProductTypes.FILTER_PRODUCT_BY_PRICE:
+      return {
+        ...state,
+        searchPrice: action.payload,
       };
     default:
-      break;
+      return state;
   }
 };

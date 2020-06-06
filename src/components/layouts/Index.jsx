@@ -135,101 +135,77 @@ const Index = () => {
 
   const { term, option } = search;
 
-    const handleChangeSearch = (e) => {
-        setSearch({
-            ...search,
-            [e.target.name]: e.target.value
-        });
-    }
+  const handleChangeSearch = (e) => {
+    setSearch({
+      ...search,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  return (
+    <Fragment>
+      <ContainerBackground className="position-relative">
+        <ContainerImages>
+          <ImageSvg customWidth="8rem" customHeight="8rem" src={donutImg} />
 
-    return (
-        <Fragment>
-            <ContainerBackground className="position-relative">
-                <ContainerImages>
-                    <ImageSvg
-                        customWidth="8rem"
-                        customHeight="8rem"
-                        src={donutImg}
-                    />
+          <ImageSvg customWidth="8rem" customHeight="8rem" src={drinkImg} />
 
-                    <ImageSvg
-                        customWidth="8rem"
-                        customHeight="8rem"
-                        src={drinkImg}
-                    />
+          <ImageSvg customWidth="8rem" customHeight="8rem" src={hotImg} />
 
-                    <ImageSvg
-                        customWidth="8rem"
-                        customHeight="8rem"
-                        src={hotImg}
-                    />
+          <ImageSvg customWidth="8rem" customHeight="8rem" src={fastImg} />
 
-                    <ImageSvg
-                        customWidth="8rem"
-                        customHeight="8rem"
-                        src={fastImg}
-                    />
+          <ImageSvg customWidth="8rem" customHeight="8rem" src={dessertImg} />
+        </ContainerImages>
 
-                    <ImageSvg
-                        customWidth="8rem"
-                        customHeight="8rem"
-                        src={dessertImg}
-                    />
-                </ContainerImages>
+        <ContainerElements className="col-10">
+          <div className="w-100 text-center text-white mb-5">
+            <h1 id="textHeader">
+              BUSCA BEBIDAS, COMIDAS O TUS RESTAURANTES FAVORITOS
+            </h1>
+          </div>
 
-                <ContainerElements className="col-10">
-                    <div className="w-100 text-center text-white mb-5">
-                        <h1 id="textHeader">BUSCA BEBIDAS, COMIDAS O TUS RESTAURANTES FAVORITOS</h1>
-                    </div>
+          <div className="w-100">
+            <form className="col-12 m-auto">
+              <FormGroup className="search col-8 mb-3 mx-auto">
+                <input
+                  id="searchId"
+                  type="text"
+                  name="term"
+                  value={term}
+                  onChange={handleChangeSearch}
+                  className="text-left col-11"
+                  placeholder="¿Qué es lo que deseas ahora?"
+                />
 
-                    <div className="w-100">
-                        <form
-                            className="col-12 m-auto"
-                        >
-                            <FormGroup className="search col-8 mb-3 mx-auto">
-                                <input
-                                    id="searchId"
-                                    type="text"
-                                    name="term"
-                                    value={term}
-                                    onChange={handleChangeSearch}
-                                    className="text-left col-11"
-                                    placeholder="¿Qué es lo que deseas ahora?"
-                                />
+                <ContentImg className="">
+                  <ImageSvg
+                    customWidth="100%"
+                    customHeight="100%"
+                    src={searchImg}
+                  />
+                </ContentImg>
+              </FormGroup>
 
-                                <ContentImg className="">
-                                    <ImageSvg
-                                        customWidth="100%"
-                                        customHeight="100%"
-                                        src={searchImg}
-                                    />
-                                </ContentImg>
-                            </FormGroup>
+              <FormGroup className="row col-6 justify-content-around align-items-center m-auto p-2">
+                <Select
+                  name="option"
+                  value={option}
+                  onChange={handleChangeSearch}
+                >
+                  <option value="1">COMIDAS Y BEBIDAS</option>
+                  <option value="2">RESTAURANTES</option>
+                </Select>
 
-                            <FormGroup className="row col-6 justify-content-around align-items-center m-auto p-2">
+                <BtnSendData bgColor="#44B055">BUSCAR</BtnSendData>
+              </FormGroup>
+            </form>
+          </div>
+        </ContainerElements>
+      </ContainerBackground>
 
-                                <Select
-                                    name="option"
-                                    value={option}
-                                    onChange={handleChangeSearch}
-                                >
-                                    <option value="1">COMIDAS Y BEBIDAS</option>
-                                    <option value="2">RESTAURANTES</option>
-                                </Select>
+      <ListVendors />
+    </Fragment>
+  );
+};
 
-                                <BtnSendData
-                                    bgColor="#44B055"
-                                >BUSCAR</BtnSendData>
-                            </FormGroup>
-                        </form>
-                    </div>
-                </ContainerElements>
-            </ContainerBackground>
-
-            <ListVendors />
-        </Fragment>
-    );
-}
- 
 export default Index;
