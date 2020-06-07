@@ -4,18 +4,23 @@ import { Container, Table } from 'react-bootstrap';
 import productos from '../../../datos/productos.json';
 import tacho from '../../../assets/img/tablas/trash.svg';
 import actualizar from '../../../assets/img/Form/study.svg';
-const VendorProductsDiv = styled(Container)`
-  width: 153vh;
-  position: absolute;
-  top: 4em;
-  left: 17.8em;
-  height: 100vh;
-  margin-right: auto;
+
+
+const ContentDashProduct = styled.div`
+  padding: 4rem;
+  position: relative;
 `;
+
+const VendorProductsDiv = styled.div`
+  background-color: transparent;
+`;
+
 const TitlePage = styled.h1`
   width: 10em;
   margin: auto;
+  padding: 0.5rem;
 `;
+
 const renderProducts = (producto, index) => {
   return (
     <tr key={index}>
@@ -34,21 +39,28 @@ const renderProducts = (producto, index) => {
     </tr>
   );
 };
+
 export default function VendorProducts() {
+
   return (
-    <VendorProductsDiv className="vendor-products">
-      <TitlePage>Mis productos</TitlePage>
-      <Table>
-        <thead>
-          <th>#</th>
-          <th>Titulo</th>
-          <th>Descripción</th>
-          <th>Estrellas</th>
-          <th>Categorias</th>
-          <th>Precio</th>
-        </thead>
-        <tbody>{productos.map(renderProducts)}</tbody>
-      </Table>
-    </VendorProductsDiv>
+    <ContentDashProduct className="col-10">
+      
+
+      <VendorProductsDiv>
+        <TitlePage>Mis productos</TitlePage>
+
+        <Table className="table table-bordered">
+          <thead>
+            <th>#</th>
+            <th>Titulo</th>
+            <th>Descripción</th>
+            <th>Estrellas</th>
+            <th>Categorias</th>
+            <th>Precio</th>
+          </thead>
+          <tbody>{productos.map(renderProducts)}</tbody>
+        </Table>
+      </VendorProductsDiv>
+    </ContentDashProduct>
   );
 }

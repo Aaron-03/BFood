@@ -15,7 +15,7 @@ export default function SearchProducts() {
         <ProductService>
           <Filters parentFunction={CriterioBusqueda.bind(this)} />
 
-          <ListProducts className="col-8" criterioBusqueda={criterio} />
+          <ListProducts criterioBusqueda={criterio} />
         </ProductService>
       </div>
     </div>

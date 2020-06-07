@@ -27,6 +27,7 @@ const SearchProductField = styled.input`
   border-radius: 25px;
   padding: 5px 0;
   width: 84%;
+  outline: none;
 `;
 const SelectPrice = styled.select`
   border: 1px solid rgba(0, 0, 0, 0.3);
