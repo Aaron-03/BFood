@@ -107,7 +107,7 @@ export default function Product(props) {
   }
 
   const handleClickAddSale = () => {
-    
+
   }
 
   return (
@@ -116,7 +116,6 @@ export default function Product(props) {
         <BtnAddSale
           type="button"
           onClick={handleClickAddSale}
-          type="button"
           title="AGREGAR AL CARRITO"
         >+</BtnAddSale>
 
