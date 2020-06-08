@@ -8,7 +8,6 @@ import RegisterProduct from '../../Products/RegisterProduct/RegisterProduct';
 import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
 import UpdateProduct from '../../Products/RegisterProduct/UpdateProduct';
-import DeleteProduct from '../../Products/RegisterProduct/DeleteProduct';
 import Swal from 'sweetalert2';
 
 
