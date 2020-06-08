@@ -16,19 +16,14 @@ import RegisterProduct from './components/Products/RegisterProduct/RegisterProdu
 import VendorService from './context/vendors/VendorService';
 import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
 import SettingVendor from './components/vendors/settingsVendor/settingVendor';
-<<<<<<< HEAD
-import SucursalVendor from './components/vendors/SucursalVendor/SucursalVendor';
-=======
 import ProductService from './context/products/ProductService';
->>>>>>> c5f98bc547f7ee435a873c0194aa96161adddd4e
+
+import SucursalVendor from './components/vendors/SucursalVendor/SucursalVendor';
 
 function App() {
-
-
   return (
     <div className="App">
       <Router>
-<<<<<<< HEAD
         <VendorService>
           <Header />
           <Switch>
@@ -39,31 +34,13 @@ function App() {
             <Route exact path="/products/add" component={RegisterProduct} />
             <Route exact path="/vendor/settings" component={SettingVendor} />
             <Route exact path="/vendor/sucursales" component={SucursalVendor} />
+            <Route exact path="/products/services" component={ProductService} />
 
             {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                 <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
           </Switch>
           <Footer />
         </VendorService>
-=======
-        <ProductService>
-          <VendorService>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Index} />
-              <Route exact path="/vendor/signup" component={IndexSignUp} />
-              <Route exact path="/vendor/signin" component={IndexSignIn} />
-              <Route exact path="/products/search" component={SearchProducts} />
-              {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
-              <Route exact path="/vendor/settings" component={SettingVendor} />
-
-              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
-                  <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-            </Switch>
-            <Footer />
-          </VendorService>
-        </ProductService>
->>>>>>> c5f98bc547f7ee435a873c0194aa96161adddd4e
       </Router>
     </div>
   );
