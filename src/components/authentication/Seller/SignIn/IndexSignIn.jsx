@@ -25,8 +25,13 @@ import Swal from 'sweetalert2';
 import styled from '@emotion/styled';
 
 
-const ContainerSignIn = styled(Container)`
+const ContainerSignIn = styled.div`
     background-color: var(--custom-blue);
+    height: 69vh;
+    width: 100vw !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 
@@ -40,13 +45,11 @@ const IndexSignIn = () => {
     const [ sended, setSended ] = useState(false);
 
     const [ vendor, setVendor] = useState({
-        name: '',
-        email: '',
-        password: '',
-        password2: ''
+        username: '',
+        password: ''
     });
 
-    const { name, email, password, password2 } = vendor;
+    const { username, password } = vendor;
 
 
     const handleSubmit = async (e) => {
@@ -54,60 +57,10 @@ const IndexSignIn = () => {
 
         const minCaracters = 6;
 
-        const nameValid = validFieldString(name, 4, 16);
-        const emailValid = validFieldEmail(email);
+        const nameValid = validFieldString(username, 4, 16);
         const passwordValid = validFieldString(password, minCaracters, 27);
 
-        if(nameValid.active ||
-           emailValid.status) {
-            setError(true);
-            
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al procesar datos',
-                text: 'Todos los campos son obligatorios',
-                timer: '3000'
-            });
-
-            return;
-        }
-
-        if(passwordValid.active) {
-             setError(true);
-             
-             Swal.fire({
-                 icon: 'error',
-                 title: 'Error al procesar datos',
-                 text: `La contraseña debe tener mínimo ${minCaracters} caracteres`,
-                 timer: '3000'
-             });
-
-             return;
-         }
-
-        if(password === undefined || password2 === undefined) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Error al procesar datos',
-                text: 'Las contraseñas no coinciden',
-                timer: '3000'
-            });
-
-            return;
-        }
-
-        if(password.trim() !== password2.trim()) {
-            setError(true);
-            
-            Swal.fire({
-                icon: 'warning',
-                title: 'Error al procesar datos',
-                text: 'Las contraseñas no coinciden',
-                timer: '3000'
-            });
-
-            return;
-        }
+        
 
         setLoading(true);
         // await sendRequest();
@@ -128,7 +81,7 @@ const IndexSignIn = () => {
 
     return (
         <ContainerSignIn>
-            <Row className="justify-content-center align-items-center p-2">
+            <Row className="justify-content-center align-items-center p-2 bg-danger col-12">
                 <FormSeller
                     onSubmit={handleSubmit}
                     customMaxWidth="45rem"
@@ -159,9 +112,9 @@ const IndexSignIn = () => {
                             <InputText
                                 className="col-10 text-left"
                                 type="text"
-                                placeholder="CREE UN NOMBRE DE USUARIO"
-                                name="name"
-                                value={name}
+                                placeholder="INGRESE SU USUARIO"
+                                name="username"
+                                value={username}
                                 onChange={handleChange}
                             />
                         </ContentInputText>
@@ -179,7 +132,7 @@ const IndexSignIn = () => {
                             <InputText
                                 className="col-10 text-left"
                                 type="password"
-                                placeholder="CREE UNA CONTRASEÑA"
+                                placeholder="INGRESE SU CONTRASEÑA"
                                 name="password"
                                 value={password}
                                 onChange={handleChange}

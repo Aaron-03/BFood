@@ -65,7 +65,7 @@ const CustomParagraph = styled.p`
 
 const FormSellerOne = ({ setPage }) => {
   const { crtVendor, currentVendor, validateRuc } = useContext(VendorContext);
-  const [error, setError] = useState(false);
+  const [ error, setError ] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [vendor, setVendor] = useState({

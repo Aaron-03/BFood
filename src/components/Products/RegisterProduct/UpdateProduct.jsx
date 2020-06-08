@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Row, FormGroup } from 'react-bootstrap';
 import styled from '@emotion/styled';
 
@@ -16,7 +16,6 @@ import { BtnSendData } from '../../ui/Buttons';
 import { ImageSvg } from '../../ui/Images';
 
 import './RegisterProduct.positions.css';
-import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
 
 const CustomInputFile = styled(BFoodLabel)`
@@ -45,9 +44,9 @@ const ImageName = styled.p`
   bottom: -1rem;
 `;
 
-function RegisterProduct(props) {
+function UpdateProduct(props) {
 
-  const { addProductVendor } = useContext(VendorContext);
+  const { updProductVendor, currentProduct } = useContext(VendorContext);
 
   const [ product, setProduct ] = useState({
     title: '',
@@ -75,10 +74,11 @@ function RegisterProduct(props) {
     });
   }
 
-  const handleSubmitRegister = (e) => {
+  const handleSubmitUpdate = (e) => {
     e.preventDefault();
 
     const xproduct = {
+      id: currentProduct.id,
       nombre: title,
       precio: price,
       descripcion: desc,
@@ -88,8 +88,7 @@ function RegisterProduct(props) {
       status: "A"
     }
 
-    console.log(xproduct);
-    addProductVendor(xproduct);
+    updProductVendor(xproduct);
 
     props.handleClose();
   }
@@ -103,6 +102,35 @@ function RegisterProduct(props) {
     register
   );
 
+
+  useEffect(() => {
+
+    if(currentProduct !== null) {
+        const xproduct = {
+            id: currentProduct.id,
+            title: currentProduct.nombre,
+            price: currentProduct.precio,
+            desc: currentProduct.descripcion,
+            image: {
+                name: currentProduct.img
+            },
+            category: currentProduct.categoria,
+            stock: 50,
+            status: "A"
+        }
+
+        setProduct(xproduct);
+        console.log("Dentro");
+        console.log(currentProduct);
+        return;
+    }
+
+    console.log("Fuera");
+    console.log(currentProduct);
+
+  }, [currentProduct]);
+
+
   return (
     <div className="RegistroProduct">
       <Container className="p-0">
@@ -110,10 +138,10 @@ function RegisterProduct(props) {
           <FormRegisterProduct
             customMaxWidth="45rem"
             className="col-sm-12 px-1 form-registro-producto"
-            onSubmit={handleSubmitRegister}
+            onSubmit={handleSubmitUpdate}
           >
             <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
-              <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
+              <BFoodSubTitle customSize="18pt">Actualización</BFoodSubTitle>
               <BFoodTitle className="ml-3">BFood</BFoodTitle>
               <BFoodSubTitle customSize="18pt">Productos</BFoodSubTitle>
             </div>
@@ -215,7 +243,7 @@ function RegisterProduct(props) {
               </ContentInputText>
             </FormGroup>
             <FormGroup className="text-center p-2 mt-4">
-              <BtnSendData className="16rem">REGISTRAR</BtnSendData>
+              <BtnSendData className="16rem">ACTUALIZAR</BtnSendData>
             </FormGroup>
           </FormRegisterProduct>
         </Row>
@@ -224,4 +252,4 @@ function RegisterProduct(props) {
   );
 }
 
-export default RegisterProduct;
+export default UpdateProduct;
