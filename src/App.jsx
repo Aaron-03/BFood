@@ -16,6 +16,7 @@ import RegisterProduct from './components/Products/RegisterProduct/RegisterProdu
 import VendorService from './context/vendors/VendorService';
 import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
 import SettingVendor from './components/vendors/settingsVendor/settingVendor';
+import SucursalVendor from './components/vendors/SucursalVendor/SucursalVendor';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/products/search" component={SearchProducts} />
             <Route exact path="/products/add" component={RegisterProduct} />
             <Route exact path="/vendor/settings" component={SettingVendor} />
+            <Route exact path="/vendor/sucursales" component={SucursalVendor} />
 
             {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                 <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
