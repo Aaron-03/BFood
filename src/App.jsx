@@ -16,26 +16,31 @@ import RegisterProduct from './components/Products/RegisterProduct/RegisterProdu
 import VendorService from './context/vendors/VendorService';
 import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
 import SettingVendor from './components/vendors/settingsVendor/settingVendor';
+import ProductService from './context/products/ProductService';
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
-        <VendorService>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Index} />
-            <Route exact path="/vendor/signup" component={IndexSignUp} />
-            <Route exact path="/vendor/signin" component={IndexSignIn} />
-            <Route exact path="/products/search" component={SearchProducts} />
-            <Route exact path="/products/add" component={RegisterProduct} />
-            <Route exact path="/vendor/settings" component={SettingVendor} />
+        <ProductService>
+          <VendorService>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Index} />
+              <Route exact path="/vendor/signup" component={IndexSignUp} />
+              <Route exact path="/vendor/signin" component={IndexSignIn} />
+              <Route exact path="/products/search" component={SearchProducts} />
+              {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
+              <Route exact path="/vendor/settings" component={SettingVendor} />
 
-            {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
-                <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-          </Switch>
-          <Footer />
-        </VendorService>
+              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
+                  <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
+            </Switch>
+            <Footer />
+          </VendorService>
+        </ProductService>
       </Router>
     </div>
   );

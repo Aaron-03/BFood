@@ -106,17 +106,21 @@ export default function Product(props) {
     estrellasInCard.push(<CustomStar key={i} src={Star_Empty} />);
   }
 
-  
+  const handleClickAddSale = () => {
+    
+  }
 
   return (
     <ContentProduct>
 
         <BtnAddSale
           type="button"
+          onClick={handleClickAddSale}
+          type="button"
           title="AGREGAR AL CARRITO"
         >+</BtnAddSale>
 
-        <Link to="/">
+        <Link to="/" className="text-decoration-none">
           <ImageProduct>
             <img src={Hamburger_img} alt=""/>
           </ImageProduct>

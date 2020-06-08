@@ -1,14 +1,13 @@
 //import React, { useReducer, useEffect } from 'react';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Product from './Product';
 import styled from '@emotion/styled';
-import productos from '../../../datos/productos.json';
 import ProductContext from '../../../context/products/ProductContext';
 // import ProductReducer from '../../../context/products/ProductReducer';
 // import Axios from 'axios';
-export default function ListProducts(props) {
-  const ListProductContainer = styled.div`
+
+const ListProductContainer = styled.div`
     padding: 4rem;
     display: flex;
     justify-content: start;
@@ -41,28 +40,35 @@ export default function ListProducts(props) {
   }
 `;
 
-  // const [state, dispatch] = useReducer(ProductReducer, initialState);
 
-  // useEffect(() => {
-  //   Axios.get(`${process.env.BFOOD_BACKEND}/listarproducto`)
-  //     .then((res) => {
-  //       dispatch({ type: 'LST_PRODUCT', payload: res.data });
-  //     })
-  //     .catch((err) => {});
-  // }, []);
-  const { searchTerm, searchPrice } = useContext(ProductContext);
+
+export default function ListProducts(props) {
+
+
+  const { searchTerm, searchPrice, products, categories } = useContext(ProductContext);
   // let filteredProductsByText = productos.filter((producto) => {
   //   return producto.Titulo.indexOf(searchTerm) !== -1;
   // });
 
-  let filteredProducts = productos.filter((producto) => {
-    return producto.Titulo.indexOf(searchTerm) !== -1;
-  });
-  console.log(searchPrice);
+  const cates = categories.filter(cat => cat.check === true);
+  console.log(cates);
+
+  const filterProducts = () => {
+    let prods = products.filter(product => 
+      product.title.indexOf(searchTerm) !== -1
+    );
+
+    return prods;
+  }
+
+  let filteredProducts = filterProducts();
+
+
   if (searchPrice) {
     filteredProducts.filter((producto) => producto.Precio === searchPrice);
   }
-  console.log(filteredProducts);
+
+  
   return (
     <ListProductContainer className="col-10">
       <ContentSale>

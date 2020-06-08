@@ -25,33 +25,33 @@ const Footer = () => {
                 <div className="container">
                     <ul className="list-unstyled list-inline text-center">
                         <li className="list-inline-item">
-                            <a href className="btn-floating btn-fb mx-1">
-                                <i class="fa fa-facebook-f"> </i>
+                            <a href="true" className="btn-floating btn-fb mx-1 text-white">
+                                <i className="fa fa-facebook-f"> </i>
                             </a>
                         </li>
 
                         <li className="list-inline-item">
-                            <a href className="btn-floating btn-tw mx-1">
-                                <i class="fa fa-twitter"> </i>
+                            <a href="true" className="btn-floating btn-tw mx-1 text-white">
+                                <i className="fa fa-twitter"> </i>
                             </a>
                         </li>
 
                         <li className="list-inline-item">
-                            <a href className="btn-floating btn-gplus mx-1">
+                            <a href="true" className="btn-floating btn-gplus mx-1 text-white">
                                 <i className="fa fa-google-plus"> </i>
                             </a>
                         </li>
 
                         <li className="list-inline-item">
-                            <a href className="btn-floating btn-li mx-1">
+                            <a href="true" className="btn-floating btn-li mx-1 text-white">
                                 <i className="fa fa-linkedin"> </i>
                             </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="footer-copyright text-center py-3">bfood.com.pe
-                    <a href className="text-white"> Copyright &#169; 2020</a>
+                <div className="footer-copyright text-center py-3">bfood.com.pe
+                    <a href="true" className="text-white"> Copyright &#169; 2020</a>
                 </div>
             </footer>
         </ContetFooter>

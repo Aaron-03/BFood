@@ -12,6 +12,7 @@ import { Magnifier } from '../../ui/Images';
 import ProductContext from '../../../context/products/ProductContext';
 
 import productos from '../../../datos/productos.json';
+import useCategoriesChecks from '../../../hooks/useCategoriesChecks';
 
 const Filters = (props) => {
 
@@ -20,10 +21,16 @@ const Filters = (props) => {
     //searchCheckHamburger,
     searchByPrice,
     searchPrice,
+    categories
   } = useContext(ProductContext);
+
+
+  const [ ListCategories ] = useCategoriesChecks(categories);
+
   const handlerBusqueda = (e) => {
     searchByTerm(e.target.value);
   };
+
   const handlerCheckHamburger = (e) => {
     //searchByCheckHamburger(e.target.value);
     console.log(e.target.value);
@@ -31,10 +38,13 @@ const Filters = (props) => {
     //const value = target.value;
     //searchByCheckHamburger(value);
   };
+
+
   const handlerPrice = (e) => {
     searchByPrice(Number(e.target.value));
   };
   return (
+
     <FilterOfProducts className="col-2">
       <h5 className="text-center pt-5 mb-3">Busca lo mejor para ti:</h5>
 
@@ -46,6 +56,7 @@ const Filters = (props) => {
           name="busqueda"
           onChange={handlerBusqueda}
         />
+
         <Magnifier src={LupaIcon} />
       </form>
 
@@ -62,30 +73,7 @@ const Filters = (props) => {
       <form>
         <span className="font-weight-bold ml-3">Categorías</span>
 
-        <InputGroup className="ml-3 mt-3">
-          <CustomCheckbox
-            type="checkbox"
-            name="isHamburguesas"
-            onChange={handlerCheckHamburger}
-            className="mr-2 mb-3"
-          />
-          <span>Hamburguesas</span>
-        </InputGroup>
-
-        <InputGroup className="ml-3">
-          <CustomCheckbox type="checkbox" className="mr-2 mb-3" />
-          <span>Dulces y Chocolates</span>
-        </InputGroup>
-
-        <InputGroup className="ml-3">
-          <CustomCheckbox type="checkbox" className="mr-2 mb-3" />
-          <span>Pizzas y Pastas</span>
-        </InputGroup>
-
-        <InputGroup className="ml-3">
-          <CustomCheckbox type="checkbox" className="mr-2 mb-3" />
-          <span>Bebidas y Jugos</span>
-        </InputGroup>
+        <ListCategories />
 
         <span className="font-weight-bold ml-3">
           Principales establecimientos

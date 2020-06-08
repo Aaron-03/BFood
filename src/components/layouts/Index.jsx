@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -15,6 +15,8 @@ import drinkImg from '../../assets/img/General/drink.svg';
 import fastImg from '../../assets/img/General/fast-food.svg';
 import hotImg from '../../assets/img/General/hot-dog.svg';
 import ListVendors from '../vendors/ListVendors';
+import { useHistory } from 'react-router-dom';
+import ProductContext from '../../context/products/ProductContext';
 
 const ContainerBackground = styled.div`
   display: flex;
@@ -126,9 +128,14 @@ const ContainerElements = styled.div`
 `;
 
 const Index = () => {
+
+  const urlHistory = useHistory();
+
+  const { searchByTerm } = useContext(ProductContext);
+
   const [error, setError] = useState(false);
 
-  const [search, setSearch] = useState({
+  const [ search, setSearch ] = useState({
     term: '',
     option: 1,
   });
@@ -141,6 +148,13 @@ const Index = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmitSearch = (e) => {
+      e.preventDefault();
+      searchByTerm(search);
+      urlHistory.push(`/products/search/`);
+  }
+
 
   return (
     <Fragment>
@@ -165,7 +179,10 @@ const Index = () => {
           </div>
 
           <div className="w-100">
-            <form className="col-12 m-auto">
+            <form
+              onSubmit={handleSubmitSearch}
+              className="col-12 m-auto"
+            >
               <FormGroup className="search col-8 mb-3 mx-auto">
                 <input
                   id="searchId"
@@ -196,7 +213,10 @@ const Index = () => {
                   <option value="2">RESTAURANTES</option>
                 </Select>
 
-                <BtnSendData bgColor="#44B055">BUSCAR</BtnSendData>
+                <BtnSendData
+                  type="submit"
+                  bgColor="#44B055"
+                >BUSCAR</BtnSendData>
               </FormGroup>
             </form>
           </div>

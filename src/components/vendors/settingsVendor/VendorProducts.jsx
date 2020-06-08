@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Container, Table, Modal } from 'react-bootstrap';
 import productos from '../../../datos/productos.json';
 import tacho from '../../../assets/img/tablas/trash.svg';
 import actualizar from '../../../assets/img/Form/study.svg';
 import RegisterProduct from '../../Products/RegisterProduct/RegisterProduct';
+import ProductContext from '../../../context/products/ProductContext';
+import VendorContext from '../../../context/vendors/VendorContext';
+import UpdateProduct from '../../Products/RegisterProduct/UpdateProduct';
+import DeleteProduct from '../../Products/RegisterProduct/DeleteProduct';
+import Swal from 'sweetalert2';
+
 
 
 const ContentDashProduct = styled.div`
@@ -16,66 +22,144 @@ const VendorProductsDiv = styled.div`
   background-color: transparent;
 `;
 
-const TitlePage = styled.h1`
-  width: 10em;
-  margin: auto;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+const AddProductButton = styled.button`
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  border: solid 1px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  float: right;
+  font-size: 12pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--custom-red);
+  color: white;
+  outline: none;
+  outline-color: transparent;
 `;
 
-const AddProductButton = styled.button`
-  border-radius: 15px;
-  padding: 0 10px;
-  border: solid 1px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  top: 3em;
-  position: absolute;
-  left: 46rem;
+const TitlePage = styled.h1`
+  width: 90%;
+  margin: auto;
+  padding: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
 `;
+
+export default function VendorProducts() {
+
+  const { products, getProductsByVendor, getProductById, dltProductVendor } = useContext(VendorContext);
+
+  const [ option, setOption ] = useState("");
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (opt) => { setOption(opt); setShow(true) };
 
 const renderProducts = (producto, index) => {
+
+
+  const handleClickUpd = (productId) => {
+    handleShow('upd');
+    getProductById(productId);
+  }
+
+  const handleClickDlt = (productId) => {
+    getProductById(productId);
+
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Esta acción es irreversible",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Eliminado!',
+          'El producto se eliminó correctamente',
+          'success'
+        );
+
+        dltProductVendor(productId);
+      }
+    })
+  }
+  
   return (
-    <tr key={index}>
+    <tr key={producto.id}>
       <td>{index}</td>
-      <td>{producto.Titulo}</td>
-      <td>{producto.Descripcion}</td>
-      <td>{producto.Estrellas}</td>
-      <td>{producto.Categoria}</td>
-      <td>{producto.Precio}</td>
+      <td>{producto.nombre}</td>
+      <td>{producto.descripcion}</td>
+      <td>{producto.estrellas}</td>
+      <td>{producto.categoria}</td>
+      <td>{producto.precio}</td>
       <td>
-        <img src={actualizar} style={{ width: 32 }} alt="" />
+        <button
+          onClick={() => handleClickUpd(producto.id)}
+          className="btn btn-warning"
+        >
+          <img src={actualizar}  style={{ width: 32 }} alt="" />
+        </button>
       </td>
       <td>
-        <img src={tacho} style={{ width: 32 }} alt="" />
+        <button
+          onClick={() => handleClickDlt(producto.id)}
+          className="btn btn-danger"
+        >
+          <img src={tacho} style={{ width: 32 }} alt="" />
+        </button>
       </td>
     </tr>
   );
 };
 
-export default function VendorProducts() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  useEffect(() => {
+
+    getProductsByVendor();
+
+  }, []);
+
+
   return (
-    <VendorProductsDiv className="vendor-products">
-      <AddProductButton onClick={handleShow}>Agregar producto</AddProductButton>
-      <TitlePage>Mis productos</TitlePage>
-      <Table>
-        <thead>
-          <th>#</th>
-          <th>Titulo</th>
-          <th>Descripción</th>
-          <th>Estrellas</th>
-          <th>Categorias</th>
-          <th>Precio</th>
-        </thead>
-        <tbody>{productos.map(renderProducts)}</tbody>
-      </Table>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body>
-          <RegisterProduct />
+    <ContentDashProduct className="col-10">
+      
+
+      <VendorProductsDiv>
+        
+        <TitlePage>
+          Mis productos
+          <AddProductButton onClick={() => handleShow('add')}>Agregar producto</AddProductButton>
+        </TitlePage>
+
+        <Table className="table table-bordered">
+          <thead>
+            <th>#</th>
+            <th>Titulo</th>
+            <th>Descripción</th>
+            <th>Estrellas</th>
+            <th>Categorias</th>
+            <th>Precio</th>
+          </thead>
+          <tbody>{products.map(renderProducts)}</tbody>
+        </Table>
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Body className="p-0">
+          
+          {
+            option === 'add'
+            ? <RegisterProduct handleClose={handleClose} />
+            : option === 'upd'
+            ? <UpdateProduct handleClose={handleClose} />
+            : null
+          }
+          
         </Modal.Body>
       </Modal>
-    </VendorProductsDiv>
+      </VendorProductsDiv>
+    </ContentDashProduct>
   );
 }

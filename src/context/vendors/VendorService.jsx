@@ -9,17 +9,25 @@ import ClientAxios from '../../config/ClientAxios';
 const {
   LGN_VENDOR,
   SGN_VENDOR,
+  GET_PRODUCT,
   CRT_VENDOR,
   ADD_VENDOR,
   UPD_VENDOR,
   DLT_VENDOR,
   LST_VENDOR,
+  ADD_PRODUCT,
+  UPD_PRODUCT,
+  DLT_PRODUCT,
+  LST_PRODUCTS
 } = VendorTypes;
 
 const VendorService = (props) => {
+
   const initialState = {
     vendor: {},
     currentVendor: null,
+    products: [],
+    currentProduct: null,
     vendors: [
       {
         id: 1,
@@ -92,7 +100,7 @@ const VendorService = (props) => {
     let response = {};
 
     try {
-      const result = await ClientAxios.get(`/bfood/sunat/${ruc}`);
+      const result = await ClientAxios.get(`/vendor/sunat/${ruc}`);
 
       response = {
         status: true,
@@ -111,7 +119,7 @@ const VendorService = (props) => {
   const sendRequest = async (request) => {
     try {
       console.log(request);
-      await ClientAxios.post('/bfood/register/', request, {
+      await ClientAxios.post('/vendor/register/', request, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -121,7 +129,125 @@ const VendorService = (props) => {
     }
   };
 
+  const getProductById = async (productId) => {
+    try {
+      
+      const product = await ClientAxios.post('/producto/get', { id: productId });
+      console.log(product);
+
+      dispatch({
+        type: GET_PRODUCT,
+        payload: productId
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const addProductVendor = async (product) => {
+
+    let res = {
+      ok: false,
+      message: 'Error al insertar producto'
+    }
+  
+    try {
+
+      product.vendedor = { id: 1 };
+      
+      const response = await ClientAxios.post("/producto/add", product);
+  
+      if(response.data.ok) {
+        dispatch({
+          type: ADD_PRODUCT,
+          payload: product
+        });
+
+        getProductsByVendor();
+      }
+  
+      res = response;
+  
+      console.log(res);
+  
+    } catch (error) {
+     
+      console.log(error);
+      return res;
+    }
+  
+    return res;
+  }
+
+  const updProductVendor = async (product) => {
+    let res = {
+      ok: false,
+      message: 'Error al insertar producto'
+    }
+  
+    try {
+
+      product.vendedor = { id: 1 };
+      
+      const response = await ClientAxios.post("/producto/edit", product);
+  
+      if(response.data.ok) {
+        dispatch({
+          type: UPD_PRODUCT,
+          payload: product
+        });
+
+        getProductsByVendor();
+      }
+  
+      res = response;
+  
+      console.log(res);
+  
+    } catch (error) {
+     
+      console.log(error);
+      return res;
+    }
+  
+    return res;
+  }
+
+  const dltProductVendor = async (productId) => {
+    let res = {
+      ok: false,
+      message: 'Error al insertar producto'
+    }
+  
+    try {
+
+      const response = await ClientAxios.post("/producto/dlt", { id: productId });
+  
+      if(response.data.ok) {
+        dispatch({
+          type: DLT_PRODUCT,
+          payload: productId
+        });
+
+        getProductsByVendor();
+      }
+  
+      res = response;
+  
+      console.log(res);
+  
+    } catch (error) {
+     
+      console.log(error);
+      return res;
+    }
+  
+    return res;
+  }
+
   const addVendor = async (vendor) => {
+
     try {
       dispatch({
         type: ADD_VENDOR,
@@ -156,6 +282,39 @@ const VendorService = (props) => {
     }
   };
 
+  const getProductsByVendor = async () => {
+
+    const vendorId = { id: 1 };
+
+    let res = {
+      ok: false,
+      message: 'Error al insertar producto'
+    }
+
+    try {
+
+      const response = await ClientAxios.post("/producto/list", vendorId);
+
+      if(response.data.ok) {
+
+        dispatch({
+          type: LST_PRODUCTS,
+          payload: response.data.data.filter(product => product.status === 'A')
+        });
+
+        res = {
+          ok: true,
+          message: 'Productos cargados correctamente'
+        }
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    return res;
+  }
+
   return (
     <VendorContext.Provider
       value={{
@@ -165,12 +324,19 @@ const VendorService = (props) => {
         form1: state.form1,
         form2: state.form2,
         form3: state.form3,
+        products: state.products,
+        currentProduct: state.currentProduct,
         crtVendor: crtVendor,
         addVendor: addVendor,
         updVendor: updVendor,
         dltVendor: dltVendor,
         validateRuc: validateRuc,
         sendRequest: sendRequest,
+        addProductVendor,
+        updProductVendor,
+        dltProductVendor,
+        getProductById,
+        getProductsByVendor
       }}
     >
       {props.children}
