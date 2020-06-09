@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Image } from 'react-bootstrap';
 
@@ -6,9 +6,7 @@ import Hamburger_img from '../../../assets/img/Products/burguer.jpg';
 import Star_Empty from '../../../assets/img/Products/star_full.svg';
 import { Link } from 'react-router-dom';
 
-export default function Product(props) {
-
-  const ContentProduct = styled.div`
+const ContentProduct = styled.div`
     position: relative;
     background-color: transparent;
     width: 24rem;
@@ -16,6 +14,7 @@ export default function Product(props) {
     border-radius: 1rem;
     overflow: hidden;
     margin-right: 2.5rem;
+    margin-top: 2rem;
 
     &:hover > button {
       z-index: 4;
@@ -101,13 +100,42 @@ export default function Product(props) {
     color: white;
   `;
 
+
+
+export default function Product({product, pedido, setCantProd}) {
+
+  const { id, img, estrellas, descripcion, precio, nombre, categoria } = product;
+
+  const [ include, setInclude ] = useState(false);
+
+  const [ item, setItem ] = useState({
+    id: id,
+    precio: precio,
+    nombre: nombre,
+    cantidad: 1
+  });
+
+  const { cantidad } = item;
+
   let estrellasInCard = [];
-  for (let i = 0; i < props.Estrellas; i++) {
+
+  for (let i = 0; i < estrellas; i++) {
     estrellasInCard.push(<CustomStar key={i} src={Star_Empty} />);
   }
 
-  const handleClickAddSale = () => {
-
+  const handleClickAddSale = (product) => {
+    setInclude(true);
+    let cant = cantidad + 1;
+    console.log(cant);
+    setItem({
+      ...item,
+      cantidad: cant
+    });
+    console.log(item);
+    pedido.products = pedido.products.filter(prod => prod.id !== id);
+    pedido.products = [...pedido.products, item];
+    console.log(item);
+    setCantProd(pedido.products.length);
   }
 
   return (
@@ -115,7 +143,7 @@ export default function Product(props) {
 
         <BtnAddSale
           type="button"
-          onClick={handleClickAddSale}
+          onClick={() => handleClickAddSale(product)}
           title="AGREGAR AL CARRITO"
         >+</BtnAddSale>
 
@@ -125,20 +153,20 @@ export default function Product(props) {
           </ImageProduct>
 
           <div className="py-2 px-3 mt-1 text-right">
-            <TagProduct className="text-white">{props.Categoria}</TagProduct>
+            <TagProduct className="text-white">{categoria}</TagProduct>
           </div>
 
           <ProductCard className="">
-            <h4 className="text-white font-weight-bold">{props.Titulo}</h4>
+            <h4 className="text-white font-weight-bold">{nombre}</h4>
             <ProductLittleDesc className="text-white">
-              {props.Descripcion}
+              {descripcion}
             </ProductLittleDesc>
 
             <div className="d-flex justify-content-between align-items-center p-1">
               <div>{estrellasInCard}</div>
 
               <Price>
-                S./{props.Precio}
+                S./{precio}
               </Price>
             </div>
           </ProductCard>

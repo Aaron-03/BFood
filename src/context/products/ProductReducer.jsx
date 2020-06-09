@@ -4,7 +4,7 @@ const {
     ADD_PRODUCT,
     UPD_PRODUCT,
     DLT_PRODUCT,
-    LST_PRODUCT,
+    LST_PRODUCT_BY_PAGE,
     LST_PRODUCT_BY_TERM,
     FAIL_PRODUCT,
     RESET_PRODUCT,
@@ -23,6 +23,12 @@ export default (state, action) => {
     case UPD_PRODUCT:
       return {
 
+      };
+    
+    case LST_PRODUCT_BY_PAGE:
+      return {
+        ...state,
+        products: action.payload
       };
 
     case LST_PRODUCT_BY_TERM:
