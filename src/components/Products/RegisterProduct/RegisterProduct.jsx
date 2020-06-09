@@ -18,6 +18,7 @@ import { ImageSvg } from '../../ui/Images';
 import './RegisterProduct.positions.css';
 import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
+import Swal from 'sweetalert2';
 
 const CustomInputFile = styled(BFoodLabel)`
   background-color: var(--custom-red);
@@ -77,6 +78,26 @@ function RegisterProduct(props) {
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
+
+    if(title.trim() === '' ||
+      desc.trim() === '' ||
+      category === 0 ) {
+        Swal.fire({
+          title: 'Ingrese datos válidos',
+          timer: 2000
+        });
+
+        return;
+    }
+
+    if(price <= 0) {
+      Swal.fire({
+        title: 'El precio no es válido',
+        timer: 2000
+      });
+
+      return;
+    }
 
     const xproduct = {
       nombre: title,

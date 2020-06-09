@@ -8,7 +8,7 @@ const {
   ADD_PRODUCT,
   UPD_PRODUCT,
   DLT_PRODUCT,
-  LST_PRODUCT,
+  LST_PRODUCT_BY_PAGE,
   LST_PRODUCT_BY_VENDOR,
   LST_PRODUCT_BY_TERM,
   FAIL_PRODUCT,
@@ -27,6 +27,13 @@ const initialState = {
     { id: 3, name: 'Pizzas y Pastas', check: false },
     { id: 4, name: 'Bebidas y Jugos', check: false }
   ],
+  pedido: {
+    descripcion: '',
+    idcliente: '',
+    total: 0,
+    status: 'PENDIENTE',
+    products: []
+  },
   products: []
 };
 
@@ -54,6 +61,7 @@ const ProductService = ({ children }) => {
       console.log(err);
     }
   };
+
   const searchByPrice = (searchPrice) => {
     try {
       dispatch({
@@ -65,6 +73,37 @@ const ProductService = ({ children }) => {
     }
   };
 
+  const getProductsByPage = async (page) => {
+    try {
+      
+      const response = await ClientAxios.post(`/producto/all`, {});
+
+      if(response.data.ok) {
+        dispatch({
+          type: LST_PRODUCT_BY_PAGE,
+          payload: response.data.products
+        });
+      }
+
+      console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const addPedido = async (pedido) => {
+    try {
+      
+      const response = await ClientAxios.post('/pedido/add', pedido);
+      
+      console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <ProductContext.Provider
@@ -74,9 +113,12 @@ const ProductService = ({ children }) => {
         searchCheckHamburger: state.searchCheckHamburger,
         products: state.products,
         categories: state.categories,
+        pedido: state.pedido,
         searchByCheckHamburger,
         searchByPrice,
-        searchByTerm
+        searchByTerm,
+        getProductsByPage,
+        addPedido
       }}
     >
       {children}

@@ -17,6 +17,7 @@ import VendorService from './context/vendors/VendorService';
 import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
 import SettingVendor from './components/vendors/settingsVendor/settingVendor';
 import ProductService from './context/products/ProductService';
+import PanelPedido from './components/Products/PanelPedido';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
               <Route exact path="/products/search" component={SearchProducts} />
               {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
               <Route exact path="/vendor/settings" component={SettingVendor} />
-
+              <Route exact path="/pedido-detalle" component={PanelPedido} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
