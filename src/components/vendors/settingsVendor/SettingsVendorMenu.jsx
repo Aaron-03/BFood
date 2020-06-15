@@ -19,12 +19,21 @@ const SettingVendorMenuDiv = styled.div`
   padding-top: 3rem;
 `;
 
-export default function SettingsVendorMenu() {
+
+
+export default function SettingsVendorMenu({setOption}) {
+
+  const handleClickOption = (option) => {
+    setOption(option);
+  }
+
+
   return (
     <SettingVendorMenuDiv className="col-2">
-      <SettingsButtons>Pedidos realizados</SettingsButtons>
-      <SettingsButtons>Productos</SettingsButtons>
-      <SettingsButtons>Sucursales</SettingsButtons>
+      <SettingsButtons onClick={() => handleClickOption("productos")}>Mis Productos</SettingsButtons>
+      <SettingsButtons onClick={() => handleClickOption("pedidos")}>Pedidos realizados</SettingsButtons>
+      <SettingsButtons onClick={() => handleClickOption("sucursales")}>Sucursales</SettingsButtons>
+      <SettingsButtons onClick={() => handleClickOption("micuenta")}>Mi Cuenta</SettingsButtons>
     </SettingVendorMenuDiv>
   );
 }
