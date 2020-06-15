@@ -10,7 +10,7 @@ import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 
 import SearchProducts from './components/Products/SearchProducts/SearchProducts';
-import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
+//import RegisterProduct from './components/Products/RegisterProduct/RegisterProduct';
 
 //import ListVendors from './components/vendors/ListVendors';
 import VendorService from './context/vendors/VendorService';
@@ -18,6 +18,7 @@ import IndexSignIn from './components/authentication/Seller/SignIn/IndexSignIn';
 import SettingVendor from './components/vendors/settingsVendor/settingVendor';
 import ProductService from './context/products/ProductService';
 import PanelPedido from './components/Products/PanelPedido';
+import SucursalVendor from './components/vendors/SucursalVendor/SucursalVendor';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route exact path="/vendor/signin" component={IndexSignIn} />
               <Route exact path="/products/search" component={SearchProducts} />
               {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
+              <Route exact path="/vendor/sucursal" component={SucursalVendor} />
               <Route exact path="/vendor/settings" component={SettingVendor} />
               <Route exact path="/pedido-detalle" component={PanelPedido} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
