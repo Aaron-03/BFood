@@ -20,8 +20,6 @@ import ProductService from './context/products/ProductService';
 import PanelPedido from './components/Products/PanelPedido';
 
 function App() {
-
-
   return (
     <div className="App">
       <Router>
@@ -36,6 +34,7 @@ function App() {
               {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
               <Route exact path="/vendor/settings" component={SettingVendor} />
               <Route exact path="/pedido-detalle" component={PanelPedido} />
+              <Route exact path="/producto-ver" component={RegisterProduct} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>

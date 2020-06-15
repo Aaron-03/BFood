@@ -10,8 +10,6 @@ import VendorContext from '../../../context/vendors/VendorContext';
 import UpdateProduct from '../../Products/RegisterProduct/UpdateProduct';
 import Swal from 'sweetalert2';
 
-
-
 const ContentDashProduct = styled.div`
   padding: 4rem;
   position: relative;
@@ -45,93 +43,93 @@ const TitlePage = styled.h1`
 `;
 
 export default function VendorProducts() {
+  const {
+    products,
+    getProductsByVendor,
+    getProductById,
+    dltProductVendor,
+  } = useContext(VendorContext);
 
-  const { products, getProductsByVendor, getProductById, dltProductVendor } = useContext(VendorContext);
-
-  const [ option, setOption ] = useState("");
+  const [option, setOption] = useState('');
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = (opt) => { setOption(opt); setShow(true) };
+  const handleShow = (opt) => {
+    setOption(opt);
+    setShow(true);
+  };
 
-const renderProducts = (producto, index) => {
+  const renderProducts = (producto, index) => {
+    const handleClickUpd = (productId) => {
+      handleShow('upd');
+      getProductById(productId);
+    };
 
+    const handleClickDlt = (productId) => {
+      getProductById(productId);
 
-  const handleClickUpd = (productId) => {
-    handleShow('upd');
-    getProductById(productId);
-  }
+      Swal.fire({
+        title: '¿Está seguro?',
+        text: 'Esta acción es irreversible',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sí, eliminar!',
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Eliminado!',
+            'El producto se eliminó correctamente',
+            'success'
+          );
 
-  const handleClickDlt = (productId) => {
-    getProductById(productId);
+          dltProductVendor(productId);
+        }
+      });
+    };
 
-    Swal.fire({
-      title: '¿Está seguro?',
-      text: "Esta acción es irreversible",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Sí, eliminar!'
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire(
-          'Eliminado!',
-          'El producto se eliminó correctamente',
-          'success'
-        );
-
-        dltProductVendor(productId);
-      }
-    })
-  }
-  
-  return (
-    <tr key={producto.id}>
-      <td>{index}</td>
-      <td>{producto.nombre}</td>
-      <td>{producto.descripcion}</td>
-      <td>{producto.estrellas}</td>
-      <td>{producto.categoria}</td>
-      <td>{producto.precio}</td>
-      <td>
-        <button
-          onClick={() => handleClickUpd(producto.id)}
-          className="btn btn-warning"
-        >
-          <img src={actualizar}  style={{ width: 32 }} alt="" />
-        </button>
-      </td>
-      <td>
-        <button
-          onClick={() => handleClickDlt(producto.id)}
-          className="btn btn-danger"
-        >
-          <img src={tacho} style={{ width: 32 }} alt="" />
-        </button>
-      </td>
-    </tr>
-  );
-};
-
+    return (
+      <tr key={producto.id}>
+        <td>{index}</td>
+        <td>{producto.nombre}</td>
+        <td>{producto.descripcion}</td>
+        <td>{producto.estrellas}</td>
+        <td>{producto.categoria}</td>
+        <td>{producto.precio}</td>
+        <td>
+          <button
+            onClick={() => handleClickUpd(producto.id)}
+            className="btn btn-warning"
+          >
+            <img src={actualizar} style={{ width: 32 }} alt="" />
+          </button>
+        </td>
+        <td>
+          <button
+            onClick={() => handleClickDlt(producto.id)}
+            className="btn btn-danger"
+          >
+            <img src={tacho} style={{ width: 32 }} alt="" />
+          </button>
+        </td>
+      </tr>
+    );
+  };
 
   useEffect(() => {
-
     getProductsByVendor();
-
   }, []);
-
 
   return (
     <ContentDashProduct className="col-10">
-      
-
       <VendorProductsDiv>
-        
         <TitlePage>
           Mis productos
-          <AddProductButton onClick={() => handleShow('add')}>Agregar producto</AddProductButton>
+          <AddProductButton onClick={() => handleShow('add')}>
+            Agregar producto
+          </AddProductButton>
         </TitlePage>
 
         <Table className="table table-bordered">
@@ -146,18 +144,14 @@ const renderProducts = (producto, index) => {
           <tbody>{products.map(renderProducts)}</tbody>
         </Table>
         <Modal show={show} onHide={handleClose}>
-        <Modal.Body className="p-0">
-          
-          {
-            option === 'add'
-            ? <RegisterProduct handleClose={handleClose} />
-            : option === 'upd'
-            ? <UpdateProduct handleClose={handleClose} />
-            : null
-          }
-          
-        </Modal.Body>
-      </Modal>
+          <Modal.Body className="p-0">
+            {option === 'add' ? (
+              <RegisterProduct handleClose={handleClose} />
+            ) : option === 'upd' ? (
+              <UpdateProduct handleClose={handleClose} />
+            ) : null}
+          </Modal.Body>
+        </Modal>
       </VendorProductsDiv>
     </ContentDashProduct>
   );

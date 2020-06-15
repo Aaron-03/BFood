@@ -14,10 +14,9 @@ const {
 
 export default (state, action) => {
   switch (action.type) {
-
     case ADD_PRODUCT:
       return {
-        products: [...state.products, action.payload]
+        products: [...state.products, action.payload],
       };
 
     case UPD_PRODUCT:
