@@ -29,6 +29,7 @@ const VendorService = (props) => {
     products: [],
     offices: [],
     currentProduct: null,
+    orders: [],
     vendors: [
       {
         id: 1,
@@ -326,6 +327,7 @@ const VendorService = (props) => {
         form2: state.form2,
         form3: state.form3,
         products: state.products,
+        orders: state.orders,
         offices: state.offices,
         currentProduct: state.currentProduct,
         crtVendor: crtVendor,

@@ -4,10 +4,15 @@ import VendorProducts from './VendorProducts';
 import styled from '@emotion/styled';
 import SucursalVendor from '../SucursalVendor/SucursalVendor';
 
+import ListOrdersVendor from '../../orders/vendors/ListOrdersVendor';
+import AccountSeller from '../../Sellers/AccountSeller';
+
+
 
 const ContentDashBoard = styled.div`
   display: flex;
 `;
+
 
 
 export default function SettingVendor() {
@@ -19,13 +24,13 @@ export default function SettingVendor() {
       <SettingsVendorMenu setOption={setOption} />
       {
         option === 'productos'
-        ? <VendorProducts />
+        ? <AccountSeller />
         : option === 'pedidos'
         ? <VendorProducts />
         : option === 'sucursales'
         ? <SucursalVendor />
         : option === 'micuenta'
-        ? <VendorProducts />
+        ? <ListOrdersVendor />
         : null
       }
       
