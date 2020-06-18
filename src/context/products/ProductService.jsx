@@ -14,7 +14,7 @@ const {
   FAIL_PRODUCT,
   RESET_PRODUCT,
   FILTER_PRODUCT_BY_CATEGORY,
-  FILTER_PRODUCT_BY_PRICE
+  FILTER_PRODUCT_BY_PRICE,
 } = ProductTypes;
 
 const initialState = {
@@ -25,21 +25,21 @@ const initialState = {
     { id: 1, name: 'Hamburguesas', check: false },
     { id: 2, name: 'Dulces y Chocolates', check: false },
     { id: 3, name: 'Pizzas y Pastas', check: false },
-    { id: 4, name: 'Bebidas y Jugos', check: false }
+    { id: 4, name: 'Bebidas y Jugos', check: false },
   ],
   pedido: {
     descripcion: '',
     idcliente: '',
     total: 0,
     status: 'PENDIENTE',
-    products: []
+    products: [],
   },
-  products: []
+  products: [],
 };
 
 const ProductService = ({ children }) => {
   // eslint-disable-next-line no-unused-vars
-  const [ state, dispatch ] = useReducer(ProductReducer, initialState);
+  const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const searchByTerm = (searchTerm) => {
     try {
@@ -75,35 +75,30 @@ const ProductService = ({ children }) => {
 
   const getProductsByPage = async (page) => {
     try {
-      
-      const response = await ClientAxios.post(`/producto/all`, {});
+      const response = await ClientAxios.get(`/producto/all`);
 
-      if(response.data.ok) {
+      if (response.data.ok) {
         dispatch({
           type: LST_PRODUCT_BY_PAGE,
-          payload: response.data.products
+          payload: response.data.products,
         });
       }
 
       console.log(response);
-
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const addPedido = async (pedido) => {
     try {
-      
       const response = await ClientAxios.post('/pedido/add', pedido);
-      
-      console.log(response);
 
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
     <ProductContext.Provider
@@ -118,7 +113,7 @@ const ProductService = ({ children }) => {
         searchByPrice,
         searchByTerm,
         getProductsByPage,
-        addPedido
+        addPedido,
       }}
     >
       {children}

@@ -10,20 +10,20 @@ import { useHistory } from 'react-router-dom';
 // import Axios from 'axios';
 
 const ListProductContainer = styled.div`
-    padding: 4rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-  `;
-  // const initialState = {
-  //   product: {
-  //     loading: true,
-  //     error: '',
-  //     product: {},
-  //   },
-  // };
+  padding: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+`;
+// const initialState = {
+//   product: {
+//     loading: true,
+//     error: '',
+//     product: {},
+//   },
+// };
 
-  const ContentSale = styled.button`
+const ContentSale = styled.button`
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -43,21 +43,26 @@ const ListProductContainer = styled.div`
   }
 `;
 
-
 export default function ListProducts(props) {
+  const {
+    searchTerm,
+    searchPrice,
+    products,
+    categories,
+    getProductsByPage,
+    pedido,
+    addPedido,
+  } = useContext(ProductContext);
 
-
-  const { searchTerm, searchPrice, products, categories, getProductsByPage, pedido, addPedido } = useContext(ProductContext);
- 
   const uriHistoty = useHistory();
-  
-  const [ cantProd, setCantProd ] = useState(pedido.products.length);
 
-  const cates = categories.filter(cat => cat.check === true);
+  const [cantProd, setCantProd] = useState(pedido.products.length);
+
+  const cates = categories.filter((cat) => cat.check === true);
   console.log(cates);
 
   // const filterProducts = () => {
-  //   let prods = products.filter(product => 
+  //   let prods = products.filter(product =>
   //     product.title.indexOf(searchTerm) !== -1
   //   );
 
@@ -66,36 +71,29 @@ export default function ListProducts(props) {
 
   // let filteredProducts = filterProducts();
 
-
   // if (searchPrice) {
   //   filteredProducts.filter((producto) => producto.Precio === searchPrice);
   // }
 
   const handleGotoPedido = () => {
-    if(cantProd === 0) {
+    if (cantProd === 0) {
       Swal.fire({
         title: 'No ha elegido un producto',
-        timer: 2000
+        timer: 2000,
       });
       return;
     }
 
     uriHistoty.push('/pedido-detalle');
-  }
+  };
 
   useEffect(() => {
-
     getProductsByPage(5);
-    
-
   }, []);
-  
+
   return (
     <ListProductContainer className="col-10">
-      <ContentSale
-        type="button"
-        onClick={handleGotoPedido}
-      >
+      <ContentSale type="button" onClick={handleGotoPedido}>
         Productos: {cantProd}
       </ContentSale>
 
@@ -103,12 +101,14 @@ export default function ListProducts(props) {
         return <Product key={index} {...value} />;
       })} */}
 
-      {
-        products.map((product) => (
-          <Product key={product.id} pedido={pedido} setCantProd={setCantProd} product={product} />
-        ))
-      }
-
+      {products.map((product) => (
+        <Product
+          key={product.id}
+          pedido={pedido}
+          setCantProd={setCantProd}
+          product={product}
+        />
+      ))}
     </ListProductContainer>
   );
 }

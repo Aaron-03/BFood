@@ -1,15 +1,15 @@
 import ProductTypes from '../../types/ProductTypes';
 
 const {
-    ADD_PRODUCT,
-    UPD_PRODUCT,
-    DLT_PRODUCT,
-    LST_PRODUCT_BY_PAGE,
-    LST_PRODUCT_BY_TERM,
-    FAIL_PRODUCT,
-    RESET_PRODUCT,
-    FILTER_PRODUCT_BY_CATEGORY,
-    FILTER_PRODUCT_BY_PRICE
+  ADD_PRODUCT,
+  UPD_PRODUCT,
+  DLT_PRODUCT,
+  LST_PRODUCT_BY_PAGE,
+  LST_PRODUCT_BY_TERM,
+  FAIL_PRODUCT,
+  RESET_PRODUCT,
+  FILTER_PRODUCT_BY_CATEGORY,
+  FILTER_PRODUCT_BY_PRICE,
 } = ProductTypes;
 
 export default (state, action) => {
@@ -20,14 +20,12 @@ export default (state, action) => {
       };
 
     case UPD_PRODUCT:
-      return {
+      return {};
 
-      };
-    
     case LST_PRODUCT_BY_PAGE:
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
       };
 
     case LST_PRODUCT_BY_TERM:
