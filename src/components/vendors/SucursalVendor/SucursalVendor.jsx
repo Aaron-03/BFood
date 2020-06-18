@@ -18,7 +18,13 @@ const BtnAddSucursal = styled.button`
   margin-left: 5rem;
   float: right;
 `;
-
+const ModalSucursalForm = styled(Modal.Body)`
+  margin-left: -35rem;
+  width: 100em;
+`;
+const SucursalRegisterCustom = styled(SucursalRegister)`
+  height: 100em;
+`;
 export default function SucursalVendor() {
   const [show, setShow] = useState(false);
   const handlerClose = () => setShow(false);
@@ -36,9 +42,9 @@ export default function SucursalVendor() {
       </div>
       <SucursalCard />
       <Modal show={show} onHide={handlerClose}>
-        <Modal.Body>
-          <SucursalRegister />
-        </Modal.Body>
+        <ModalSucursalForm>
+          <SucursalRegisterCustom />
+        </ModalSucursalForm>
       </Modal>
     </Container>
   );
