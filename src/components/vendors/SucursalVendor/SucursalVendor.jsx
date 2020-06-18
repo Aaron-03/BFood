@@ -1,13 +1,12 @@
 import React from 'react';
 import SettingsVendorMenu from '../settingsVendor/SettingsVendorMenu';
-import SucursalContent from './SucursalContent';
 import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Modal } from 'react-bootstrap';
 import SucursalCard from './SucursalCard';
 
 import addImg from '../../../assets/img/General/add.svg';
 import styled from '@emotion/styled';
-
+import SucursalRegister from './SucursalRegister';
 
 const BtnAddSucursal = styled.button`
   width: 2.5rem;
@@ -20,22 +19,27 @@ const BtnAddSucursal = styled.button`
   float: right;
 `;
 
-
-
 export default function SucursalVendor() {
-
+  const [show, setShow] = useState(false);
+  const handlerClose = () => setShow(false);
+  const handlerShow = () => setShow(true);
   return (
     <Container>
       {/* <div id="add_button" /> */}
 
       <div className="d-flex justify-content-center my-5">
-        <h2>Mis Sucursales</h2>
+        <h2 className="font-weight-bolder">Mis Sucursales</h2>
 
-        <BtnAddSucursal>
-          <img src={addImg} alt=""/>
+        <BtnAddSucursal onClick={handlerShow}>
+          <img src={addImg} alt="" />
         </BtnAddSucursal>
       </div>
       <SucursalCard />
+      <Modal show={show} onHide={handlerClose}>
+        <Modal.Body>
+          <SucursalRegister />
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 }
