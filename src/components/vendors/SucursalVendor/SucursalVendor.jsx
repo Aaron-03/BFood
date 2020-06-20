@@ -1,5 +1,4 @@
 import React from 'react';
-import SettingsVendorMenu from '../settingsVendor/SettingsVendorMenu';
 import { useState } from 'react';
 import { Container, Modal } from 'react-bootstrap';
 import SucursalCard from './SucursalCard';
@@ -19,12 +18,12 @@ const BtnAddSucursal = styled.button`
   float: right;
 `;
 const ModalSucursalForm = styled(Modal.Body)`
+  margin-top: -1rem;
   margin-left: -35rem;
   width: 100em;
+  max-height: 0rem;
 `;
-const SucursalRegisterCustom = styled(SucursalRegister)`
-  height: 100em;
-`;
+
 export default function SucursalVendor() {
   const [show, setShow] = useState(false);
   const handlerClose = () => setShow(false);
@@ -43,7 +42,7 @@ export default function SucursalVendor() {
       <SucursalCard />
       <Modal show={show} onHide={handlerClose}>
         <ModalSucursalForm>
-          <SucursalRegisterCustom />
+          <SucursalRegister />
         </ModalSucursalForm>
       </Modal>
     </Container>
