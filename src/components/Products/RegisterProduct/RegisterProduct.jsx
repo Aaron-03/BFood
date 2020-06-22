@@ -51,15 +51,16 @@ const ImageName = styled.p`
 function RegisterProduct(props) {
   const { addProductVendor } = useContext(VendorContext);
 
-  const [product, setProduct] = useState({
+  const [ product, setProduct ] = useState({
     title: '',
     desc: '',
     category: 0,
     price: 0.0,
     image: null,
+    stock: 0
   });
 
-  const { title, desc, category, price, image } = product;
+  const { title, desc, category, price, stock, image } = product;
 
   const handleChangeInputs = (e) => {
     if (e.target.name === 'image') {
@@ -124,7 +125,9 @@ function RegisterProduct(props) {
 
   return (
     <Container className="p-4 bg-white">
-      <FormRegisterProduct>
+      <FormRegisterProduct
+        onSubmit={handleSubmitRegister}
+      >
         <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
           <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
           <BFoodTitle className="ml-3">BFood</BFoodTitle>
@@ -162,9 +165,9 @@ function RegisterProduct(props) {
                   className="col-12 text-left"
                   type="text"
                   placeholder="DESCRIPCIÓN"
-                  name="title"
+                  name="desc"
                   onChange={handleChangeInputs}
-                  value={title}
+                  value={desc}
                 />
               </ContentInputText>
             </FormGroup>
@@ -203,9 +206,9 @@ function RegisterProduct(props) {
                   className="col-12 text-left"
                   type="text"
                   placeholder="STOCK"
-                  name="title"
+                  name="stock"
                   onChange={handleChangeInputs}
-                  value={title}
+                  value={stock}
                 />
               </ContentInputText>
             </FormGroup>
@@ -223,27 +226,9 @@ function RegisterProduct(props) {
                   className="col-12 text-left"
                   type="text"
                   placeholder="PRECIO"
-                  name="title"
+                  name="price"
                   onChange={handleChangeInputs}
-                  value={title}
-                />
-              </ContentInputText>
-            </FormGroup>
-
-            <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-12 m-auto">
-                <ImageSvg
-                  customWidth="2.6rem"
-                  customHeight="2.6rem"
-                  src={LetterIcon}
-                />
-                <InputText
-                  className="col-12 text-left"
-                  type="text"
-                  placeholder="N° DE ORDEN QUE DESEA QUE ESTÉ PUBLICADO"
-                  name="title"
-                  onChange={handleChangeInputs}
-                  value={title}
+                  value={price}
                 />
               </ContentInputText>
             </FormGroup>

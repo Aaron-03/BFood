@@ -27,7 +27,9 @@ const CustomDropdownMenuForm = styled(Dropdown.Menu)`
 `;
 
 export default function SucursalRegister() {
+
   const [clockValue, setClockValue] = useState(['10:00', '11:00']);
+
   return (
     <Container>
       <FormRegisterProduct>

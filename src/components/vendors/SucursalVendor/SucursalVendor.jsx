@@ -19,8 +19,10 @@ const BtnAddSucursal = styled.button`
   float: right;
 `;
 const ModalSucursalForm = styled(Modal.Body)`
+  margin-top: -1rem;
   margin-left: -35rem;
   width: 100em;
+  max-height: 0rem;
 `;
 const SucursalRegisterCustom = styled(SucursalRegister)`
   height: 100em;
