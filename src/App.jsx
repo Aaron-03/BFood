@@ -19,6 +19,7 @@ import SettingVendor from './components/vendors/settingsVendor/settingVendor';
 import ProductService from './context/products/ProductService';
 import PanelPedido from './components/Products/PanelPedido';
 import SucursalRegister from './components/vendors/SucursalVendor/SucursalRegister';
+import RegisterUser from './components/user/RegisterUser/RegisterUser';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/pedido-detalle" component={PanelPedido} />
               <Route exact path="/producto-ver" component={RegisterProduct} />
               <Route exact path="/sucursal-ver" component={SucursalRegister} />
+              <Route exact path="/user/register" component={RegisterUser} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
