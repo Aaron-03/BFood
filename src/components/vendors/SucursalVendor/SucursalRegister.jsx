@@ -3,7 +3,6 @@ import { Container, Row, FormGroup, Dropdown } from 'react-bootstrap';
 import { FormRegisterProduct } from '../../ui/Forms';
 import { BFoodSubTitle, BFoodTitle } from '../../ui/Texts';
 import { ContentInputText, InputText } from '../../ui/Fields';
-
 import Letter_icon from '../../../assets/img/signs.svg';
 import { ImageSvg } from '../../ui/Images';
 import Iframe from 'react-iframe';
@@ -14,7 +13,8 @@ import FormCheckInput from 'react-bootstrap/FormCheckInput';
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 import { useState } from 'react';
 import Clock from '../../../assets/img/Form/clock.svg';
-import Map from '../../../assets/img/Form/map.svg';
+import Map_svg from '../../../assets/img/Form/map.svg';
+import GoogleApiWrapper from '../../map/Map';
 const MapIframe = styled(Iframe)`
   border-radius: 27px;
 `;
@@ -25,8 +25,11 @@ const CustomDropdownToggleForm = styled(Dropdown.Toggle)`
 const CustomDropdownMenuForm = styled(Dropdown.Menu)`
   width: 90%;
 `;
-
-export default function SucursalRegister() {
+const MapStyles = {
+  width: '532px',
+  height: '402px',
+};
+export default function SucursalRegister(props) {
   const [clockValue, setClockValue] = useState(['10:00', '11:00']);
   return (
     <Container>
@@ -48,65 +51,22 @@ export default function SucursalRegister() {
                 <InputText
                   className="col-12 text-left"
                   type="text"
-                  placeholder="NOMBRE DEL LOCAL"
+                  placeholder="REFERENCIA LOCAL"
                   name="name"
                 />
               </ContentInputText>
             </FormGroup>
-
-            <div className="d-flex">
-              <ImageSvg
-                src={Clock}
-                customWidth="2.6rem"
-                customHeight="2.6rem"
-              />
-              <h4 className="mt-2">Horario de atención</h4>
-            </div>
-            <div className="d-flex  ml-4">
-              <FormGroup className="mr-5">
-                <FormCheckInput id="lunes" />
-                <FormCheckLabel for="lunes" className="font-weight-bolder ">
-                  L
-                </FormCheckLabel>
-              </FormGroup>
-              <FormGroup className="mr-5">
-                <FormCheckInput id="martes" />
-                <FormCheckLabel for="martes" className="font-weight-bolder">
-                  M
-                </FormCheckLabel>
-              </FormGroup>
-              <FormGroup className="mr-5">
-                <FormCheckInput id="miercoles" />
-                <FormCheckLabel for="miercoles" className="font-weight-bolder">
-                  Mi
-                </FormCheckLabel>
-              </FormGroup>
-              <FormGroup className="mr-5">
-                <FormCheckInput id="jueves" />
-                <FormCheckLabel for="jueves" className="font-weight-bolder">
-                  J
-                </FormCheckLabel>
-              </FormGroup>
-
-              <FormGroup className="mr-5">
-                <FormCheckInput id="viernes" />
-                <FormCheckLabel for="viernes" className="font-weight-bolder">
-                  V
-                </FormCheckLabel>
-              </FormGroup>
-            </div>
-            <TimeRangePicker
-              value={clockValue}
-              onChange={setClockValue}
-              amPmAriaLabel
-            />
           </div>
           <div className="col-5 mr-5">
             <div>
-              <ImageSvg src={Map} customWidth="2.6rem" customHeight="2.6rem" />
+              <ImageSvg
+                src={Map_svg}
+                customWidth="2.6rem"
+                customHeight="2.6rem"
+              />
             </div>
             <h4 className="mt-3 ml-2">Localizacion del local</h4>
-            <MapIframe
+            {/* <MapIframe
               class="iframe"
               src="https://maps.google.com/?ll=23.135249,-82.359685&z=14&t=m&output=embed"
               height="402"
@@ -115,7 +75,9 @@ export default function SucursalRegister() {
               // eslint-disable-next-line react/style-prop-object
               style="border:0"
               allowfullscreen
-            ></MapIframe>
+              initialCenter={{lat:-12.1148524,lng:-77.010486}}
+            ></MapIframe> */}
+            <div></div>
           </div>
         </Row>
         <div className="d-flex justify-content-end mt-2">
