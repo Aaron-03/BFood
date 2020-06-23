@@ -9,6 +9,7 @@ import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
 import UpdateProduct from '../../Products/RegisterProduct/UpdateProduct';
 import Swal from 'sweetalert2';
+import ListProductsVendors from '../../Products/vendors/ListProductsVendor';
 
 const ContentDashProduct = styled.div`
   padding: 4rem;
@@ -17,6 +18,13 @@ const ContentDashProduct = styled.div`
 
 const VendorProductsDiv = styled.div`
   background-color: transparent;
+`;
+
+const ModalSucursalForm = styled(Modal.Body)`
+ margin-top: -1rem;
+ margin-left: -35rem;
+ width: 100em;
+ max-height: 0rem;
 `;
 
 const AddProductButton = styled.button`
@@ -132,7 +140,9 @@ export default function VendorProducts() {
           </AddProductButton>
         </TitlePage>
 
-        <Table className="table table-bordered">
+        <ListProductsVendors />
+
+        {/* <Table className="table table-bordered">
           <thead>
             <th>#</th>
             <th>Titulo</th>
@@ -142,15 +152,15 @@ export default function VendorProducts() {
             <th>Precio</th>
           </thead>
           <tbody>{products.map(renderProducts)}</tbody>
-        </Table>
+        </Table> */}
         <Modal show={show} onHide={handleClose}>
-          <Modal.Body className="p-0">
+          <ModalSucursalForm>
             {option === 'add' ? (
               <RegisterProduct handleClose={handleClose} />
             ) : option === 'upd' ? (
               <UpdateProduct handleClose={handleClose} />
             ) : null}
-          </Modal.Body>
+          </ModalSucursalForm>
         </Modal>
       </VendorProductsDiv>
     </ContentDashProduct>

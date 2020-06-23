@@ -25,12 +25,10 @@ const CustomDropdownToggleForm = styled(Dropdown.Toggle)`
 const CustomDropdownMenuForm = styled(Dropdown.Menu)`
   width: 90%;
 `;
-const MapStyles = {
-  width: '532px',
-  height: '402px',
-};
-export default function SucursalRegister(props) {
+
+export default function SucursalRegister() {
   const [clockValue, setClockValue] = useState(['10:00', '11:00']);
+
   return (
     <Container>
       <FormRegisterProduct>
