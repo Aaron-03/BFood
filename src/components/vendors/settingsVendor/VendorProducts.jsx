@@ -140,19 +140,8 @@ export default function VendorProducts() {
           </AddProductButton>
         </TitlePage>
 
-        <ListProductsVendors />
+        <ListProductsVendors handleShow={handleShow} />
 
-        {/* <Table className="table table-bordered">
-          <thead>
-            <th>#</th>
-            <th>Titulo</th>
-            <th>Descripción</th>
-            <th>Estrellas</th>
-            <th>Categorias</th>
-            <th>Precio</th>
-          </thead>
-          <tbody>{products.map(renderProducts)}</tbody>
-        </Table> */}
         <Modal show={show} onHide={handleClose}>
           <ModalSucursalForm>
             {option === 'add' ? (
