@@ -103,9 +103,9 @@ function RegisterProduct(props) {
       precio: price,
       descripcion: desc,
       img: image.name,
-      categoria: category.toString(),
+      categoria: { category },
       stock: 50,
-      status: 'A',
+      status: 'A'
     };
 
     console.log(xproduct);

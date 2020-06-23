@@ -24,13 +24,13 @@ export default function SettingVendor() {
       <SettingsVendorMenu setOption={setOption} />
       {
         option === 'productos'
-        ? <AccountSeller />
-        : option === 'pedidos'
         ? <VendorProducts />
+        : option === 'pedidos'
+        ? <ListOrdersVendor />
         : option === 'sucursales'
         ? <SucursalVendor />
         : option === 'micuenta'
-        ? <ListOrdersVendor />
+        ? <AccountSeller />
         : null
       }
       

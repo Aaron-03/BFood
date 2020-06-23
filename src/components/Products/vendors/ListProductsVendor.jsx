@@ -6,11 +6,11 @@ import VendorContext from '../../../context/vendors/VendorContext';
 
 const ContentProductsVendor = styled.div`
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2rem;
+    row-gap: 3rem;
     align-items: center;
-    padding: 1rem;
-    background-color: red;
+    padding: 0.5rem;
     flex-wrap: wrap;
 `;
 
@@ -24,14 +24,14 @@ const ListProductsVendors = () => {
 
     useEffect(() => {
         getProductsByVendor();
-      }, []);
+    }, []);
 
     return (
         <Fragment>
             <ContentProductsVendor>
                 {
                 products.map(product => (
-                    <ProductVendor product={product} />
+                    <ProductVendor key={product.id} product={product} />
                 ))
                 }
             </ContentProductsVendor>
