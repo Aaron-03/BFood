@@ -14,50 +14,56 @@ const {
   UPD_PRODUCT,
   DLT_PRODUCT,
   SND_VENDOR,
+  ADD_SUCURSAL,
 } = VendorTypes;
 
 export default (state, action) => {
   switch (action.type) {
-
     case ADD_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload]
+        products: [...state.products, action.payload],
       };
-
+    case ADD_SUCURSAL:
+      return {
+        ...state,
+        sucursal: [...state.sucursal, action.payload],
+      };
     case UPD_PRODUCT:
       return {
         ...state,
-        products: state.products.map(product => {
-          if(product.id === action.payload.id) {
+        products: state.products.map((product) => {
+          if (product.id === action.payload.id) {
             product = action.payload;
             return product;
           }
 
           return product;
         }),
-        currentProduct: null
+        currentProduct: null,
       };
 
     case DLT_PRODUCT:
       return {
         ...state,
-        products: state.products.filter(product => {
-          return product.id === action.payload
+        products: state.products.filter((product) => {
+          return product.id === action.payload;
         }),
-        currentProduct: null
+        currentProduct: null,
       };
-    
+
     case GET_PRODUCT:
       return {
         ...state,
-        currentProduct: state.products.find(product => product.id === action.payload)
+        currentProduct: state.products.find(
+          (product) => product.id === action.payload
+        ),
       };
 
     case LST_PRODUCTS:
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
       };
 
     case SND_VENDOR:
