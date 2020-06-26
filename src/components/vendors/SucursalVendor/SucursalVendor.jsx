@@ -6,6 +6,7 @@ import SucursalCard from './SucursalCard';
 import addImg from '../../../assets/img/General/add.svg';
 import styled from '@emotion/styled';
 import SucursalRegister from './SucursalRegister';
+import SucursalListCard from './SucursalListCard';
 
 const BtnAddSucursal = styled.button`
   width: 2.5rem;
@@ -28,6 +29,7 @@ export default function SucursalVendor() {
   const [show, setShow] = useState(false);
   const handlerClose = () => setShow(false);
   const handlerShow = () => setShow(true);
+
   return (
     <Container>
       {/* <div id="add_button" /> */}
@@ -39,6 +41,7 @@ export default function SucursalVendor() {
           <img src={addImg} alt="" />
         </BtnAddSucursal>
       </div>
+      <SucursalListCard />
       <SucursalCard />
       <Modal show={show} onHide={handlerClose}>
         <ModalSucursalForm>

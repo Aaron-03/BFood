@@ -89,7 +89,10 @@ export default (state, action) => {
       };
 
     case UPD_VENDOR:
-      return {};
+      return {
+        ...state,
+        vendor: action.payload
+      };
 
     case DLT_VENDOR:
       return {};

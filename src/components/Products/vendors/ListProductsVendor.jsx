@@ -15,7 +15,7 @@ const ContentProductsVendor = styled.div`
 `;
 
 
-const ListProductsVendors = () => {
+const ListProductsVendors = ({handleShow}) => {
 
     const {
         products,

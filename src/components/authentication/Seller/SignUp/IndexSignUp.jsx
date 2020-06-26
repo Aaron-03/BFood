@@ -28,7 +28,6 @@ const IndexSignUp = () => {
             {/* <Header /> */}
             <ContainerGeneralSeller className="pb-4">
             <TimeLine timeline={timeline} />
-
             {
                   page === 0 ? <WelcomeSignUpSeller setPage={setPage} />
                 : page === 1 ? <FormSellerOne setPage={setPage} />

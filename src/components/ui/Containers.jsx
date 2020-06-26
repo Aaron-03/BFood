@@ -20,3 +20,4 @@ export const ContentLoading = styled.div`
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 2;
 `;
+

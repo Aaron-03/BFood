@@ -21,6 +21,8 @@ import PanelPedido from './components/Products/PanelPedido';
 import SucursalRegister from './components/vendors/SucursalVendor/SucursalRegister';
 import RegisterUser from './components/user/RegisterUser/RegisterUser';
 import RecoverAccount from './components/user/RecoverAccount/RecoverAccount';
+import DashboardCustomer from './components/customers/DashboardCustomer';
+import LoginCustomer from './components/authentication/Customer/LoginCustomer';
 
 function App() {
   return (
@@ -35,16 +37,16 @@ function App() {
               <Route exact path="/vendor/signin" component={IndexSignIn} />
               <Route exact path="/products/search" component={SearchProducts} />
               {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
+              <Route exact path="/customer/login" component={LoginCustomer} />
               <Route exact path="/vendor/settings" component={SettingVendor} />
               <Route exact path="/pedido-detalle" component={PanelPedido} />
               <Route exact path="/producto-ver" component={RegisterProduct} />
               <Route exact path="/sucursal-ver" component={SucursalRegister} />
               <Route
                 exact
-                path="/recuperarcuenta-usuario"
-                component={RecoverAccount}
+                path="/customer/dashboard"
+                component={DashboardCustomer}
               />
-              <Route exact path="/user/register" component={RegisterUser} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>

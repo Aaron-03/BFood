@@ -51,12 +51,13 @@ function UpdateProduct(props) {
   const [ product, setProduct ] = useState({
     title: '',
     desc: '',
+    stock: 0,
     category: 0,
     price: 0.00,
     image: null,
   });
 
-  const { title, desc, category, price, image } = product;
+  const { title, desc, category, price, image, stock } = product;
 
   const handleChangeInputs = (e) => {
 
@@ -132,39 +133,37 @@ function UpdateProduct(props) {
 
 
   return (
-    <div className="RegistroProduct">
-      <Container className="p-0">
-        <Row className="justify-content-center align-items-center p-0">
-          <FormRegisterProduct
-            customMaxWidth="45rem"
-            className="col-sm-12 px-1 form-registro-producto"
-            onSubmit={handleSubmitUpdate}
-          >
-            <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
-              <BFoodSubTitle customSize="18pt">Actualización</BFoodSubTitle>
-              <BFoodTitle className="ml-3">BFood</BFoodTitle>
-              <BFoodSubTitle customSize="18pt">Productos</BFoodSubTitle>
-            </div>
-
+    <Container className="p-4 bg-white">
+      <FormRegisterProduct
+        onSubmit={handleSubmitUpdate}
+      >
+        <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
+          <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
+          <BFoodTitle className="ml-3">BFood</BFoodTitle>
+          <BFoodSubTitle customSize="18pt">Productos</BFoodSubTitle>
+        </div>
+        <Row className="justify-content-center">
+          <div className="col-5">
             <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-10 m-auto">
+              <ContentInputText className="col-sm-12 m-auto">
                 <ImageSvg
                   customWidth="2.6rem"
                   customHeight="2.6rem"
                   src={LetterIcon}
                 />
                 <InputText
-                  className="col-10 text-left"
+                  className="col-12 text-left"
                   type="text"
-                  placeholder="TITULO"
+                  placeholder="NOMBRE DEL PRODUCTO"
                   name="title"
                   onChange={handleChangeInputs}
                   value={title}
                 />
               </ContentInputText>
             </FormGroup>
+
             <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-10 m-auto">
+              <ContentInputText className="col-sm-12 m-auto">
                 <ImageSvg
                   customWidth="2.6rem"
                   customHeight="2.6rem"
@@ -172,15 +171,16 @@ function UpdateProduct(props) {
                 />
 
                 <InputText
-                  className="col-10 text-left"
+                  className="col-12 text-left"
                   type="text"
                   placeholder="DESCRIPCIÓN"
-                  onChange={handleChangeInputs}
                   name="desc"
+                  onChange={handleChangeInputs}
                   value={desc}
                 />
               </ContentInputText>
             </FormGroup>
+
             <FormGroup className="mt-5">
               <ContentInputText className="col-sm-10 m-auto">
                 <ImageSvg
@@ -195,7 +195,7 @@ function UpdateProduct(props) {
                   value={category}
                   className="form-control col-10"
                 >
-                  <option value="0">Seleccione...</option>
+                  <option value="0">CATEGORÍA...</option>
                   <option value="1">Hamburguesas</option>
                   <option value="2">Pizzas y Pastas</option>
                   <option value="3">Bebidas Ligeras</option>
@@ -203,24 +203,45 @@ function UpdateProduct(props) {
                 </select>
               </ContentInputText>
             </FormGroup>
+
             <FormGroup className="mt-5">
-              <ContentInputText className="col-sm-10 m-auto">
+              <ContentInputText className="col-sm-12 m-auto">
                 <ImageSvg
                   customWidth="2.6rem"
                   customHeight="2.6rem"
-                  src={ProductIcon}
+                  src={LetterIcon}
                 />
-
                 <InputText
-                  className="col-10 text-left"
+                  className="col-12 text-left"
+                  type="text"
+                  placeholder="STOCK"
+                  name="stock"
+                  onChange={handleChangeInputs}
+                  value={stock}
+                />
+              </ContentInputText>
+            </FormGroup>
+          </div>
+
+          <div className="col-5">
+            <FormGroup className="mt-5">
+              <ContentInputText className="col-sm-12 m-auto">
+                <ImageSvg
+                  customWidth="2.6rem"
+                  customHeight="2.6rem"
+                  src={LetterIcon}
+                />
+                <InputText
+                  className="col-12 text-left"
                   type="text"
                   placeholder="PRECIO"
-                  onChange={handleChangeInputs}
                   name="price"
+                  onChange={handleChangeInputs}
                   value={price}
                 />
               </ContentInputText>
             </FormGroup>
+
             <FormGroup className="mt-5">
               <ContentInputText className="col-sm-10 m-auto py-5 position-relative">
                 <BFoodLabel className="col-6 mb-2" customSize="9pt">
@@ -242,13 +263,22 @@ function UpdateProduct(props) {
                 <ImageName>{image ? image.name : ''}</ImageName>
               </ContentInputText>
             </FormGroup>
-            <FormGroup className="text-center p-2 mt-4">
-              <BtnSendData className="16rem">ACTUALIZAR</BtnSendData>
+
+            <FormGroup className="mt-5">
+              <ContentInputText className="col-sm-12 m-auto">
+                <input className="col-2" type="checkbox" name="" />
+
+                <label className="col-10">DESEA PUBLICARLO?</label>
+              </ContentInputText>
             </FormGroup>
-          </FormRegisterProduct>
+
+            <FormGroup className="text-center p-2 mt-4">
+              <BtnSendData>REGISTRAR</BtnSendData>
+            </FormGroup>
+          </div>
         </Row>
-      </Container>
-    </div>
+      </FormRegisterProduct>
+    </Container>
   );
 }
 

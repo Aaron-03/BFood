@@ -8,7 +8,7 @@ const ContentField = styled.div`
     align-items: center;
     column-gap: 0.5rem;
     padding: 0.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.0);
     transition: all 0.4s;
     color: dimgray;
     cursor: pointer;
@@ -36,7 +36,7 @@ const ElementInput = styled.input`
     width: 100%;
 `;
 
-const FieldAccountVendor = ({field, setField}) => {
+const FieldAccountVendor = ({field, setField, editable = true}) => {
 
     const [ show, setShow ] = useState(false);
 
@@ -67,20 +67,27 @@ const FieldAccountVendor = ({field, setField}) => {
 
     return (
         <ContentField onClick={handleClickShowModal}>
+
+
             {
             show
             ? <Fragment>
                 <ElementInput
+                    disabled={!editable}
                     placeholder={field.placeholder}
+                    className={!editable ? 'bg-light' : '' }
                     value={value}
                     onChange={handleChangeField}
                     type="text"
                 />
-
-                <button
+                {/* {
+                editable
+                ? <button
                     onClick={handleClickShowBtn}
                     className="btn btn-primary p-1"
                 >Guardar</button>
+                : null
+                } */}
             </Fragment>
             
             
