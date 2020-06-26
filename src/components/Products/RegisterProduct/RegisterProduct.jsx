@@ -98,6 +98,15 @@ function RegisterProduct(props) {
       return;
     }
 
+    if(!image) {
+      Swal.fire({
+        title: 'No ha ingresado una imagen referencial',
+        timer: 2000,
+      });
+
+      return;
+    }
+
     const xproduct = {
       nombre: title,
       precio: price,

@@ -24,10 +24,24 @@ const {
 const VendorService = (props) => {
 
   const initialState = {
-    vendor: {},
+    vendor: {
+      company: 'La Tiendita de Don Cucho',
+      ruc: '100210215',
+      email: 'mi-empresa@company.com',
+      phone: '987654321',
+      address: 'Av. Diezcanseco, 147'
+    },
     currentVendor: null,
     products: [],
-    offices: [],
+    offices: [
+      { id: 1, name: 'Sucursal 1', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 2, name: 'Sucursal 2', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 3, name: 'Sucursal 3', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 4, name: 'Sucursal 4', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 5, name: 'Sucursal 5', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 6, name: 'Sucursal 6', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' },
+      { id: 7, name: 'Sucursal 7', timeInit: '7:00 A.M', timeEnd: '21.00 P.M', dayInit: 'Lun', dayEnd: 'Vier', img: 'asdasdasdasd' }
+    ],
     currentProduct: null,
     orders: [],
     vendors: [
@@ -83,6 +97,7 @@ const VendorService = (props) => {
     form1: false,
     form2: false,
     form3: false,
+    loading: false
   };
 
   const [state, dispatch] = useReducer(VendorReducer, initialState);
@@ -330,6 +345,7 @@ const VendorService = (props) => {
         orders: state.orders,
         offices: state.offices,
         currentProduct: state.currentProduct,
+        loading: state.loading,
         crtVendor: crtVendor,
         addVendor: addVendor,
         updVendor: updVendor,
