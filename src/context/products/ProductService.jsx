@@ -32,7 +32,7 @@ const initialState = {
     idcliente: '',
     total: 0,
     status: 'PENDIENTE',
-    products: [],
+    products: []
   },
   products: [],
 };

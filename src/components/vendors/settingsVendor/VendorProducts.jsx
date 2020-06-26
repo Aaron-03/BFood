@@ -51,6 +51,7 @@ const TitlePage = styled.h1`
 `;
 
 export default function VendorProducts() {
+
   const {
     products,
     getProductsByVendor,

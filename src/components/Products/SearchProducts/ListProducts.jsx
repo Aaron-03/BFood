@@ -6,6 +6,9 @@ import styled from '@emotion/styled';
 import ProductContext from '../../../context/products/ProductContext';
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
+
+import burgerImg from '../../../assets/img/Products/burguer.jpg';
+
 // import ProductReducer from '../../../context/products/ProductReducer';
 // import Axios from 'axios';
 
@@ -28,7 +31,7 @@ const ContentSale = styled.button`
   top: 0.5rem;
   right: 1rem;
   color: white;
-  width: 7rem;
+  width: 15rem;
   height: 2.5rem;
   background-color: var(--custom-green);
   transition: 0.4s all;
@@ -40,6 +43,35 @@ const ContentSale = styled.button`
 
   &:hover {
     transform: scale(1.1);
+  }
+`;
+
+const ContentSaleProducts = styled.ul`
+
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 2.5rem;
+  
+  li {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    p {
+      color: black;
+      font-size: 9pt;
+    }
+
+    span {
+      color: black;
+    }
   }
 `;
 
@@ -61,20 +93,6 @@ export default function ListProducts(props) {
   const cates = categories.filter((cat) => cat.check === true);
   console.log(cates);
 
-  // const filterProducts = () => {
-  //   let prods = products.filter(product =>
-  //     product.title.indexOf(searchTerm) !== -1
-  //   );
-
-  //   return prods;
-  // }
-
-  // let filteredProducts = filterProducts();
-
-  // if (searchPrice) {
-  //   filteredProducts.filter((producto) => producto.Precio === searchPrice);
-  // }
-
   const handleGotoPedido = () => {
     if (cantProd === 0) {
       Swal.fire({
@@ -95,6 +113,18 @@ export default function ListProducts(props) {
     <ListProductContainer className="col-10">
       <ContentSale type="button" onClick={handleGotoPedido}>
         Productos: {cantProd}
+
+        <ContentSaleProducts>
+          {
+          pedido.products.map(prod => (
+          <li key={prod.id}>
+            <img src={burgerImg} alt=""/>
+            <p>{prod.nombre}</p>
+          <span>{prod.cantidad}</span>
+          </li>
+          ))
+          }
+        </ContentSaleProducts>
       </ContentSale>
 
       {/* {filteredProducts.map((value, index) => {

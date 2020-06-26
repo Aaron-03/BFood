@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import useFieldAccountVendor from '../../hooks/useFieldAccountVendor';
+import React from 'react';
 import { useState } from 'react';
 import FieldAccountVendor from './FieldAccountVendor';
 import styled from '@emotion/styled';
@@ -134,8 +133,7 @@ const AccountSeller = () => {
                 </form>
             </div>
         </div>
-    );
+  );
+};
 
-}
- 
 export default AccountSeller;

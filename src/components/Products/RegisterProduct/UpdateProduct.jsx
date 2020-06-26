@@ -90,8 +90,6 @@ function UpdateProduct(props) {
     }
 
     updProductVendor(xproduct);
-
-    props.handleClose();
   }
 
   const register = () => {

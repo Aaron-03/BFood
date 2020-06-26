@@ -1,5 +1,4 @@
 import React from 'react';
-import SettingsVendorMenu from '../settingsVendor/SettingsVendorMenu';
 import { useState } from 'react';
 import { Container, Modal } from 'react-bootstrap';
 import SucursalCard from './SucursalCard';
@@ -25,14 +24,6 @@ const ModalSucursalForm = styled(Modal.Body)`
   width: 100em;
   max-height: 0rem;
 `;
-const SucursalRegisterCustom = styled(SucursalRegister)`
-  height: 100em;
-`;
-
-
-
-
-
 
 export default function SucursalVendor() {
 
@@ -58,7 +49,7 @@ export default function SucursalVendor() {
       <SucursalCard />
       <Modal show={show} onHide={handlerClose}>
         <ModalSucursalForm>
-          <SucursalRegisterCustom />
+          <SucursalRegister />
         </ModalSucursalForm>
       </Modal>
     </Container>

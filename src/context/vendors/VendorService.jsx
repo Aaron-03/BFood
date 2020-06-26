@@ -18,11 +18,11 @@ const {
   ADD_PRODUCT,
   UPD_PRODUCT,
   DLT_PRODUCT,
-  LST_PRODUCTS
+  LST_PRODUCTS,
+  ADD_SUCURSAL,
 } = VendorTypes;
 
 const VendorService = (props) => {
-
   const initialState = {
     vendor: {
       company: 'La Tiendita de Don Cucho',
@@ -44,6 +44,7 @@ const VendorService = (props) => {
     ],
     currentProduct: null,
     orders: [],
+    marcador: [],
     vendors: [
       {
         id: 1,
@@ -148,123 +149,133 @@ const VendorService = (props) => {
 
   const getProductById = async (productId) => {
     try {
-      
-      const product = await ClientAxios.post('/producto/get', { id: productId });
+      const product = await ClientAxios.post('/producto/get', {
+        id: productId,
+      });
       console.log(product);
 
       dispatch({
         type: GET_PRODUCT,
-        payload: productId
+        payload: productId,
       });
-
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const addProductVendor = async (product) => {
-
     let res = {
       ok: false,
-      message: 'Error al insertar producto'
-    }
-  
-    try {
+      message: 'Error al insertar producto',
+    };
 
-      product.vendedor = { id: 1 };
-      
-      const response = await ClientAxios.post("/producto/add", product);
-  
-      if(response.data.ok) {
+    try {
+      product.vendedor = 1;
+
+      const response = await ClientAxios.post('/producto/add', product);
+
+      if(response.status === 200) {
         dispatch({
           type: ADD_PRODUCT,
-          payload: product
+          payload: product,
         });
 
         getProductsByVendor();
       }
-  
+
       res = response;
-  
+
       console.log(res);
-  
     } catch (error) {
-     
       console.log(error);
       return res;
     }
-  
-    return res;
-  }
 
+    return res;
+  };
+  const addSucursalVendor = async (sucursal) => {
+    let res = {
+      ok: false,
+      message: 'Error al registrar una sucursal',
+    };
+    try {
+      //pone en duro el id del vendedor
+      sucursal.vendor = { id: 1 };
+      const response = await ClientAxios.post('/register-sucursal', sucursal);
+      if (response.data.ok) {
+        dispatch({
+          type: ADD_SUCURSAL,
+          payload: sucursal,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      return res;
+    }
+  };
   const updProductVendor = async (product) => {
     let res = {
       ok: false,
-      message: 'Error al insertar producto'
-    }
-  
-    try {
+      message: 'Error al insertar producto',
+    };
 
+    try {
       product.vendedor = { id: 1 };
-      
-      const response = await ClientAxios.post("/producto/edit", product);
-  
-      if(response.data.ok) {
+
+      const response = await ClientAxios.post('/producto/edit', product);
+
+      if (response.data.ok) {
         dispatch({
           type: UPD_PRODUCT,
-          payload: product
+          payload: product,
         });
 
         getProductsByVendor();
       }
-  
+
       res = response;
-  
+
       console.log(res);
-  
     } catch (error) {
-     
       console.log(error);
       return res;
     }
-  
+
     return res;
-  }
+  };
 
   const dltProductVendor = async (productId) => {
     let res = {
       ok: false,
-      message: 'Error al insertar producto'
-    }
-  
-    try {
+      message: 'Error al insertar producto',
+    };
 
-      const response = await ClientAxios.post("/producto/dlt", { id: productId });
-  
-      if(response.data.ok) {
+    try {
+      const response = await ClientAxios.post('/producto/dlt', {
+        id: productId,
+      });
+
+      if (response.data.ok) {
         dispatch({
           type: DLT_PRODUCT,
-          payload: productId
+          payload: productId,
         });
 
         getProductsByVendor();
       }
-  
+
       res = response;
-  
+
       console.log(res);
-  
     } catch (error) {
-     
       console.log(error);
       return res;
     }
-  
+
     return res;
-  }
+  };
 
   const addVendor = async (vendor) => {
-
     try {
       dispatch({
         type: ADD_VENDOR,
@@ -300,42 +311,43 @@ const VendorService = (props) => {
   };
 
   const getProductsByVendor = async () => {
-
     const vendorId = { id: 1 };
 
     let res = {
       ok: false,
-      message: 'Error al insertar producto'
-    }
+      message: 'Error al insertar producto',
+    };
 
     try {
+      const response = await ClientAxios.post('/producto/list', vendorId);
 
-      const response = await ClientAxios.post("/producto/list", vendorId);
+      console.log(response);
 
-      if(response.data.ok) {
-
+      if(response.status === 200) {
         dispatch({
           type: LST_PRODUCTS,
-          payload: response.data.data.filter(product => product.status === 'A')
+          payload: response.data.filter(
+            (product) => product.status === 'A'
+          ),
         });
 
         res = {
           ok: true,
-          message: 'Productos cargados correctamente'
-        }
+          message: 'Productos cargados correctamente',
+        };
       }
-
     } catch (error) {
       console.log(error);
     }
 
     return res;
-  }
+  };
 
   return (
     <VendorContext.Provider
       value={{
         vendor: state.vendor,
+        sucursal: state.sucursal,
         currentVendor: state.currentVendor,
         vendors: state.vendors,
         form1: state.form1,
@@ -356,7 +368,8 @@ const VendorService = (props) => {
         updProductVendor,
         dltProductVendor,
         getProductById,
-        getProductsByVendor
+        getProductsByVendor,
+        addSucursalVendor,
       }}
     >
       {props.children}

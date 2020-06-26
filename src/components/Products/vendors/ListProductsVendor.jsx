@@ -31,7 +31,7 @@ const ListProductsVendors = ({handleShow}) => {
             <ContentProductsVendor>
                 {
                 products.map(product => (
-                    <ProductVendor key={product.id} product={product} />
+                    <ProductVendor key={product.id} handleShow={handleShow} product={product} />
                 ))
                 }
             </ContentProductsVendor>
