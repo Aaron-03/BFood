@@ -19,10 +19,9 @@ import SettingVendor from './components/vendors/settingsVendor/settingVendor';
 import ProductService from './context/products/ProductService';
 import PanelPedido from './components/Products/PanelPedido';
 import SucursalRegister from './components/vendors/SucursalVendor/SucursalRegister';
-import RegisterUser from './components/user/RegisterUser/RegisterUser';
-import RecoverAccount from './components/user/RecoverAccount/RecoverAccount';
 import DashboardCustomer from './components/customers/DashboardCustomer';
 import LoginCustomer from './components/authentication/Customer/LoginCustomer';
+import RegisterCostumer from './components/authentication/Customer/RegisterCostumer/RegisterCostumer';
 
 function App() {
   return (
@@ -46,6 +45,11 @@ function App() {
                 exact
                 path="/customer/dashboard"
                 component={DashboardCustomer}
+              />
+              <Route
+                exact
+                path="/register-costumer"
+                component={RegisterCostumer}
               />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
