@@ -51,13 +51,13 @@ const ImageName = styled.p`
 function RegisterProduct(props) {
   const { addProductVendor } = useContext(VendorContext);
 
-  const [ product, setProduct ] = useState({
+  const [product, setProduct] = useState({
     title: '',
     desc: '',
     category: 0,
     price: 0.0,
     image: null,
-    stock: 0
+    stock: 0,
   });
 
   const { title, desc, category, price, stock, image } = product;
@@ -98,7 +98,7 @@ function RegisterProduct(props) {
       return;
     }
 
-    if(!image) {
+    if (!image) {
       Swal.fire({
         title: 'No ha ingresado una imagen referencial',
         timer: 2000,
@@ -114,7 +114,7 @@ function RegisterProduct(props) {
       img: image.name,
       categoria: { category },
       stock: 50,
-      status: 'A'
+      status: 'A',
     };
 
     console.log(xproduct);
@@ -134,9 +134,7 @@ function RegisterProduct(props) {
 
   return (
     <Container className="p-4 bg-white">
-      <FormRegisterProduct
-        onSubmit={handleSubmitRegister}
-      >
+      <FormRegisterProduct onSubmit={handleSubmitRegister}>
         <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
           <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
           <BFoodTitle className="ml-3">BFood</BFoodTitle>

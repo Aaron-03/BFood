@@ -19,6 +19,7 @@ import Email from '../../../../assets/img/Form/communications.svg';
 import { ImageSvg } from '../../../ui/Images';
 import { useContext } from 'react';
 import CostumerContext from '../../../../context/costumer/CostumerContext';
+import Swal from 'sweetalert2';
 const ContainerRegisterCostumer = styled(Container)`
   background-color: var(--custom-blue);
   height: 69vh;
@@ -39,10 +40,31 @@ export default function RegisterCostumer() {
   });
   const { dni, nombres, apellidos, telefono, fechanac, sexo } = costumer;
   const handleChangeInputs = (e) => {
+    if (e.target.value === 'Hombre' || e.target.value === 'Mujer') {
+      setCostumer({
+        ...costumer,
+        [e.target.name]: e.target.value,
+      });
+    }
     setCostumer({
       ...costumer,
       [e.target.name]: e.target.value,
     });
+  };
+  const handlerSubmitRegister = (e) => {
+    e.preventDefault();
+    if (
+      nombres.trim() === '' ||
+      apellidos.trim() === '' ||
+      dni.trim() === '' ||
+      telefono.trim() === ''
+    ) {
+      Swal.fire({
+        title: 'Ingrese datos válidos',
+        timer: 2000,
+      });
+      return;
+    }
   };
   return (
     <Fragment>
@@ -130,6 +152,7 @@ export default function RegisterCostumer() {
                     className="col-12 text-left"
                     placeholder="CONTRASEÑA"
                     name="password"
+                    pattern="[A-Za-z]+"
                   />
                 </ContentInputText>
               </FormGroup>
@@ -145,6 +168,7 @@ export default function RegisterCostumer() {
                   <InputText
                     className="col-12 text-left"
                     placeholder="CONFIRMAR CONTRASEÑA"
+                    pattern="[A-Za-z]+"
                   />
                 </ContentInputText>
               </FormGroup>
@@ -155,7 +179,11 @@ export default function RegisterCostumer() {
                     customWidth="2.6rem"
                     customHeight="2.6rem"
                   />
-                  <InputText className="col-12 text-left" placeholder="EMAIL" />
+                  <InputText
+                    className="col-12 text-left"
+                    placeholder="EMAIL"
+                    pattern="[A-Za-z]+"
+                  />
                 </ContentInputText>
               </FormGroup>
               <FormGroup className="mt-5">
@@ -168,6 +196,7 @@ export default function RegisterCostumer() {
                   <InputText
                     className="col-12 text-left"
                     placeholder="CONFIRMAR EMAIL"
+                    pattern="[A-Za-z]+"
                   />
                 </ContentInputText>
               </FormGroup>
@@ -187,14 +216,14 @@ export default function RegisterCostumer() {
                   <FormCheck
                     type="radio"
                     name="sexo"
-                    value={sexo}
+                    value="Hombre"
                     onChange={handleChangeInputs}
                   />
                   <label className="mr-3">Hombre</label>
                   <FormCheck
                     type="radio"
                     name="sexo"
-                    value={sexo}
+                    value="Mujer"
                     onChange={handleChangeInputs}
                   />
                   <label>Mujer</label>
