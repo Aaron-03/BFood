@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, FormGroup } from 'react-bootstrap';
-import { FormRegisterProduct } from '../../ui/Forms';
-import { BFoodSubTitle, BFoodTitle } from '../../ui/Texts';
-import { ContentInputText, InputText } from '../../ui/Fields';
-import { BtnSendData } from '../../ui/Buttons';
+import { FormRegisterProduct } from '../../../ui/Forms';
+import { BFoodSubTitle, BFoodTitle } from '../../../ui/Texts';
+import { ContentInputText, InputText } from '../../../ui/Fields';
+import { BtnSendData } from '../../../ui/Buttons';
 
-export default function RecoverAccount() {
+const RecoverAccount = () => {
   return (
     <Container>
       <FormRegisterProduct>
@@ -28,4 +28,5 @@ export default function RecoverAccount() {
       </FormRegisterProduct>
     </Container>
   );
-}
+};
+export default RecoverAccount;

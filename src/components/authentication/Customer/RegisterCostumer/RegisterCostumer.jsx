@@ -28,8 +28,8 @@ const ContainerRegisterCostumer = styled(Container)`
   justify-content: center;
   align-items: center;
 `;
-export default function RegisterCostumer() {
-  //  const { addCostumer } = useContext(CostumerContext);
+export default function RegisterCostumer(props) {
+  const { addCostumer } = useContext(CostumerContext);
   const [costumer, setCostumer] = useState({
     dni: '',
     nombres: '',
@@ -65,11 +65,20 @@ export default function RegisterCostumer() {
       });
       return;
     }
+    const xcostumer = {
+      nombres: nombres,
+      apellidos: apellidos,
+      telefono: telefono,
+      fechanac: fechanac,
+      sexo: sexo,
+    };
+    console.log(xcostumer);
+    addCostumer(xcostumer);
   };
   return (
     <Fragment>
       <ContainerRegisterCostumer>
-        <FormRegisterProduct>
+        <FormRegisterProduct onSubmit={handlerSubmitRegister}>
           <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
             <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
             <BFoodTitle className="ml-3">BFood</BFoodTitle>

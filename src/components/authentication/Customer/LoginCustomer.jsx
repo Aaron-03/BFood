@@ -46,6 +46,7 @@ const LoginCustomer = () => {
                   className="col-10 text-left"
                   type="text"
                   placeholder="INGRESE SU USUARIO"
+                  name="username"
                 />
               </ContentInputText>
             </FormGroup>
