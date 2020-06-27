@@ -23,6 +23,7 @@ import DashboardCustomer from './components/customers/DashboardCustomer';
 import LoginCustomer from './components/authentication/Customer/LoginCustomer';
 import RegisterCostumer from './components/authentication/Customer/RegisterCostumer/RegisterCostumer';
 import RecoverAccount from './components/authentication/Customer/RecoverAccount/RecoverAccount';
+import CostumerService from './context/costumer/CostumerService';
 
 function App() {
   return (
@@ -30,33 +31,51 @@ function App() {
       <Router>
         <ProductService>
           <VendorService>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Index} />
-              <Route exact path="/vendor/signup" component={IndexSignUp} />
-              <Route exact path="/vendor/signin" component={IndexSignIn} />
-              <Route exact path="/products/search" component={SearchProducts} />
-              {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
-              <Route exact path="/customer/login" component={LoginCustomer} />
-              <Route exact path="/vendor/settings" component={SettingVendor} />
-              <Route exact path="/pedido-detalle" component={PanelPedido} />
-              <Route exact path="/producto-ver" component={RegisterProduct} />
-              <Route exact path="/sucursal-ver" component={SucursalRegister} />
-              <Route
-                exact
-                path="/customer/dashboard"
-                component={DashboardCustomer}
-              />
-              <Route
-                exact
-                path="/register-costumer"
-                component={RegisterCostumer}
-              />
-              <Route exact path="/recoverAccount" component={RecoverAccount} />
-              {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
+            <CostumerService>
+              <Header />
+              <Switch>
+                <Route exact path="/" component={Index} />
+                <Route exact path="/vendor/signup" component={IndexSignUp} />
+                <Route exact path="/vendor/signin" component={IndexSignIn} />
+                <Route
+                  exact
+                  path="/products/search"
+                  component={SearchProducts}
+                />
+                {/* <Route exact path="/products/add" component={RegisterProduct} /> */}
+                <Route exact path="/customer/login" component={LoginCustomer} />
+                <Route
+                  exact
+                  path="/vendor/settings"
+                  component={SettingVendor}
+                />
+                <Route exact path="/pedido-detalle" component={PanelPedido} />
+                <Route exact path="/producto-ver" component={RegisterProduct} />
+                <Route
+                  exact
+                  path="/sucursal-ver"
+                  component={SucursalRegister}
+                />
+                <Route
+                  exact
+                  path="/customer/dashboard"
+                  component={DashboardCustomer}
+                />
+                <Route
+                  exact
+                  path="/register-costumer"
+                  component={RegisterCostumer}
+                />
+                <Route
+                  exact
+                  path="/recoverAccount"
+                  component={RecoverAccount}
+                />
+                {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
-            </Switch>
-            <Footer />
+              </Switch>
+              <Footer />
+            </CostumerService>
           </VendorService>
         </ProductService>
       </Router>

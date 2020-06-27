@@ -5,9 +5,7 @@ import styled from '@emotion/styled';
 import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
-import avatarIcon from '../../../assets/img/Form/avatar.svg';
 import LetterIcon from '../../../assets/img/signs.svg';
-import { FormFileStyled } from './RegisterProduct.styles';
 
 import { FormRegisterProduct } from '../../ui/Forms';
 import { BFoodTitle, BFoodSubTitle, BFoodLabel } from '../../ui/Texts';
@@ -16,7 +14,6 @@ import { BtnSendData } from '../../ui/Buttons';
 import { ImageSvg } from '../../ui/Images';
 
 import './RegisterProduct.positions.css';
-import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
 import Swal from 'sweetalert2';
 
@@ -128,9 +125,7 @@ function RegisterProduct(props) {
     Nombre del producto : ${inputs.nombreProducto}`);
   };
 
-  const { inputs, handleInputChange, handleSubmit } = useRegisterProduct(
-    register
-  );
+  const { inputs } = useRegisterProduct(register);
 
   return (
     <Container className="p-4 bg-white">

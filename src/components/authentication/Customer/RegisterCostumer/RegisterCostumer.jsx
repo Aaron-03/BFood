@@ -31,21 +31,20 @@ const ContainerRegisterCostumer = styled(Container)`
 export default function RegisterCostumer(props) {
   const { addCostumer } = useContext(CostumerContext);
   const [costumer, setCostumer] = useState({
+    name: '',
+    lastname: '',
+    address: '',
+    phone: '',
     dni: '',
-    nombres: '',
-    apellidos: '',
-    telefono: '',
-    fechanac: '',
-    sexo: '',
   });
-  const { dni, nombres, apellidos, telefono, fechanac, sexo } = costumer;
+  const { name, lastname, address, phone, dni } = costumer;
   const handleChangeInputs = (e) => {
-    if (e.target.value === 'Hombre' || e.target.value === 'Mujer') {
-      setCostumer({
-        ...costumer,
-        [e.target.name]: e.target.value,
-      });
-    }
+    // if (e.target.value === 'Hombre' || e.target.value === 'Mujer') {
+    //   setCostumer({
+    //     ...costumer,
+    //     [e.target.name]: e.target.value,
+    //   });
+    // }
     setCostumer({
       ...costumer,
       [e.target.name]: e.target.value,
@@ -54,10 +53,10 @@ export default function RegisterCostumer(props) {
   const handlerSubmitRegister = (e) => {
     e.preventDefault();
     if (
-      nombres.trim() === '' ||
-      apellidos.trim() === '' ||
-      dni.trim() === '' ||
-      telefono.trim() === ''
+      name.trim() === '' ||
+      lastname.trim() === '' ||
+      address.trim() === '' ||
+      phone.trim() === ''
     ) {
       Swal.fire({
         title: 'Ingrese datos válidos',
@@ -66,11 +65,11 @@ export default function RegisterCostumer(props) {
       return;
     }
     const xcostumer = {
-      nombres: nombres,
-      apellidos: apellidos,
-      telefono: telefono,
-      fechanac: fechanac,
-      sexo: sexo,
+      name: name,
+      lastname: lastname,
+      address: address,
+      phone: phone,
+      dni: '',
     };
     console.log(xcostumer);
     addCostumer(xcostumer);
@@ -96,8 +95,8 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="NOMBRES"
-                    name="nombres"
-                    value={nombres}
+                    name="name"
+                    value={name}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -112,8 +111,8 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="APELLIDOS"
-                    name="apellidos"
-                    value={apellidos}
+                    name="lastname"
+                    value={lastname}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -127,9 +126,9 @@ export default function RegisterCostumer(props) {
                   />
                   <InputText
                     className="col-12 text-left"
-                    placeholder="DNI"
-                    name="dni"
-                    value={dni}
+                    placeholder="DIRECCION"
+                    name="address"
+                    value={address}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -144,8 +143,8 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="TELEFONO"
-                    name="telefono"
-                    value={telefono}
+                    name="phone"
+                    value={phone}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -161,7 +160,7 @@ export default function RegisterCostumer(props) {
                     className="col-12 text-left"
                     placeholder="CONTRASEÑA"
                     name="password"
-                    pattern="[A-Za-z]+"
+                    type="password"
                   />
                 </ContentInputText>
               </FormGroup>
@@ -177,7 +176,7 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="CONFIRMAR CONTRASEÑA"
-                    pattern="[A-Za-z]+"
+                    type="password"
                   />
                 </ContentInputText>
               </FormGroup>
@@ -188,11 +187,7 @@ export default function RegisterCostumer(props) {
                     customWidth="2.6rem"
                     customHeight="2.6rem"
                   />
-                  <InputText
-                    className="col-12 text-left"
-                    placeholder="EMAIL"
-                    pattern="[A-Za-z]+"
-                  />
+                  <InputText className="col-12 text-left" placeholder="EMAIL" />
                 </ContentInputText>
               </FormGroup>
               <FormGroup className="mt-5">
@@ -205,18 +200,13 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="CONFIRMAR EMAIL"
-                    pattern="[A-Za-z]+"
                   />
                 </ContentInputText>
               </FormGroup>
               <span>FECHA DE NACIMIENTO</span>
               <div className="d-flex">
                 <ContentInputText className="col-sm-12 m-auto">
-                  <FormControl
-                    type="date"
-                    name="fechaNacimiento"
-                    value={fechanac}
-                  />
+                  <FormControl type="date" name="fechaNacimiento" />
                 </ContentInputText>
               </div>
               <div className="mt-3">

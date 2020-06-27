@@ -9,7 +9,7 @@ const CostumerService = (props) => {
     costumer: [],
     login: [],
   };
-  const [dispatch] = useReducer(CostumerReducer, initialState);
+  const [state, dispatch] = useReducer(CostumerReducer, initialState);
   const addCostumer = async (costumer) => {
     let res = {
       ok: false,
@@ -73,7 +73,7 @@ const CostumerService = (props) => {
   return (
     <CostumerContext.Provider
       value={{
-        addCostumer,
+        addCostumer: addCostumer,
         lgnCostumer,
         updCostumer,
       }}
