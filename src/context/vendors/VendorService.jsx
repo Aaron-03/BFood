@@ -223,11 +223,11 @@ const VendorService = (props) => {
     };
 
     try {
-      product.vendedor = { id: 1 };
+      product.vendedor = 1;
 
       const response = await ClientAxios.post('/producto/add', product);
 
-      if (response.data.ok) {
+      if (response.status === 200) {
         dispatch({
           type: ADD_PRODUCT,
           payload: product,
@@ -374,12 +374,12 @@ const VendorService = (props) => {
     try {
       const response = await ClientAxios.post('/producto/list', vendorId);
 
-      if (response.data.ok) {
+      console.log(response);
+
+      if (response.status === 200) {
         dispatch({
           type: LST_PRODUCTS,
-          payload: response.data.data.filter(
-            (product) => product.status === 'A'
-          ),
+          payload: response.data.filter((product) => product.status === 'A'),
         });
 
         res = {

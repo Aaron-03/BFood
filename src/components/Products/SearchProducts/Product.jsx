@@ -5,6 +5,7 @@ import { Image } from 'react-bootstrap';
 import Hamburger_img from '../../../assets/img/Products/burguer.jpg';
 import Star_Empty from '../../../assets/img/Products/star_full.svg';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const ContentProduct = styled.div`
   position: relative;
@@ -131,17 +132,23 @@ export default function Product({ product, pedido, setCantProd }) {
   const handleClickAddSale = (product) => {
     setInclude(true);
     let cant = cantidad + 1;
-    console.log(cant);
+
     setItem({
       ...item,
       cantidad: cant,
     });
-    console.log(item);
-    pedido.products = pedido.products.filter((prod) => prod.id !== id);
-    pedido.products = [...pedido.products, item];
-    console.log(item);
+
+    if(!pedido.products.find(prod => prod.id === product.id)) {
+      pedido.products = [...pedido.products, item];
+    }
+    
+    const prodsIncludes = pedido.products.map(prod => prod.id === product.id ? item : prod);
+
+    pedido.products = prodsIncludes;
+
     setCantProd(pedido.products.length);
   };
+
 
   return (
     <ContentProduct>

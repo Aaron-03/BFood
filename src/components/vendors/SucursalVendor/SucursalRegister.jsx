@@ -33,7 +33,7 @@ export default function SucursalRegister() {
     cierre: '',
     horario: [],
   });
-  console.log(marcador[2]);
+  // console.log(marcador[2]);
   const horarioAtencion = [
     'lunes',
     'martes',

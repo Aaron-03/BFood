@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
@@ -36,10 +36,10 @@ const ContentHeader = styled.header`
 
 const Header = () => {
 
+  const history = useHistory();
 
-
-  const handleClickSignUp = () => {
-    
+  const handleClickRedirect = (option) => {
+    history.push(option);
   }
 
 
@@ -66,12 +66,15 @@ const Header = () => {
           </ul>
 
           <div className="d-flex col-4">
-            <BtnSendData bgColor="var(--custom-red)" className="p-1">
+            <BtnSendData
+              onClick={() => handleClickRedirect('/customer/login')}
+              bgColor="var(--custom-red)"
+              className="p-1">
               LOGIN
             </BtnSendData>
 
             <BtnSendData
-              onClick={handleClickSignUp}
+              onClick={() => handleClickRedirect('signup')}
               bgColor="var(--custom-red)"
               className="ml-2 p-1">
               SIGN UP

@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
 import burguerImg from '../../../assets/img/Products/burguer.jpg';
+import { useContext } from 'react';
+import ProductContext from '../../../context/products/ProductContext';
+import VendorContext from '../../../context/vendors/VendorContext';
 
 
 const ContentProduct = styled.div`
@@ -58,11 +61,12 @@ const BtnEditProduct = styled.button`
 `;
 
 
-const ProductVendor = ({product}) => {
+const ProductVendor = ({product, handleShow}) => {
 
-    console.log(product);
+    const { getProductById } = useContext(VendorContext);
     
     const {
+        id,
         nombre,
         precio,
         stock,
@@ -72,6 +76,12 @@ const ProductVendor = ({product}) => {
     const resumeText = (cant = 15) => {
         return descripcion.substring(0, cant) + '...';
     }
+
+    const handleClickUpd = () => {
+        handleShow("upd");
+        getProductById(id);
+    }
+
 
     return (
         <Fragment>
@@ -91,6 +101,7 @@ const ProductVendor = ({product}) => {
                         <span>S/. 10.00</span>
 
                         <BtnEditProduct
+                            onClick={handleClickUpd}
                             type="button"
                         >Editar</BtnEditProduct>
                     </div>
