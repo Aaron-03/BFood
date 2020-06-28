@@ -4,11 +4,11 @@ import burguerImg from '../../../assets/img/Products/burguer.jpg';
 import { useContext } from 'react';
 import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
+import Swal from 'sweetalert2';
 
 
 const ContentProduct = styled.div`
     display: flex;
-    overflow: hidden;
     justify-content: space-between;
     max-width: 28rem;
     height: 8rem;
@@ -60,10 +60,25 @@ const BtnEditProduct = styled.button`
     margin-bottom: 1.8rem;
 `;
 
+const BtnDelete = styled.button`
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 12pt;
+    color: white;
+    margin: 0rem;
+    background-color: var(--custom-red);
+    border: none;
+    outline-color: transparent;
+    border-radius: 2.5rem;
+`;
+
 
 const ProductVendor = ({product, handleShow}) => {
 
-    const { getProductById } = useContext(VendorContext);
+    const { getProductById, dltProductVendor } = useContext(VendorContext);
     
     const {
         id,
@@ -82,10 +97,31 @@ const ProductVendor = ({product, handleShow}) => {
         getProductById(id);
     }
 
+    const handleClickDlt = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if(result.value) {
+            dltProductVendor(id);
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+          })
+    }
+
 
     return (
         <Fragment>
-            <ContentProduct>
+            <ContentProduct className="position-relative">
                 <ContentImg>
                     <img src={burguerImg} alt=""/>
                 </ContentImg>
@@ -106,6 +142,8 @@ const ProductVendor = ({product, handleShow}) => {
                         >Editar</BtnEditProduct>
                     </div>
                 </ContentText>
+
+                <BtnDelete type="button" onClick={handleClickDlt}>X</BtnDelete>
             </ContentProduct>
         </Fragment>
     );

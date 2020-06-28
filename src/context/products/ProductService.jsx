@@ -41,16 +41,17 @@ const ProductService = ({ children }) => {
   // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
-  const searchByTerm = (searchTerm) => {
+  const searchByTerm = (term) => {
     try {
       dispatch({
         type: LST_PRODUCT_BY_TERM,
-        payload: searchTerm,
+        payload: term.toLowerCase(),
       });
     } catch (err) {
       console.log(err);
     }
   };
+
   const searchByCheckHamburger = (searchCheckHamburger) => {
     try {
       dispatch({
@@ -66,7 +67,7 @@ const ProductService = ({ children }) => {
     try {
       dispatch({
         type: FILTER_PRODUCT_BY_PRICE,
-        payload: searchPrice,
+        payload: searchPrice
       });
     } catch (err) {
       console.log(err);

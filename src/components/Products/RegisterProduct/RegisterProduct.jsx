@@ -112,9 +112,10 @@ function RegisterProduct(props) {
       precio: price,
       descripcion: desc,
       img: image.name,
-      categoria: { category },
+      categoria: 1,
       stock: 50,
-      status: 'A'
+      status: 'A',
+      vendedor: null
     };
 
     console.log(xproduct);

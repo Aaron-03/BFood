@@ -84,9 +84,10 @@ function UpdateProduct(props) {
       precio: price,
       descripcion: desc,
       img: image.name,
-      categoria: category.toString(),
+      categoria: 1,
       stock: 50,
-      status: "A"
+      status: 'A',
+      vendedor: null
     }
 
     updProductVendor(xproduct);
@@ -229,6 +230,7 @@ function UpdateProduct(props) {
                   customHeight="2.6rem"
                   src={LetterIcon}
                 />
+
                 <InputText
                   className="col-12 text-left"
                   type="text"
@@ -271,7 +273,7 @@ function UpdateProduct(props) {
             </FormGroup>
 
             <FormGroup className="text-center p-2 mt-4">
-              <BtnSendData>REGISTRAR</BtnSendData>
+              <BtnSendData>ACTUALIZAR</BtnSendData>
             </FormGroup>
           </div>
         </Row>

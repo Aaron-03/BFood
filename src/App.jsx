@@ -44,6 +44,7 @@ function App() {
               <Route exact path="/sucursal-ver" component={SucursalRegister} />
               <Route exact path="/recuperarcuenta-usuario" component={RecoverAccount} />
               <Route exact path="/user/register" component={RegisterUser} />
+              <Route exact path="/customer-dashboard" component={DashboardCustomer} />
               {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}
             </Switch>
