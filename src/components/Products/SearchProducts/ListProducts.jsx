@@ -14,9 +14,6 @@ import burgerImg from '../../../assets/img/Products/burguer.jpg';
 
 const ListProductContainer = styled.div`
   padding: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
 `;
 // const initialState = {
 //   product: {
@@ -75,6 +72,13 @@ const ContentSaleProducts = styled.ul`
   }
 `;
 
+const ContentListProducts = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+`;
+
 export default function ListProducts(props) {
   const {
     searchTerm,
@@ -131,6 +135,13 @@ export default function ListProducts(props) {
         return <Product key={index} {...value} />;
       })} */}
 
+     <ContentListProducts>
+     {
+       products.length === 0
+       ? <p className="alert alert-danger">No se encontraron coincidencias...</p> 
+       : null
+      }
+
       {products.map((product) => (
         <Product
           key={product.id}
@@ -139,6 +150,7 @@ export default function ListProducts(props) {
           product={product}
         />
       ))}
+     </ContentListProducts>
     </ListProductContainer>
   );
 }

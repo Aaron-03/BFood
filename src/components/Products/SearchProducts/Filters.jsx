@@ -10,25 +10,38 @@ import {
 } from '../../ui/Fields';
 import { Magnifier } from '../../ui/Images';
 import ProductContext from '../../../context/products/ProductContext';
+import VendorContext from '../../../context/vendors/VendorContext';
 
 import productos from '../../../datos/productos.json';
 import useCategoriesChecks from '../../../hooks/useCategoriesChecks';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Filters = (props) => {
 
   const {
     searchByTerm,
     //searchCheckHamburger,
+    getProductsByPage,
     searchByPrice,
     searchPrice,
-    categories
+    categories,
+    products
   } = useContext(ProductContext);
+
+  const { getProductsByVendor } = useContext(VendorContext);
 
 
   const [ ListCategories ] = useCategoriesChecks(categories);
 
+  const [ busqueda, setBusqueda ] = useState('');
+
+
   const handlerBusqueda = (e) => {
-    searchByTerm(e.target.value);
+
+    const termVal = e.target.value;
+    setBusqueda(termVal);
+    searchByTerm(termVal);
   };
 
   const handlerCheckHamburger = (e) => {
@@ -43,6 +56,19 @@ const Filters = (props) => {
   const handlerPrice = (e) => {
     searchByPrice(Number(e.target.value));
   };
+
+  
+
+  useEffect(() => {
+
+    if(busqueda.trim() === '') {
+      getProductsByPage(5);
+    }
+    
+  // eslint-disable-next-line
+  }, [busqueda]);
+
+
   return (
 
     <FilterOfProducts className="col-2">
@@ -54,6 +80,7 @@ const Filters = (props) => {
           placeholder="¿Qué deseas ahora?"
           className="ml-4 mb-4 pl-4"
           name="busqueda"
+          value={busqueda}
           onChange={handlerBusqueda}
         />
 

@@ -51,7 +51,6 @@ const FormSellerThree = ({setPage}) => {
         email,
         password,
         urlWeb
-
     } = currentVendor;
 
 

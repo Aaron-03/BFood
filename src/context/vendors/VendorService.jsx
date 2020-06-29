@@ -304,7 +304,7 @@ const VendorService = (props) => {
     };
 
     try {
-      const response = await ClientAxios.post('/producto/dlt', {
+      const response = await ClientAxios.put('/producto/dlt', {
         id: productId,
       });
 
@@ -364,7 +364,7 @@ const VendorService = (props) => {
   };
 
   const getProductsByVendor = async () => {
-    const vendorId = { id: 1 };
+    const vendorId = { vendorId: 1 };
 
     let res = {
       ok: false,

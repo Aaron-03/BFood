@@ -156,9 +156,7 @@ export default function Product({ product, pedido, setCantProd }) {
         type="button"
         onClick={() => handleClickAddSale(product)}
         title="AGREGAR AL CARRITO"
-      >
-        +
-      </BtnAddSale>
+      >+</BtnAddSale>
 
       <Link to="/" className="text-decoration-none">
         <ImageProduct>
