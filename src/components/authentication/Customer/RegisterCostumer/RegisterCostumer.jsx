@@ -231,7 +231,6 @@ export default function RegisterCostumer(props) {
             </div>
           </Row>
           <div className="d-flex justify-content-end mt-2">
-            <BtnBackData className="btn btn-danger mr-2">SALIR</BtnBackData>
             <BtnSendData>REGISTRAR</BtnSendData>
           </div>
         </FormRegisterProduct>

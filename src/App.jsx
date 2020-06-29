@@ -24,6 +24,7 @@ import LoginCustomer from './components/authentication/Customer/LoginCustomer';
 import RegisterCostumer from './components/authentication/Customer/RegisterCostumer/RegisterCostumer';
 import RecoverAccount from './components/authentication/Customer/RecoverAccount/RecoverAccount';
 import CostumerService from './context/costumer/CostumerService';
+import UpdateCustomer from './components/authentication/Customer/UpdateCustomer';
 
 function App() {
   return (
@@ -70,6 +71,11 @@ function App() {
                   exact
                   path="/recoverAccount"
                   component={RecoverAccount}
+                />
+                <Route
+                  exact
+                  path="/update-customer"
+                  component={UpdateCustomer}
                 />
                 {/* <Route path="/vendor/form-one" component={ FormSellerOne } />
                   <Route path="/vendor/form-two" component={ FormSellerTwo } /> */}

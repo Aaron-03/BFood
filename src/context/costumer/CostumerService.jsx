@@ -57,7 +57,7 @@ const CostumerService = (props) => {
       message: 'Error al registrar el usuario',
     };
     try {
-      const response = await ClientAxios.post('/constumer/edit', costumer);
+      const response = await ClientAxios.put('/consumidor/edit', costumer);
       if (response.status === 200) {
         dispatch({
           type: UPD_COSTUMER,

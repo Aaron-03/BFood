@@ -9,6 +9,8 @@ import { BtnBackData, BtnSendData } from '../../ui/Buttons';
 import Avatar from '../../../assets/img/Form/avatar.svg';
 import Phone from '../../../assets/img/Form/phone.svg';
 import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import CostumerContext from '../../../context/costumer/CostumerContext';
 const ContainerRegisterCostumer = styled(Container)`
   height: 69vh;
   width: 200vw;
@@ -17,6 +19,7 @@ const ContainerRegisterCostumer = styled(Container)`
   align-items: center;
 `;
 const UpdateCustomer = (props) => {
+  const { updCostumer } = useContext(CostumerContext);
   const [costumer, setCostumer] = useState({
     id: 0,
     name: '',
@@ -55,6 +58,7 @@ const UpdateCustomer = (props) => {
       dni: '',
     };
     console.log(xcostumer);
+    updCostumer(xcostumer);
   };
   return (
     <Fragment>
