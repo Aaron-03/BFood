@@ -5,14 +5,15 @@ import {
   FormGroup,
   FormControl,
   FormCheck,
+  DropdownButton,
 } from 'react-bootstrap';
 import { FormRegisterProduct } from '../../../ui/Forms';
 import { BFoodSubTitle, BFoodTitle } from '../../../ui/Texts';
 import { ContentInputText, InputText } from '../../../ui/Fields';
 import styled from '@emotion/styled';
-import { BtnSendData, BtnBackData } from '../../../ui/Buttons';
+import { BtnSendData } from '../../../ui/Buttons';
 import Avatar from '../../../../assets/img/Form/avatar.svg';
-import Phone from '../../../../assets/img/Form/phone.svg';
+import Phone from '../../../../assets/img/Form/card.svg';
 import Pass1 from '../../../../assets/img/Form/pass_1.svg';
 import Pass2 from '../../../../assets/img/Form/pass_2.svg';
 import Email from '../../../../assets/img/Form/communications.svg';
@@ -31,13 +32,22 @@ const ContainerRegisterCostumer = styled(Container)`
 export default function RegisterCostumer(props) {
   const { addCostumer } = useContext(CostumerContext);
   const [costumer, setCostumer] = useState({
-    name: '',
-    lastname: '',
-    address: '',
-    phone: '',
+    nombres: '',
+    apellidos: '',
+    fechanac: '',
     dni: '',
+    sexo: '',
+    usuario: {},
   });
-  const { name, lastname, address, phone, dni } = costumer;
+  const [usuario, setUsuario] = useState({
+    username: '',
+    email: '',
+    password: '',
+    estado: 0,
+    roles: [{ rolNombre: '2' }],
+  });
+  const { username, email, password } = usuario;
+  const { nombres, apellidos, fechanac, sexo, dni } = costumer;
   const handleChangeInputs = (e) => {
     // if (e.target.value === 'Hombre' || e.target.value === 'Mujer') {
     //   setCostumer({
@@ -45,18 +55,40 @@ export default function RegisterCostumer(props) {
     //     [e.target.name]: e.target.value,
     //   });
     // }
+
     setCostumer({
       ...costumer,
+      [e.target.name]: e.target.value,
+    });
+    setUsuario({
+      ...usuario,
       [e.target.name]: e.target.value,
     });
   };
   const handlerSubmitRegister = (e) => {
     e.preventDefault();
+    let email = document.getElementById('email').value;
+    let emailConfirmacion = document.getElementById('confirmEmail').value;
+    if (email !== emailConfirmacion) {
+      Swal.fire({
+        title: 'El coreo debe ser el mismo',
+        timer: 2000,
+      });
+    }
+    let password = document.getElementById('password').value;
+    let passwordConfirmacion = document.getElementById('confirmPassword').value;
+    if (password !== passwordConfirmacion) {
+      Swal.fire({
+        title: 'La contraseña debe ser la mismo',
+        timer: 2000,
+      });
+    }
     if (
-      name.trim() === '' ||
-      lastname.trim() === '' ||
-      address.trim() === '' ||
-      phone.trim() === ''
+      nombres.trim() === '' ||
+      apellidos.trim() === '' ||
+      fechanac.trim() === '' ||
+      dni.trim() === '' ||
+      sexo.trim() === ''
     ) {
       Swal.fire({
         title: 'Ingrese datos válidos',
@@ -64,12 +96,32 @@ export default function RegisterCostumer(props) {
       });
       return;
     }
+    if (
+      username.trim() === '' ||
+      password.trim() === '' ||
+      email.trim() === ''
+    ) {
+      Swal.fire({
+        title: 'Ingrese datos válidos',
+        timer: 2000,
+      });
+      return;
+    }
+    const xusuario = {
+      username: username,
+      password: password,
+
+      email: email,
+      estado: 0,
+      roles: [{ rolNombre: '2' }],
+    };
     const xcostumer = {
-      name: name,
-      lastname: lastname,
-      address: address,
-      phone: phone,
-      dni: '',
+      nombres: nombres,
+      apellidos: apellidos,
+      fechanac: fechanac,
+      dni: dni,
+      sexo: sexo,
+      usuario: xusuario,
     };
     console.log(xcostumer);
     addCostumer(xcostumer);
@@ -95,8 +147,8 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="NOMBRES"
-                    name="name"
-                    value={name}
+                    name="nombres"
+                    value={nombres}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -111,8 +163,8 @@ export default function RegisterCostumer(props) {
                   <InputText
                     className="col-12 text-left"
                     placeholder="APELLIDOS"
-                    name="lastname"
-                    value={lastname}
+                    name="apellidos"
+                    value={apellidos}
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -124,13 +176,15 @@ export default function RegisterCostumer(props) {
                     customWidth="2.6rem"
                     customHeight="2.6rem"
                   />
-                  <InputText
-                    className="col-12 text-left"
-                    placeholder="DIRECCION"
-                    name="address"
-                    value={address}
-                    onChange={handleChangeInputs}
-                  />
+                  <div className="mb-4">
+                    <span>FECHA DE NACIMIENTO</span>
+                    <FormControl
+                      type="date"
+                      value={fechanac}
+                      onChange={handleChangeInputs}
+                      name="fechanac"
+                    />
+                  </div>
                 </ContentInputText>
               </FormGroup>
               <FormGroup className="mt-5">
@@ -142,9 +196,90 @@ export default function RegisterCostumer(props) {
                   />
                   <InputText
                     className="col-12 text-left"
-                    placeholder="TELEFONO"
-                    name="phone"
-                    value={phone}
+                    placeholder="DNI"
+                    maxLength="8"
+                    type="number"
+                    name="dni"
+                    value={dni}
+                    onChange={handleChangeInputs}
+                  />
+                </ContentInputText>
+              </FormGroup>
+              <FormGroup className="mt-5">
+                <ContentInputText className="col-sm-12 m-auto">
+                  <ImageSvg
+                    src={Avatar}
+                    customWidth="2.6rem"
+                    customHeight="2.6rem"
+                  />
+                  <div className="mt-1">
+                    <span className="mb-3">SEXO</span>
+                    <div className="d-flex">
+                      <FormCheck
+                        type="radio"
+                        name="sexo"
+                        value="Hombre"
+                        onChange={handleChangeInputs}
+                      />
+                      <label className="mr-3">Hombre</label>
+                      <FormCheck
+                        type="radio"
+                        name="sexo"
+                        value="Mujer"
+                        onChange={handleChangeInputs}
+                      />
+                      <label>Mujer</label>
+                    </div>
+                  </div>
+                </ContentInputText>
+              </FormGroup>
+            </div>
+            <div className="col-5 mr-5">
+              <FormGroup className="mt-5">
+                <ContentInputText className="col-sm-12 m-auto">
+                  <ImageSvg
+                    src={Avatar}
+                    customWidth="2.6rem"
+                    customHeight="2.6rem"
+                  />
+                  <InputText
+                    className="col-12 text-left"
+                    placeholder="NICKNAME"
+                    name="username"
+                    value={username}
+                    onChange={handleChangeInputs}
+                  />
+                </ContentInputText>
+              </FormGroup>
+              <FormGroup className="mt-5">
+                <ContentInputText className="col-sm-12 m-auto">
+                  <ImageSvg
+                    src={Email}
+                    customWidth="2.6rem"
+                    customHeight="2.6rem"
+                  />
+                  <InputText
+                    className="col-12 text-left"
+                    id="email"
+                    name="email"
+                    placeholder="EMAIL"
+                    value={email}
+                    onChange={handleChangeInputs}
+                  />
+                </ContentInputText>
+              </FormGroup>
+              <FormGroup className="mt-5">
+                <ContentInputText className="col-sm-12 m-auto">
+                  <ImageSvg
+                    src={Email}
+                    customWidth="2.6rem"
+                    customHeight="2.6rem"
+                  />
+                  <InputText
+                    className="col-12 text-left"
+                    id="confirmEmail"
+                    name="confirmEmail"
+                    placeholder="CONFIRMAR EMAIL"
                     onChange={handleChangeInputs}
                   />
                 </ContentInputText>
@@ -158,14 +293,15 @@ export default function RegisterCostumer(props) {
                   />
                   <InputText
                     className="col-12 text-left"
-                    placeholder="CONTRASEÑA"
                     name="password"
                     type="password"
+                    placeholder="CONTRASEÑA"
+                    id="password"
+                    value={password}
+                    onChange={handleChangeInputs}
                   />
                 </ContentInputText>
               </FormGroup>
-            </div>
-            <div className="col-5 mr-5">
               <FormGroup className="mt-5">
                 <ContentInputText className="col-sm-12 m-auto">
                   <ImageSvg
@@ -175,59 +311,13 @@ export default function RegisterCostumer(props) {
                   />
                   <InputText
                     className="col-12 text-left"
-                    placeholder="CONFIRMAR CONTRASEÑA"
                     type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="CONFIRMAR CONTRASEÑA"
                   />
                 </ContentInputText>
               </FormGroup>
-              <FormGroup className="mt-5">
-                <ContentInputText className="col-sm-12 m-auto">
-                  <ImageSvg
-                    src={Email}
-                    customWidth="2.6rem"
-                    customHeight="2.6rem"
-                  />
-                  <InputText className="col-12 text-left" placeholder="EMAIL" />
-                </ContentInputText>
-              </FormGroup>
-              <FormGroup className="mt-5">
-                <ContentInputText className="col-sm-12 m-auto">
-                  <ImageSvg
-                    src={Email}
-                    customWidth="2.6rem"
-                    customHeight="2.6rem"
-                  />
-                  <InputText
-                    className="col-12 text-left"
-                    placeholder="CONFIRMAR EMAIL"
-                  />
-                </ContentInputText>
-              </FormGroup>
-              <span>FECHA DE NACIMIENTO</span>
-              <div className="d-flex">
-                <ContentInputText className="col-sm-12 m-auto">
-                  <FormControl type="date" name="fechaNacimiento" />
-                </ContentInputText>
-              </div>
-              <div className="mt-3">
-                <span className="mb-3">SEXO</span>
-                <div className="d-flex">
-                  <FormCheck
-                    type="radio"
-                    name="sexo"
-                    value="Hombre"
-                    onChange={handleChangeInputs}
-                  />
-                  <label className="mr-3">Hombre</label>
-                  <FormCheck
-                    type="radio"
-                    name="sexo"
-                    value="Mujer"
-                    onChange={handleChangeInputs}
-                  />
-                  <label>Mujer</label>
-                </div>
-              </div>
             </div>
           </Row>
           <div className="d-flex justify-content-end mt-2">
