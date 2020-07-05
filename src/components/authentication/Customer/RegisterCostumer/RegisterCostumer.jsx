@@ -5,7 +5,6 @@ import {
   FormGroup,
   FormControl,
   FormCheck,
-  DropdownButton,
 } from 'react-bootstrap';
 import { FormRegisterProduct } from '../../../ui/Forms';
 import { BFoodSubTitle, BFoodTitle } from '../../../ui/Texts';
