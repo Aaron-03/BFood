@@ -31,6 +31,7 @@ const CostumerService = (props) => {
     } catch (err) {
       console.log(err);
     }
+    localStorage.setItem('login', res.data);
     return res;
   };
   const lgnCostumer = async (login) => {
@@ -40,7 +41,7 @@ const CostumerService = (props) => {
     };
 
     try {
-      const response = await ClientAxios.post('/constumer/login', login);
+      const response = await ClientAxios.post('/users/iniciar-sesion', login);
       if (response.status === 200) {
         dispatch({
           type: LGN_COSTUMER,
@@ -79,6 +80,7 @@ const CostumerService = (props) => {
         addCostumer: addCostumer,
         lgnCostumer,
         updCostumer,
+        login: state.login,
       }}
     >
       {props.children}

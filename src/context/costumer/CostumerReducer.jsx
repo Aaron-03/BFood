@@ -9,7 +9,7 @@ export default (state, action) => {
       };
     case LGN_COSTUMER:
       return {
-        loginCostumer: [...state.loginCostumer, action.payload],
+        loginCostumer: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { FormSeller } from '../../ui/Forms';
 import { BtnSendData } from '../../ui/Buttons';
 import { FormGroup, Row } from 'react-bootstrap';
@@ -10,6 +10,9 @@ import perfilImg from '../../../assets/img/Form/avatar.svg';
 import password1Img from '../../../assets/img/Form/pass_1.svg';
 
 import styled from '@emotion/styled';
+import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import CostumerContext from '../../../context/costumer/CostumerContext';
 
 const ContainerSignIn = styled.div`
   background-color: var(--custom-blue);
@@ -20,12 +23,44 @@ const ContainerSignIn = styled.div`
   align-items: center;
 `;
 
-const LoginCustomer = () => {
+const LoginCustomer = (props) => {
+  const { lgnCostumer, login } = useContext(CostumerContext);
+  const [loginCustomer, setLoginCustomer] = useState({
+    username: '',
+    password: '',
+  });
+  const { username, password } = loginCustomer;
+  const handlerFieldChange = (e) => {
+    setLoginCustomer({
+      ...loginCustomer,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    if (username.trim() === '' || username.trim() === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ingrese datos validos',
+        timer: 2000,
+      });
+    }
+    const xloginuser = {
+      username: username,
+      password: password,
+    };
+    console.log(xloginuser);
+    lgnCostumer(xloginuser);
+  };
   return (
     <Fragment>
       <ContainerSignIn>
         <Row className="justify-content-center align-items-center p-2 col-12">
-          <FormSeller customMaxWidth="45rem" className="col-sm-12 py-4 px-1">
+          <FormSeller
+            onSubmit={handlerSubmit}
+            customMaxWidth="45rem"
+            className="col-sm-12 py-4 px-1"
+          >
             <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
               <BFoodSubTitle customSize="18pt">Único</BFoodSubTitle>
 
@@ -46,7 +81,9 @@ const LoginCustomer = () => {
                   className="col-10 text-left"
                   type="text"
                   placeholder="INGRESE SU USUARIO"
+                  value={username}
                   name="username"
+                  onChange={handlerFieldChange}
                 />
               </ContentInputText>
             </FormGroup>
@@ -64,6 +101,8 @@ const LoginCustomer = () => {
                   className="col-10 text-left"
                   type="password"
                   placeholder="INGRESE SU CONTRASEÑA"
+                  value={password}
+                  onChange={handlerFieldChange}
                   name="password"
                 />
               </ContentInputText>
