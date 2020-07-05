@@ -3,14 +3,14 @@ import { InputGroup } from 'react-bootstrap';
 import { CustomCheckbox } from '../components/ui/Fields';
 
 
-const useCategoriesChecks = (initialState) => {
+const useCategoriesChecks = (categories) => {
     
-    const [ categories, setCategories ] = useState(initialState);
+    const [ categoriesSelected, setCategoriesSelected ] = useState([]);
 
     const handleChangeCheck = (e, categoryId) => {
 
         if(e.target.checked) {
-            setCategories(
+            setCategoriesSelected(
                 categories.map(category => {
                     if(category.id === categoryId) {
                         category.check = true;
@@ -22,7 +22,7 @@ const useCategoriesChecks = (initialState) => {
             return;
         }
 
-        setCategories(
+        setCategoriesSelected(
             categories.map(category => {
                 if(category.id === categoryId) {
                     category.check = false;
@@ -56,7 +56,7 @@ const useCategoriesChecks = (initialState) => {
         );
     }
 
-    return [ ListCategories ];
+    return [ ListCategories, categories ];
 }
  
 export default useCategoriesChecks;

@@ -95,7 +95,6 @@ export default function ListProducts(props) {
   const [cantProd, setCantProd] = useState(pedido.products.length);
 
   const cates = categories.filter((cat) => cat.check === true);
-  console.log(cates);
 
   const handleGotoPedido = () => {
     if (cantProd === 0) {

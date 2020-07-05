@@ -76,16 +76,18 @@ const ProductService = ({ children }) => {
 
   const getProductsByPage = async (page) => {
     try {
-      const response = await ClientAxios.get(`/producto/all`);
+      const response = await ClientAxios.get(`/producto/allProducts`);
 
-      if (response.data.ok) {
+      if (response.status === 200) {
+
+        const products = response.data;
+
         dispatch({
           type: LST_PRODUCT_BY_PAGE,
-          payload: response.data.products,
+          payload: products
         });
       }
 
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +95,7 @@ const ProductService = ({ children }) => {
 
   const addPedido = async (pedido) => {
     try {
-      const response = await ClientAxios.post('/pedido/add', pedido);
+      const response = await ClientAxios.post('/registrar-producto', pedido);
 
       console.log(response);
     } catch (error) {

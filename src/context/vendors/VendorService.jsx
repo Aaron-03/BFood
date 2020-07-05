@@ -149,10 +149,10 @@ const VendorService = (props) => {
 
   const getProductById = async (productId) => {
     try {
-      const product = await ClientAxios.post('/producto/get', {
-        id: productId,
-      });
-      console.log(product);
+      // const product = await ClientAxios.post('/producto/get', {
+      //   id: productId,
+      // });
+      // console.log(product);
 
       dispatch({
         type: GET_PRODUCT,
@@ -172,7 +172,7 @@ const VendorService = (props) => {
     try {
       product.vendedor = 1;
 
-      const response = await ClientAxios.post('/producto/add', product);
+      const response = await ClientAxios.post('/producto/registrar-producto', product);
 
       if(response.status === 200) {
         dispatch({
@@ -222,7 +222,7 @@ const VendorService = (props) => {
     try {
       product.vendedor = { id: 1 };
 
-      const response = await ClientAxios.post('/producto/edit', product);
+      const response = await ClientAxios.put('/producto/actualizar-producto', product);
 
       if (response.data.ok) {
         dispatch({
@@ -251,9 +251,9 @@ const VendorService = (props) => {
     };
 
     try {
-      const response = await ClientAxios.put('/producto/dlt', {
-        id: productId,
-      });
+      const response = await ClientAxios.put('/producto/dlt', { productId });
+
+      console.log(response);
 
       if (response.data.ok) {
         dispatch({
@@ -319,7 +319,7 @@ const VendorService = (props) => {
     };
 
     try {
-      const response = await ClientAxios.post('/producto/list', vendorId);
+      const response = await ClientAxios.get('/producto/allProducts', vendorId);
 
       console.log(response);
 

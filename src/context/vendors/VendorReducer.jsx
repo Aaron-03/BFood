@@ -57,7 +57,7 @@ export default (state, action) => {
         ...state,
         currentProduct: state.products.find(
           (product) => product.id === action.payload
-        ),
+        )
       };
 
     case LST_PRODUCTS:

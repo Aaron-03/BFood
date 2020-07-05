@@ -111,8 +111,9 @@ export default function Product({ product, pedido, setCantProd }) {
     nombre,
     categoria,
   } = product;
+  
 
-  const [include, setInclude] = useState(false);
+  const [ include, setInclude ] = useState(false);
 
   const [item, setItem] = useState({
     id: id,
@@ -164,7 +165,7 @@ export default function Product({ product, pedido, setCantProd }) {
         </ImageProduct>
 
         <div className="py-2 px-3 mt-1 text-right">
-          <TagProduct className="text-white">{categoria}</TagProduct>
+          <TagProduct className="text-white">{categoria.descripcion}</TagProduct>
         </div>
 
         <ProductCard className="">

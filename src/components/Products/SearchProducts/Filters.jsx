@@ -31,10 +31,10 @@ const Filters = (props) => {
 
   const { getProductsByVendor } = useContext(VendorContext);
 
-
-  const [ ListCategories ] = useCategoriesChecks(categories);
+  const [ ListCategories, categoriesSelected ] = useCategoriesChecks(categories);
 
   const [ busqueda, setBusqueda ] = useState('');
+  // const [ categoriesSelected, setCategoriesSelected ] = useState([]);
 
 
   const handlerBusqueda = (e) => {
@@ -68,6 +68,7 @@ const Filters = (props) => {
   // eslint-disable-next-line
   }, [busqueda]);
 
+  
 
   return (
 
