@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { FormSeller } from '../../ui/Forms';
 import { BtnSendData } from '../../ui/Buttons';
-import { FormGroup, Row } from 'react-bootstrap';
+import { FormGroup, Row, Modal } from 'react-bootstrap';
 import { BFoodSubTitle, BFoodTitle } from '../../ui/Texts';
 import { ContentInputText, InputText } from '../../ui/Fields';
 
@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import { useContext } from 'react';
 import CostumerContext from '../../../context/costumer/CostumerContext';
 import { useHistory } from 'react-router-dom';
+import RecoverAccount from './RecoverAccount/RecoverAccount';
 
 const ContainerSignIn = styled.div`
   background-color: var(--custom-blue);
@@ -23,9 +24,16 @@ const ContainerSignIn = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+const LinkRecoverAccount = styled.span`
+  margin-left: 40%;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const LoginCustomer = (props) => {
-
+  const [show, setShow] = useState(false);
+  const handlerClose = () => setShow(false);
+  const handlerShow = () => setShow(true);
   const { lgnCostumer, login } = useContext(CostumerContext);
   const history = useHistory();
 
@@ -49,7 +57,7 @@ const LoginCustomer = (props) => {
       Swal.fire({
         icon: 'error',
         title: 'Ingrese datos validos',
-        timer: 2000
+        timer: 2000,
       });
     }
 
@@ -118,13 +126,23 @@ const LoginCustomer = (props) => {
                 />
               </ContentInputText>
             </FormGroup>
-
+            <LinkRecoverAccount
+              onClick={handlerShow}
+              className="text-primary text-center"
+            >
+              Recuperar la cuenta
+            </LinkRecoverAccount>
             <div className="row col-10 m-auto justify-content-around align-items-center py-2 px-0">
               <BtnSendData className="mt-2 col-5">INGRESAR</BtnSendData>
             </div>
           </FormSeller>
         </Row>
       </ContainerSignIn>
+      <Modal show={show} onHide={handlerClose}>
+        <Modal.Body>
+          <RecoverAccount />
+        </Modal.Body>
+      </Modal>
     </Fragment>
   );
 };

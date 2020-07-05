@@ -20,6 +20,7 @@ import { ImageSvg } from '../../../ui/Images';
 import { useContext } from 'react';
 import CostumerContext from '../../../../context/costumer/CostumerContext';
 import Swal from 'sweetalert2';
+import { useHistory } from 'react-router-dom';
 const ContainerRegisterCostumer = styled(Container)`
   background-color: var(--custom-blue);
   height: 69vh;
@@ -30,6 +31,7 @@ const ContainerRegisterCostumer = styled(Container)`
 `;
 export default function RegisterCostumer(props) {
   const { addCostumer } = useContext(CostumerContext);
+  const history = useHistory();
   const [costumer, setCostumer] = useState({
     nombres: '',
     apellidos: '',
@@ -124,6 +126,7 @@ export default function RegisterCostumer(props) {
     };
     console.log(xcostumer);
     addCostumer(xcostumer);
+    history.push('/customer/login');
   };
   return (
     <Fragment>

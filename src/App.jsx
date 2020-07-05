@@ -64,7 +64,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/register-costumer"
+                  path="/customer/register"
                   component={RegisterCostumer}
                 />
                 <Route
