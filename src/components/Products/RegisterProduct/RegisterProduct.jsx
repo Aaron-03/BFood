@@ -5,9 +5,7 @@ import styled from '@emotion/styled';
 import { useRegisterProduct } from '../../../hooks/useRegisterProduct';
 
 import ProductIcon from '../../../assets/img/shipping-and-delivery.svg';
-import avatarIcon from '../../../assets/img/Form/avatar.svg';
 import LetterIcon from '../../../assets/img/signs.svg';
-import { FormFileStyled } from './RegisterProduct.styles';
 
 import { FormRegisterProduct } from '../../ui/Forms';
 import { BFoodTitle, BFoodSubTitle, BFoodLabel } from '../../ui/Texts';
@@ -16,7 +14,6 @@ import { BtnSendData } from '../../ui/Buttons';
 import { ImageSvg } from '../../ui/Images';
 
 import './RegisterProduct.positions.css';
-import ProductContext from '../../../context/products/ProductContext';
 import VendorContext from '../../../context/vendors/VendorContext';
 import Swal from 'sweetalert2';
 
@@ -51,13 +48,13 @@ const ImageName = styled.p`
 function RegisterProduct(props) {
   const { addProductVendor } = useContext(VendorContext);
 
-  const [ product, setProduct ] = useState({
+  const [product, setProduct] = useState({
     title: '',
     desc: '',
     category: 0,
     price: 0.0,
     image: null,
-    stock: 0
+    stock: 0,
   });
 
   const { title, desc, category, price, stock, image } = product;
@@ -98,7 +95,7 @@ function RegisterProduct(props) {
       return;
     }
 
-    if(!image) {
+    if (!image) {
       Swal.fire({
         title: 'No ha ingresado una imagen referencial',
         timer: 2000,
@@ -115,7 +112,7 @@ function RegisterProduct(props) {
       categoria: 1,
       stock: 50,
       status: 'A',
-      vendedor: null
+      vendedor: null,
     };
 
     console.log(xproduct);
@@ -129,15 +126,11 @@ function RegisterProduct(props) {
     Nombre del producto : ${inputs.nombreProducto}`);
   };
 
-  const { inputs, handleInputChange, handleSubmit } = useRegisterProduct(
-    register
-  );
+  const { inputs } = useRegisterProduct(register);
 
   return (
     <Container className="p-4 bg-white">
-      <FormRegisterProduct
-        onSubmit={handleSubmitRegister}
-      >
+      <FormRegisterProduct onSubmit={handleSubmitRegister}>
         <div className="col-sm-12 d-flex justify-content-between align-items-center mt-2">
           <BFoodSubTitle customSize="18pt">Registro</BFoodSubTitle>
           <BFoodTitle className="ml-3">BFood</BFoodTitle>

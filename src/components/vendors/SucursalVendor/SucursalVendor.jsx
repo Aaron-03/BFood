@@ -26,13 +26,9 @@ const ModalSucursalForm = styled(Modal.Body)`
 `;
 
 export default function SucursalVendor() {
-
-
-
   const [show, setShow] = useState(false);
   const handlerClose = () => setShow(false);
   const handlerShow = () => setShow(true);
-
 
   return (
     <Container>
