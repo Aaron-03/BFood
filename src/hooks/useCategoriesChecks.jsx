@@ -1,39 +1,25 @@
 import React, { useState } from 'react';
 import { InputGroup } from 'react-bootstrap';
 import { CustomCheckbox } from '../components/ui/Fields';
+import { useEffect } from 'react';
 
 
 const useCategoriesChecks = (categories) => {
-    
+
     const [ categoriesSelected, setCategoriesSelected ] = useState([]);
 
     const handleChangeCheck = (e, categoryId) => {
-
-        if(e.target.checked) {
-            setCategoriesSelected(
-                categories.map(category => {
-                    if(category.id === categoryId) {
-                        category.check = true;
-                        return category;
-                    }
-                    return category;
-                })
-            );
-            return;
-        }
+        categories.map(cat => {
+            if(cat.id === categoryId) {
+                return cat.check = e.target.checked;
+            }
+            return cat;
+        });
 
         setCategoriesSelected(
-            categories.map(category => {
-                if(category.id === categoryId) {
-                    category.check = false;
-                    return category;
-                }
-                return category;
-            })
+            categories.filter(cat => cat.check === true)
         );
     }
-
-
 
     const ListCategories = () => {
 
@@ -56,7 +42,7 @@ const useCategoriesChecks = (categories) => {
         );
     }
 
-    return [ ListCategories, categories ];
+    return [ ListCategories, categoriesSelected ];
 }
  
 export default useCategoriesChecks;

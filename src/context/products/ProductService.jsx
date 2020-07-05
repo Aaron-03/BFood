@@ -25,7 +25,7 @@ const initialState = {
     { id: 1, name: 'Hamburguesas', check: false },
     { id: 2, name: 'Dulces y Chocolates', check: false },
     { id: 3, name: 'Pizzas y Pastas', check: false },
-    { id: 4, name: 'Bebidas y Jugos', check: false },
+    { id: 4, name: 'Bebidas y Jugos', check: false }
   ],
   pedido: {
     descripcion: '',

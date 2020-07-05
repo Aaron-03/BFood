@@ -31,11 +31,11 @@ const Filters = (props) => {
 
   const { getProductsByVendor } = useContext(VendorContext);
 
+  // const [ categoriesSelected, setCategoriesSelected ] = useState([]);
+
   const [ ListCategories, categoriesSelected ] = useCategoriesChecks(categories);
 
   const [ busqueda, setBusqueda ] = useState('');
-  // const [ categoriesSelected, setCategoriesSelected ] = useState([]);
-
 
   const handlerBusqueda = (e) => {
 
@@ -44,20 +44,9 @@ const Filters = (props) => {
     searchByTerm(termVal);
   };
 
-  const handlerCheckHamburger = (e) => {
-    //searchByCheckHamburger(e.target.value);
-    console.log(e.target.value);
-
-    //const value = target.value;
-    //searchByCheckHamburger(value);
-  };
-
-
   const handlerPrice = (e) => {
     searchByPrice(Number(e.target.value));
   };
-
-  
 
   useEffect(() => {
 
@@ -67,8 +56,11 @@ const Filters = (props) => {
     
   // eslint-disable-next-line
   }, [busqueda]);
-
   
+  useEffect(() => {
+    console.log(categoriesSelected);
+  }, [categoriesSelected]);
+
 
   return (
 

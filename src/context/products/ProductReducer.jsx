@@ -23,7 +23,6 @@ export default (state, action) => {
       return {};
 
     case LST_PRODUCT_BY_PAGE:
-
       return {
         ...state,
         products: action.payload
