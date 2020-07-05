@@ -8,8 +8,11 @@ export default (state, action) => {
         costumer: [...state.costumer, action.payload],
       };
     case LGN_COSTUMER:
+      localStorage.setItem("token-auth-customer", JSON.stringify(action.payload.data));
       return {
-        loginCostumer: action.payload,
+        ...state,
+        authenticated: action.payload.data,
+        loginCostumer: action.payload.data
       };
     default:
       return state;

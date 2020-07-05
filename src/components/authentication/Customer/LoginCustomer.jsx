@@ -13,6 +13,7 @@ import styled from '@emotion/styled';
 import Swal from 'sweetalert2';
 import { useContext } from 'react';
 import CostumerContext from '../../../context/costumer/CostumerContext';
+import { useHistory } from 'react-router-dom';
 
 const ContainerSignIn = styled.div`
   background-color: var(--custom-blue);
@@ -24,11 +25,15 @@ const ContainerSignIn = styled.div`
 `;
 
 const LoginCustomer = (props) => {
+
   const { lgnCostumer, login } = useContext(CostumerContext);
+  const history = useHistory();
+
   const [loginCustomer, setLoginCustomer] = useState({
     username: '',
     password: '',
   });
+
   const { username, password } = loginCustomer;
   const handlerFieldChange = (e) => {
     setLoginCustomer({
@@ -36,21 +41,27 @@ const LoginCustomer = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handlerSubmit = (e) => {
     e.preventDefault();
+
     if (username.trim() === '' || username.trim() === '') {
       Swal.fire({
         icon: 'error',
         title: 'Ingrese datos validos',
-        timer: 2000,
+        timer: 2000
       });
     }
+
     const xloginuser = {
       username: username,
       password: password,
     };
+
     console.log(xloginuser);
     lgnCostumer(xloginuser);
+
+    history.push('/');
   };
   return (
     <Fragment>
