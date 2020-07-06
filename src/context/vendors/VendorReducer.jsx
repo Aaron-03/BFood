@@ -78,9 +78,14 @@ export default (state, action) => {
       };
 
     case CRT_VENDOR:
+
+      console.log(action.payload.data);
+      
+      localStorage.setItem("token-auth-user", JSON.stringify(action.payload.data));
+
       return {
         ...state,
-        currentVendor: action.payload,
+        currentVendor: action.payload
       };
 
     case ADD_VENDOR:

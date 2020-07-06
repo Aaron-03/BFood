@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 
 import WelcomeSignUpSeller from './WelcomeSignUpSeller';
 import FormSellerOne from './FormSellerOne';
@@ -10,9 +10,13 @@ import useTimeLine from '../../../../hooks/useTimeLine';
 import {
     ContainerGeneralSeller,
 } from '../../../ui/Containers';
+import VendorContext from '../../../../context/vendors/VendorContext';
+import { useHistory } from 'react-router-dom';
 
 
 const IndexSignUp = () => {
+
+    const { currentVendor } = useContext(VendorContext);
 
     const initialProgress = {
         progress: '0%',
@@ -22,6 +26,12 @@ const IndexSignUp = () => {
     const initialPage = 0;
 
     const [ timeline, page, setPage ] = useTimeLine(initialProgress, initialPage);
+
+    const history = useHistory();
+
+    if(currentVendor !== null) {
+        history.push('/vendor/settings');
+    }
 
     return (
         <Fragment>

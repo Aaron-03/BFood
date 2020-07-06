@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Avatar from '../../assets/img/Form/avatar.svg';
 import styled from '@emotion/styled';
@@ -10,6 +10,9 @@ import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import RecoverAccount from '../authentication/Customer/RecoverAccount/RecoverAccount';
 import AuthToken from '../../config/AuthToken';
+import { useEffect } from 'react';
+import CostumerContext from '../../context/costumer/CostumerContext';
+import VendorContext from '../../context/vendors/VendorContext';
 
 const ContentHeader = styled.header`
   display: flex;
@@ -39,6 +42,7 @@ const ContentHeader = styled.header`
     flex-wrap: nowrap;
   }
 `;
+
 const DropdownMenu = styled.div`
   width: 150px;
   background-color: white;
@@ -53,16 +57,23 @@ const Header = () => {
   };
 
   const [ show, setShow ] = useState(false);
-  const [ userExist, setUserExist ] = useState(AuthToken());
+  const [ userLog, setUserLog ] = useState(null);
   const handlerClose = () => setShow(false);
   const handlerShow = () => setShow(true);
 
+  
+
   const handleClickClose = () => {
-    localStorage.removeItem("token-auth-customer");
-    setUserExist(null);
+    localStorage.removeItem("token-auth-user");
+    setUserLog(null);
   }
 
-  console.log(AuthToken());
+  useEffect(() => {
+
+
+
+  }, []);
+
 
   return (
     <Fragment>
@@ -87,7 +98,7 @@ const Header = () => {
           </ul>
 
           {
-          !userExist
+          !userLog
           ? <div className="d-flex col-4">
             <BtnSendData
               onClick={() => handleClickRedirect('/customer/login')}

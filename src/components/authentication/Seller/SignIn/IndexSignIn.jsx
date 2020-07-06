@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import VendorContext from '../../../../context/vendors/VendorContext';
 
 
@@ -17,12 +17,12 @@ import { BtnSendData } from '../../../ui/Buttons';
 
 
 import perfilImg from '../../../../assets/img/Form/avatar.svg';
-import emailImg from '../../../../assets/img/Form/email.png';
 import password1Img from '../../../../assets/img/Form/pass_1.svg';
-import password2Img from '../../../../assets/img/Form/pass_2.svg';
-import { validFieldString, validFieldEmail } from '../../../../helpers/validations/formSellerValid';
+import { validFieldString } from '../../../../helpers/validations/formSellerValid';
 import Swal from 'sweetalert2';
 import styled from '@emotion/styled';
+import { ContentLoading } from '../../../ui/Containers';
+import { useHistory } from 'react-router-dom';
 
 
 const ContainerSignIn = styled.div`
@@ -45,31 +45,55 @@ const IndexSignIn = () => {
     const [ sended, setSended ] = useState(false);
 
     const [ vendor, setVendor] = useState({
-        username: '',
+        ruc: '',
         password: ''
     });
 
-    const { username, password } = vendor;
+    const { ruc, password } = vendor;
 
+    const history = useHistory();
+
+    if(currentVendor !== null) {
+        history.push('/vendor/settings');
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const minCaracters = 6;
+        const minCaracters = 4;
 
-        const nameValid = validFieldString(username, 4, 16);
+        const rucValid = validFieldString(ruc, 11, 11);
         const passwordValid = validFieldString(password, minCaracters, 27);
 
-        
+        if(rucValid.active) {
+            Swal.fire({
+                icon: 'error',
+                title: 'El ruc ingresado no es válido',
+                timer: '2000'
+            });
+            
+            return;
+        }
+
+        if(passwordValid.active) {
+            Swal.fire({
+                icon: 'error',
+                title: 'El password debe ser mínimo de 6 caracteres',
+                timer: '2000'
+            });
+
+            return;
+        }
 
         setLoading(true);
-        // await sendRequest();
+        
+        crtVendor(vendor);
+
         setLoading(false);
 
         setError(false);
-        crtVendor(vendor);
+        
     }
-
 
     const handleChange = (e) => {
         setVendor({
@@ -81,7 +105,14 @@ const IndexSignIn = () => {
 
     return (
         <ContainerSignIn>
-            <Row className="justify-content-center align-items-center p-2 bg-danger col-12">
+            {
+            loading
+            ? <ContentLoading>
+                <div className="spinner-border text-primary"></div>
+            </ContentLoading>
+            : null
+            }
+            <Row className="justify-content-center align-items-center p-2 col-12">
                 <FormSeller
                     onSubmit={handleSubmit}
                     customMaxWidth="45rem"
@@ -112,9 +143,9 @@ const IndexSignIn = () => {
                             <InputText
                                 className="col-10 text-left"
                                 type="text"
-                                placeholder="INGRESE SU USUARIO"
-                                name="username"
-                                value={username}
+                                placeholder="INGRESE SU N° RUC"
+                                name="ruc"
+                                value={ruc}
                                 onChange={handleChange}
                             />
                         </ContentInputText>

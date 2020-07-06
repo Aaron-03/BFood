@@ -52,7 +52,9 @@ const PanelPedido = () => {
     const handleSendPedido = (ped) => {
         ped.descripcion = descripcion;
         ped.total = total;
-        ped.idcliente = 1;
+        ped.consumidor = {
+            id: 1
+        }
         ped.status = "PENDIENTE";
 
         addPedido(ped);

@@ -109,7 +109,9 @@ function RegisterProduct(props) {
       precio: price,
       descripcion: desc,
       img: image.name,
-      categoria: 1,
+      categoria: {
+        id: 1
+      },
       stock: 50,
       status: 'A',
       vendedor: null,
