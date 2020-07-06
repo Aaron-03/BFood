@@ -90,6 +90,17 @@ const ProductService = ({ children }) => {
   const addPedido = async (pedido) => {
     try {
 
+      let detalles = [];
+
+      pedido.products.forEach(prod => {
+        detalles.push({
+          producto: prod,
+          cantidad: prod.cantidad
+        });
+      });
+
+      pedido.detalles = detalles;
+
       const response = await ClientAxios.post('/pedido/add', pedido);
 
       console.log(response);

@@ -106,7 +106,7 @@ function RegisterProduct(props) {
 
     const xproduct = {
       nombre: title,
-      precio: price,
+      precio: parseFloat(price),
       descripcion: desc,
       img: image.name,
       categoria: {

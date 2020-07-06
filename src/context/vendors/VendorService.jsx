@@ -18,6 +18,7 @@ const {
   DLT_PRODUCT,
   LST_PRODUCTS,
   ADD_SUCURSAL,
+  LST_ORDERS,
 } = VendorTypes;
 
 const VendorService = (props) => {
@@ -226,6 +227,27 @@ const VendorService = (props) => {
       console.log(error);
     }
   };
+
+  const getOrdersByVendor = async () => {
+    try {
+      
+      const vendorId = { id: 1 };
+
+      const response = await ClientAxios.get('/pedido/vendor');
+
+      console.log(response);
+
+      dispatch({
+        type: LST_ORDERS,
+        payload: response.data
+      });
+
+      // console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const getProductById = async (productId) => {
     try {
@@ -457,6 +479,7 @@ const VendorService = (props) => {
         getProductById,
         getProductsByVendor,
         addSucursalVendor,
+        getOrdersByVendor
       }}
     >
       {props.children}

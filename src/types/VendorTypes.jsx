@@ -13,6 +13,7 @@ const VendorTypes = {
   CRT_VENDOR: 'CRT_VENDOR',
   SND_VENDOR: 'SND_VENDOR',
   ADD_SUCURSAL: 'ADD_SUCURSAL',
+  LST_ORDERS: 'LST_ORDERS'
 };
 
 export default VendorTypes;

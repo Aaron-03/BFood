@@ -44,7 +44,7 @@ const ImageName = styled.p`
   bottom: -1rem;
 `;
 
-function UpdateProduct(props) {
+function UpdateProduct({handleClose}) {
 
   const { updProductVendor, currentProduct } = useContext(VendorContext);
 
@@ -93,6 +93,8 @@ function UpdateProduct(props) {
     }
 
     updProductVendor(xproduct);
+
+    handleClose();
   }
 
   const register = () => {

@@ -57,11 +57,12 @@ const Header = () => {
   };
 
   const [ show, setShow ] = useState(false);
-  const [ userLog, setUserLog ] = useState(null);
+
+  const token = localStorage.getItem("token-auth-user");
+
+  const [ userLog, setUserLog ] = useState(token);
   const handlerClose = () => setShow(false);
   const handlerShow = () => setShow(true);
-
-  
 
   const handleClickClose = () => {
     localStorage.removeItem("token-auth-user");

@@ -128,13 +128,13 @@ const ProductVendor = ({product, handleShow}) => {
 
                 <ContentText>
                     <h4>{nombre}</h4>
-                    
+
                     <p>
                         {resumeText()}
                     </p>
 
                     <div className="d-flex justify-content-between">
-                        <span>S/. 10.00</span>
+                        <span>S/. {precio}</span>
 
                         <BtnEditProduct
                             onClick={handleClickUpd}

@@ -47,7 +47,7 @@ const ContentSaleProducts = styled.ul`
 
   position: absolute;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: white;
   top: 2.5rem;
   
   li {
@@ -92,7 +92,7 @@ export default function ListProducts(props) {
 
   const uriHistoty = useHistory();
 
-  const [cantProd, setCantProd] = useState(pedido.products.length);
+  const [ cantProd, setCantProd ] = useState(pedido.products.length);
 
   const cates = categories.filter((cat) => cat.check === true);
 
@@ -111,6 +111,7 @@ export default function ListProducts(props) {
   useEffect(() => {
     getProductsByPage(5);
   }, []);
+
 
   return (
     <ListProductContainer className="col-10">

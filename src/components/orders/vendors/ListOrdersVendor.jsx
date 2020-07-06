@@ -1,10 +1,20 @@
 import React from 'react';
 
 import { Table } from 'react-bootstrap';
+import { useContext } from 'react';
+import VendorContext from '../../../context/vendors/VendorContext';
+import { useEffect } from 'react';
 
 
 const ListOrdersVendor = () => {
 
+    const { getOrdersByVendor, orders } = useContext(VendorContext);
+
+    useEffect(() => {
+
+        getOrdersByVendor();
+
+    }, []);
 
     return (
         <div className="w-100 p-5">
@@ -19,18 +29,29 @@ const ListOrdersVendor = () => {
                         <th>Cant. Prod</th>
                         <th>N° Comprobante</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>12062020340001</td>
-                        <td>12-06-20 20:34:40</td>
-                        <td>Ricolas Jovanni, De las casas Ochoa</td>
-                        <td>5</td>
+                    {
+                    orders.map(order => (
+                    <tr key={order.idpedido}>
+                        <td>{order.idpedido}</td>
+                        <td>{order.fecha}</td>
+                        <td>{order.consumidor.nombres} {order.consumidor.apellidos}</td>
+                        <td>{order.detalles.length}</td>
                         <td>2012012545</td>
-                        <td>248.40</td>
+                        <td>{order.total}</td>
+                        <td>
+                            <button
+                                type="button"
+                                className="btn btn-warning"
+                            >Ver Detalle</button>
+                        </td>
                     </tr>
+                    ))
+                    }
                 </tbody>
             </Table>
         </div>
