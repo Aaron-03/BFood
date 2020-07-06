@@ -98,7 +98,7 @@ const Header = () => {
               </BtnSendData>
 
               <BtnSendData
-                onClick={() => handleClickRedirect('signup')}
+                onClick={() => handleClickRedirect('/customer/register')}
                 bgColor="var(--custom-red)"
                 className="ml-2 p-1"
               >
