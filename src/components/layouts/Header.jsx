@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Avatar from '../../assets/img/Form/avatar.svg';
 import styled from '@emotion/styled';
@@ -8,6 +8,9 @@ import { ImageSvg } from '../ui/Images';
 import NavbarIcono from './NavbarIcono';
 import { useState } from 'react';
 import AuthToken from '../../config/AuthToken';
+import { useEffect } from 'react';
+import CostumerContext from '../../context/costumer/CostumerContext';
+import VendorContext from '../../context/vendors/VendorContext';
 
 const ContentHeader = styled.header`
   display: flex;
@@ -37,6 +40,7 @@ const ContentHeader = styled.header`
     flex-wrap: nowrap;
   }
 `;
+
 const DropdownMenu = styled.div`
   width: 150px;
   background-color: white;
@@ -49,14 +53,17 @@ const Header = () => {
     history.push(option);
   };
 
-  const [userExist, setUserExist] = useState(AuthToken());
+  const [show, setShow] = useState(false);
+  const [userLog, setUserLog] = useState(null);
+  const handlerClose = () => setShow(false);
+  const handlerShow = () => setShow(true);
 
   const handleClickClose = () => {
-    localStorage.removeItem('token-auth-customer');
-    setUserExist(null);
+    localStorage.removeItem('token-auth-user');
+    setUserLog(null);
   };
 
-  console.log(AuthToken());
+  useEffect(() => {}, []);
 
   return (
     <Fragment>
@@ -80,7 +87,7 @@ const Header = () => {
             </li>
           </ul>
 
-          {!userExist ? (
+          {!userLog ? (
             <div className="d-flex col-4">
               <BtnSendData
                 onClick={() => handleClickRedirect('/customer/login')}
@@ -91,7 +98,7 @@ const Header = () => {
               </BtnSendData>
 
               <BtnSendData
-                onClick={() => handleClickRedirect('/customer/register')}
+                onClick={() => handleClickRedirect('signup')}
                 bgColor="var(--custom-red)"
                 className="ml-2 p-1"
               >

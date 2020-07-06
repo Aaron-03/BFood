@@ -30,8 +30,6 @@ const PanelPedido = () => {
       tot += prod.cantidad * prod.precio;
     });
 
-    console.log(tot);
-
     setComplements({
       ...complements,
       total: tot,
@@ -50,7 +48,9 @@ const PanelPedido = () => {
     if (token) {
       ped.descripcion = descripcion;
       ped.total = total;
-      ped.idcliente = 1;
+      ped.consumidor = {
+        id: 1,
+      };
       ped.status = 'PENDIENTE';
 
       addPedido(ped);

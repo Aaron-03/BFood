@@ -1,15 +1,11 @@
+import ClientAxios from "./ClientAxios";
 
-const AuthToken = () => {
-
-    const user = localStorage.getItem("token-auth-customer");
-
-    if(user !== null || user !== undefined) {
-        console.log(user);
-        return JSON.parse(user);
+const AuthToken = (token) => {
+    if(token) {
+        ClientAxios.defaults.auth = { token };
+    } else {
+        delete ClientAxios.defaults.headers.common['Authorization'];
     }
-
-    console.log(user);
-    return null;
 };
 
 export default AuthToken;

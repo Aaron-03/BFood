@@ -5,6 +5,7 @@ import VendorReducer from './VendorReducer';
 
 import VendorTypes from '../../types/VendorTypes';
 import ClientAxios from '../../config/ClientAxios';
+import AuthToken from '../../config/AuthToken';
 
 const {
   GET_PRODUCT,
@@ -158,14 +159,40 @@ const VendorService = (props) => {
 
   const crtVendor = async (crtVendor) => {
     try {
+
+      const response = await ClientAxios.post('/users/acceso-cpanel', crtVendor);
+
       dispatch({
         type: CRT_VENDOR,
-        payload: crtVendor,
+        payload: response
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const getVendorAuthenticated = () => {
+
+    const token = localStorage.getItem('token-auth-user');
+
+    if(token) {
+      AuthToken(token.token);
+      return;
+    }
+
+
+
+    // try {
+
+    //   const response = ClientAxios.get('/users/authVendor');
+
+    //   console.log(response);
+      
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+  }
 
   const validateRuc = async (ruc) => {
     let response = {};
@@ -222,10 +249,18 @@ const VendorService = (props) => {
       message: 'Error al insertar producto',
     };
 
-    try {
-      product.vendedor = 1;
+    const token = localStorage.getItem('token-auth-user');
 
-      const response = await ClientAxios.post('/producto/registrar-producto', product);
+    // getVendorAuthenticated();
+
+    try {
+      product.vendedor = { id: 1 };
+
+      console.log("Este es mi token: " + token.token);
+
+      const response = await ClientAxios.post('/producto/registrar-producto', product, {
+        auth: { token: token.token }
+      });
 
       if (response.status === 200) {
         dispatch({

@@ -89,7 +89,8 @@ const ProductService = ({ children }) => {
 
   const addPedido = async (pedido) => {
     try {
-      const response = await ClientAxios.post('/registrar-producto', pedido);
+
+      const response = await ClientAxios.post('/pedido/add', pedido);
 
       console.log(response);
     } catch (error) {

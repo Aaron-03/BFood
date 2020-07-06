@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './assets/css/style.css';
 
@@ -25,8 +25,27 @@ import RegisterCostumer from './components/authentication/Customer/RegisterCostu
 import RecoverAccount from './components/authentication/Customer/RecoverAccount/RecoverAccount';
 import CostumerService from './context/costumer/CostumerService';
 import UpdateCustomer from './components/authentication/Customer/UpdateCustomer';
+import AuthToken from './config/AuthToken';
+import { useEffect } from 'react';
+import CostumerContext from './context/costumer/CostumerContext';
+import VendorContext from './context/vendors/VendorContext';
+
+// const tokenAuth = AuthToken();
+
+// const { currentCustomer } = useContext(CostumerContext);
+// const { currentVendor } = useContext(VendorContext);
+
+// console.log(tokenAuth);
+
+// useEffect(() => {
+
+
+
+// }, [currentCustomer, currentVendor]);
+
 
 function App() {
+
   return (
     <div className="App">
       <Router>

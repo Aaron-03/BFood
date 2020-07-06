@@ -71,6 +71,15 @@ const LoginCustomer = (props) => {
 
     history.push('/');
   };
+
+  const handleClickSendVendor = (option) => {
+    if (option === 'login') {
+      history.push('/vendor/signin');
+    } else {
+      history.push('/vendor/signup');
+    }
+  };
+
   return (
     <Fragment>
       <ContainerSignIn>
@@ -138,11 +147,24 @@ const LoginCustomer = (props) => {
           </FormSeller>
         </Row>
       </ContainerSignIn>
-      <Modal show={show} onHide={handlerClose}>
-        <Modal.Body>
-          <RecoverAccount />
-        </Modal.Body>
-      </Modal>
+
+      <div className="text-center">
+        Quieres vender en BFood ?
+        <button
+          type="button"
+          onClick={() => handleClickSendVendor('login')}
+          className="btn btn-link"
+        >
+          Ingresar
+        </button>
+        <button
+          type="button"
+          onClick={() => handleClickSendVendor('login')}
+          className="btn btn-link"
+        >
+          Registrarme
+        </button>
+      </div>
     </Fragment>
   );
 };
