@@ -159,7 +159,7 @@ const LoginCustomer = (props) => {
         </button>
         <button
           type="button"
-          onClick={() => handleClickSendVendor('login')}
+          onClick={() => history.push('/vendor/signup')}
           className="btn btn-link"
         >
           Registrarme

@@ -44,7 +44,7 @@ const PanelPedido = () => {
   };
 
   const handleSendPedido = (ped) => {
-    let token = localStorage.getItem('token-auth-customer');
+    let token = localStorage.getItem('token-auth-user');
     if (token) {
       ped.descripcion = descripcion;
       ped.total = total;
