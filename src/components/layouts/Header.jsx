@@ -53,19 +53,19 @@ const Header = () => {
     history.push(option);
   };
 
-  const [userExist, setUserExist] = useState(AuthToken());
+  const [show, setShow] = useState(false);
+  const token = localStorage.getItem('token-auth-user');
+
+  const [userLog, setUserLog] = useState(token);
+  const handlerClose = () => setShow(false);
+  const handlerShow = () => setShow(true);
 
   const handleClickClose = () => {
-    localStorage.removeItem('token-auth-customer');
-    setUserExist(null);
+    localStorage.removeItem('token-auth-user');
+    setUserLog(null);
   };
 
-  useEffect(() => {
-
-
-
-  }, []);
-
+  useEffect(() => {}, []);
 
   return (
     <Fragment>
@@ -89,7 +89,7 @@ const Header = () => {
             </li>
           </ul>
 
-          {!userExist ? (
+          {!userLog ? (
             <div className="d-flex col-4">
               <BtnSendData
                 onClick={() => handleClickRedirect('/customer/login')}

@@ -73,16 +73,12 @@ const LoginCustomer = (props) => {
   };
 
   const handleClickSendVendor = (option) => {
-
-    if(option === 'login') {
+    if (option === 'login') {
       history.push('/vendor/signin');
     } else {
       history.push('/vendor/signup');
     }
-  }
-
-
-
+  };
 
   return (
     <Fragment>
@@ -154,18 +150,20 @@ const LoginCustomer = (props) => {
 
       <div className="text-center">
         Quieres vender en BFood ?
-
         <button
           type="button"
-          onClick={() => handleClickSendVendor("login")}
+          onClick={() => handleClickSendVendor('login')}
           className="btn btn-link"
-        >Ingresar</button>
-
+        >
+          Ingresar
+        </button>
         <button
           type="button"
-          onClick={() => handleClickSendVendor("login")}
+          onClick={() => history.push('/vendor/signup')}
           className="btn btn-link"
-        >Registrarme</button>
+        >
+          Registrarme
+        </button>
       </div>
     </Fragment>
   );

@@ -30,8 +30,6 @@ const PanelPedido = () => {
       tot += prod.cantidad * prod.precio;
     });
 
-    console.log(tot);
-
     setComplements({
       ...complements,
       total: tot,
@@ -46,14 +44,13 @@ const PanelPedido = () => {
   };
 
   const handleSendPedido = (ped) => {
-    let token = localStorage.getItem('token-auth-customer');
+    let token = localStorage.getItem('token-auth-user');
     if (token) {
       ped.descripcion = descripcion;
       ped.total = total;
-      ped.idcliente = 1;
       ped.consumidor = {
-        id: 1
-      }
+        id: 1,
+      };
       ped.status = 'PENDIENTE';
 
       addPedido(ped);
