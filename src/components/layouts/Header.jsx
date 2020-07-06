@@ -6,9 +6,7 @@ import styled from '@emotion/styled';
 import { BtnSendData } from '../ui/Buttons';
 import { ImageSvg } from '../ui/Images';
 import NavbarIcono from './NavbarIcono';
-import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
-import RecoverAccount from '../authentication/Customer/RecoverAccount/RecoverAccount';
 import AuthToken from '../../config/AuthToken';
 
 const ContentHeader = styled.header`
@@ -51,10 +49,7 @@ const Header = () => {
     history.push(option);
   };
 
-  const [show, setShow] = useState(false);
   const [userExist, setUserExist] = useState(AuthToken());
-  const handlerClose = () => setShow(false);
-  const handlerShow = () => setShow(true);
 
   const handleClickClose = () => {
     localStorage.removeItem('token-auth-customer');
@@ -114,8 +109,12 @@ const Header = () => {
               }
             >
               <DropdownMenu>
-                <button style={{ width: '100%' }} onClick={handlerShow}>
-                  Recuperar Cuenta
+                <button
+                  type="button"
+                  onClick={() => history.push('/customer/dashboard')}
+                  style={{ width: '100%' }}
+                >
+                  Dashboard
                 </button>
                 <button
                   type="button"
@@ -145,11 +144,6 @@ const Header = () => {
           </NavbarIcono> */}
         </nav>
       </ContentHeader>
-      <Modal show={show} onHide={handlerClose}>
-        <Modal.Body>
-          <RecoverAccount />
-        </Modal.Body>
-      </Modal>
     </Fragment>
   );
 };
