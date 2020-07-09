@@ -64,7 +64,7 @@ const CustomParagraph = styled.p`
 `;
 
 const FormSellerOne = ({ setPage }) => {
-  const { crtVendor, currentVendor, validateRuc } = useContext(VendorContext);
+  const { crtVendors, currentVendor, validateRuc } = useContext(VendorContext);
   const [ error, setError ] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -126,7 +126,7 @@ const FormSellerOne = ({ setPage }) => {
       return;
     }
 
-    crtVendor(vendor);
+    await crtVendors(vendor);
     setPage(2);
   };
 

@@ -150,6 +150,7 @@ const VendorService = (props) => {
           'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic aliquam ex minima? Amet tempora, vero a recusandae sit at.',
       },
     ],
+    currentVendorRegister: null,
     form1: false,
     form2: false,
     form3: false,
@@ -158,10 +159,32 @@ const VendorService = (props) => {
 
   const [state, dispatch] = useReducer(VendorReducer, initialState);
 
+  const crtVendors = async (crtVendor) => {
+    try {
+
+      console.log(crtVendor);
+
+      // const response = await ClientAxios.post('/users/acceso-cpanel', crtVendor);
+
+      // console.log(response);
+
+      dispatch({
+        type: CRT_VENDOR,
+        payload: crtVendor
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const crtVendor = async (crtVendor) => {
     try {
 
+      console.log(crtVendor);
+
       const response = await ClientAxios.post('/users/acceso-cpanel', crtVendor);
+
+      console.log(response);
 
       dispatch({
         type: CRT_VENDOR,
@@ -199,7 +222,7 @@ const VendorService = (props) => {
     let response = {};
 
     try {
-      const result = await ClientAxios.get(`/vendor/sunat/${ruc}`);
+      const result = await ClientAxios.get(`/users/sunatopcone/${ruc}`);
 
       response = {
         status: true,
@@ -218,11 +241,8 @@ const VendorService = (props) => {
   const sendRequest = async (request) => {
     try {
       console.log(request);
-      await ClientAxios.post('/vendor/register/', request, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      await ClientAxios.post('/users/registrar-solicitud', request);
+      
     } catch (error) {
       console.log(error);
     }
@@ -467,6 +487,7 @@ const VendorService = (props) => {
         currentProduct: state.currentProduct,
         marcador: state.marcador,
         loading: state.loading,
+        currentVendorRegister: state.currentVendorRegister,
         crtVendor: crtVendor,
         addVendor: addVendor,
         updVendor: updVendor,
@@ -479,7 +500,8 @@ const VendorService = (props) => {
         getProductById,
         getProductsByVendor,
         addSucursalVendor,
-        getOrdersByVendor
+        getOrdersByVendor,
+        crtVendors
       }}
     >
       {props.children}

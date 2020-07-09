@@ -59,21 +59,6 @@ const FormSellerThree = ({ setPage }) => {
       email: email,
     };
 
-    /*
-        {
-	"user_id": 2,
-	"nom_corto": "Cualquiera",
-	"razon_ven": "ECLIPSE SA",
-	"ruc": "20136265474",
-	"direccion": "direccion de prueba",
-	"tele_ven": "987654321",
-	"pag_web": "www.eclipse.com",
-	"contacto": "321654987",
-	"logo": "img.png",
-	"email": "eclipse@gmail.com"
-}
-        */
-
     setLoading(true);
     await sendRequest(JSON.stringify(data));
     setLoading(false);
@@ -86,7 +71,7 @@ const FormSellerThree = ({ setPage }) => {
     });
 
     setSended(true);
-    history.push('/vendor/signin');
+    // history.push('/vendor/signin');
   };
 
   const handleBackClick = () => {

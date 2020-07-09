@@ -77,13 +77,15 @@ const IndexSignIn = () => {
       return;
     }
 
+    setError(false);
+
     setLoading(true);
 
-    crtVendor(vendor);
+    await crtVendor(vendor);
 
     setLoading(false);
-
-    setError(false);
+    // localStorage.setItem("token-auth-user", JSON.stringify(vendor));
+    
   };
 
   const handleChange = (e) => {

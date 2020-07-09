@@ -29,9 +29,9 @@ const IndexSignUp = () => {
 
     const history = useHistory();
 
-    if(currentVendor !== null) {
-        history.push('/vendor/settings');
-    }
+    // if(currentVendor !== null) {
+    //     history.push('/vendor/settings');
+    // }
 
     return (
         <Fragment>

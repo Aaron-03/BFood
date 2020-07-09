@@ -105,7 +105,10 @@ export default (state, action) => {
       };
 
     case DLT_VENDOR:
-      return {};
+      return {
+        ...state,
+        currentVendor: action.payload
+      };
 
     case LST_VENDOR:
       return {};

@@ -27,7 +27,7 @@ import Swal from 'sweetalert2';
 const FormSellerTwo = ({setPage}) => {
 
 
-    const { crtVendor, currentVendor, sendRequest } = useContext(VendorContext);
+    const { crtVendors, currentVendor, sendRequest } = useContext(VendorContext);
     const [ error, setError ] = useState(false);
     const [ laoding, setLoading ] = useState(false);
 
@@ -102,11 +102,9 @@ const FormSellerTwo = ({setPage}) => {
 
         setLoading(true);
         // await sendRequest();
-        setLoading(false);
-
+        
+        await crtVendors(vendor);
         setError(false);
-        crtVendor(vendor);
-
         setPage(3);
     }
 
