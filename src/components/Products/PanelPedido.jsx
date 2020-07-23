@@ -17,6 +17,7 @@ const PanelPedido = () => {
   const [complements, setComplements] = useState({
     descripcion: '',
     total: 0,
+    fecha: new Date().toLocaleDateString()
   });
 
   const { descripcion, total } = complements;

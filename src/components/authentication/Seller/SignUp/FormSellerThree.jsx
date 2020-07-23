@@ -47,20 +47,30 @@ const FormSellerThree = ({ setPage }) => {
     e.preventDefault();
 
     const data = {
-      user_id: Math.floor(Math.random() * 50 - 1) + 1,
-      nom_corto: name,
-      razon_ven: name,
+      // user_id: Math.floor(Math.random() * 50 - 1) + 1,
+      nombComercial: name,
+      razon: name,
       ruc: ruc,
       direccion: name,
-      tele_ven: phone,
-      pag_web: urlWeb,
-      contacto: phone,
+      telefono: phone,
+      web: urlWeb,
+      nomContacto: phone,
       logo: '',
-      email: email,
+      solicitud: [{
+        fecha: new Date().toLocaleDateString(),
+        estado: '0'
+      }],
+      usuario: {
+        username: name,
+        email: email,
+        password: password,
+        estado: 0,
+        roles: [{rolNombre: 'ROLE_VENDEDOR'}]
+      }
     };
 
     setLoading(true);
-    await sendRequest(JSON.stringify(data));
+    await sendRequest(data);
     setLoading(false);
 
     Swal.fire({
